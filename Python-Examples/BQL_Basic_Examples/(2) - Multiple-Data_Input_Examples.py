@@ -9,7 +9,7 @@ bq.execute(): Executes the request.
   `bq.execute(request)`
 '''
   
-  # Import the BQL library
+# Import the BQL library
 import bql
 
 # Instantiate an object to interface with the BQL service
