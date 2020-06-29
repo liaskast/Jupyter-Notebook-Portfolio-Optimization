@@ -24,7 +24,7 @@ import bqplot as bqp
 #preload_box
 
 # Instantiate an object to interface with the BQL service
-bq = bql.Service()
+bq = bql.Service() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
 
 #Default settings
 security = OrderedDict()
@@ -49,12 +49,13 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 
 #security["Crypto Currency"] = 'GBTC US Equity'
 
+#Original Weights that will provide us with the Implied returns.
 approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
 
 
 rf = 0.015 # rf is the risk-free rate
 num_avail_ticker=20
-uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model)
+uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 import pickle
 from collections import OrderedDict
@@ -98,7 +99,7 @@ def loadtickerfrominput():
                 flag_missingname = True
             temp_weight.append(list_sec_input[n+1].children[2].value)
     if flag_missingname:
-        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()})
+        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()}) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
         for index,row in df_name.iterrows():
             temp_name[dict_missnametickers[index]] = row['name']
     temp_sec=OrderedDict(zip(temp_name,temp_ticker))
@@ -107,16 +108,16 @@ def loadtickerfrominput():
 
 def bq_ref_data(security,datafields):
     # Generate the request using the sercurity variable and data item
-    request =  bql.Request(security, datafields)
-    response = bq.execute(request)
+    request =  bql.Request(security, datafields) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    response = bq.execute(request) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
     return result
 
 def bq_series_data(security,datafields):
-    request =  bql.Request(security, datafields)
-    response = bq.execute(request)
+    request =  bql.Request(security, datafields) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    response = bq.execute(request) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return result
 
@@ -166,7 +167,7 @@ def solve_intial_opt_weight():
     security = dict_settings['security']
     univ = list(security.values())
     datafields = OrderedDict()
-    datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m')
+    datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     day_to_day_return=bq_series_data(univ,datafields)
 
     R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
@@ -174,7 +175,7 @@ def solve_intial_opt_weight():
     
     if dict_settings['usemktcap']:
         datafields = OrderedDict()
-        datafields['Mkt Cap'] = bq.data.cur_mkt_cap(currency='usd')
+        datafields['Mkt Cap'] = bq.data.cur_mkt_cap(currency='usd') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
         df_mkt_cap=bq_ref_data(univ,datafields)
         W = np.array(df_mkt_cap/df_mkt_cap.sum()) # W is the market cap weight
     else:
@@ -261,9 +262,9 @@ UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktca
 
 def on_click_load_portfolio(obj=None):
     global df_portfolio_weight
-    portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT')
-    id_ = bq.data.id()
-    df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()
+    portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    id_ = bq.data.id() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()  #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     for x in range(1,num_avail_ticker+1):
         if x - 1 < len(df_portfolio_weight):
             list_sec_input[x].children[0].value = df_portfolio_weight.iloc[x-1,0]
