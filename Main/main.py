@@ -434,7 +434,7 @@ def updatedseclist(obj=None):
         solve_intial_opt_weight()
         run_viewmodel({'new':0.})
 
-import bqcde
+import bqcde #**********************************************************************TALKS TO Bloomberg's Database********************************************************************** AND BELOW
 from datetime import date
 def upload_to_cde(obj):
     obj.description = 'Uploading...'
