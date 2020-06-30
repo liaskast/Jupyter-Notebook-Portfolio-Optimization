@@ -11,7 +11,7 @@ from collections import OrderedDict
 import scipy
 
 import bqwidgets as bqw
-from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML
+from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
 import bqplot as bqp
 
 # Loading animation
@@ -24,7 +24,7 @@ import bqplot as bqp
 #preload_box
 
 # Instantiate an object to interface with the BQL service
-#bq = bql.Service() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+#bq = bql.Service() # object bq is defined #********************TALKS TO Bloomberg's Database************
 
 #Default settings
 security = OrderedDict()
@@ -74,14 +74,14 @@ except:                         # Defines Python Objects.
     dict_settings['weight'] = approximated_mkt_weight
     dict_settings['confidence'] = 0.8
     dict_settings['scalar'] = uncertainty
-    dict_settings['usemktcap'] = False
+    dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     
 def save_settings(caller=None): # Reads from Button any changes to objects.
     temp_sec, temp_weight = loadtickerfrominput()
     dict_settings['security'] = temp_sec
     dict_settings['weight'] = temp_weight
     dict_settings['confidence'] = floattext_confidence.value
-    dict_settings['usemktcap'] = check_usemktcap.value
+    dict_settings['usemktcap'] = check_usemktcap.value # If check_usemktcap.value == true then you are using the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     f=open('settings_bl.pckl','wb')
     pickle.dump(dict_settings, f)
     f.close()
@@ -101,7 +101,7 @@ def loadtickerfrominput(): # Reads from Button any changes to objects.
                 flag_missingname = True
             temp_weight.append(list_sec_input[n+1].children[2].value)
     if flag_missingname:
-        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()}) # Gets 'name' of the security in the Tickers. #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()}) # Gets 'name' of the security in the Tickers supplied as input. #******************** Calls function that calls Bloomberg's Database ************
         for index,row in df_name.iterrows():
             temp_name[dict_missnametickers[index]] = row['name']
     temp_sec=OrderedDict(zip(temp_name,temp_ticker))
@@ -110,28 +110,32 @@ def loadtickerfrominput(): # Reads from Button any changes to objects.
 
 def bq_ref_data(security,datafields):
     # Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments
-    request =  bql.Request(security, datafields) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-    response = bq.execute(request) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
+    response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
     return result
 
 def bq_series_data(security,datafields):
-    request =  bql.Request(security, datafields) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-    response = bq.execute(request) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
+    response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
     result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return result
 
+# Portfolio Mean
 def _port_mean(weights, expected_returns):
     return((expected_returns.T * weights).sum())
 
+# Portfolio Var
 def _port_var(weights, risk_matrix):
     return np.dot(np.dot(weights.T, risk_matrix), weights)
 
+# Portfolio Mean Var
 def _port_mean_var(weights, expected_returns, risk_matrix):
     return _port_mean(weights, expected_returns), _port_var(weights, risk_matrix)
 
+# Calculates Mean Var
 def _find_mean_variance(weights, expected_returns, covar, return_target):
     mean, var = _port_mean_var(weights, expected_returns, covar)
     penalty = 10 * abs(mean-return_target)
@@ -150,6 +154,7 @@ def solve_weights(R, C, rf, target_r = None):
         raise BaseException(optimized.message)
     return optimized.x 
 
+# Constructs Efficient Frontier
 def solve_for_frountier(R, C, rf):
     frontier_mean, frontier_var , weights = [], [], []
     for r in np.linspace(R.min(), R.max(), num=15):
@@ -163,21 +168,21 @@ def solve_for_frountier(R, C, rf):
     frontier.index.name = 'portfolio'
     return frontier, weights
 
-
+# Initial Optimization of Weights...Implied Returns
 def solve_intial_opt_weight():
     global W_opt, frontier, f_weights, Pi, C, lmb, new_mean, W, R, mean_opt, var_opt
     security = dict_settings['security']
     univ = list(security.values())
     datafields = OrderedDict()
-    datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-    day_to_day_return=bq_series_data(univ,datafields)
+    datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
+    day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
 
     R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
     C = day_to_day_return.cov() *12 #252 # C is the covariance matrix
     
-    if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if use choose index securities. We will not use!!!
+    if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
-        datafields['Mkt Cap'] = bq.data.cur_mkt_cap(currency='usd') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+        datafields['Mkt Cap'] = bq.data.cur_mkt_cap(currency='usd') # Datafields Parameter
         df_mkt_cap=bq_ref_data(univ,datafields)  # Gets mkt_cap of the security in the Tickers. 
         W = np.array(df_mkt_cap/df_mkt_cap.sum()) # W is the market cap weight
     else:
@@ -197,9 +202,9 @@ def solve_intial_opt_weight():
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
     #return W_opt, frontier, f_weights, Pi, C
 
-solve_intial_opt_weight()
+solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
 
-
+# ************************************************************ GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
 input_header = HBox([Label(value='Ticker', layout=Layout(width='120px',height='22px')), Label(value='Name of Asset', layout=Layout(width='120px',height='22px')), 
                      Label(value='Weight',layout=Layout(width='120px',height='22px'))])
@@ -208,11 +213,13 @@ lst_name = list(dict_settings['security'].keys())
 lst_ticker = list(dict_settings['security'].values())
 lst_weight = dict_settings['weight']
 
-check_usemktcap = Checkbox(description='Use Market Cap as Weight',value=dict_settings['usemktcap'], layout=Layout(min_width='15px'),style={'description_width':'initial'})
+# Checkbox that determines the mktcap option. Places in python object's 'check_usemktcap' value field a true or false value
+check_usemktcap = Checkbox(description='Use Market Cap as Weight',value=dict_settings['usemktcap'], layout=Layout(min_width='15px'),style={'description_width':'initial'}) 
 
-label_usemktcap = Label(value=' ',layout={'height':'22px'})
-label_usemktcap2 = Label(value='(not recommended when using ETF as proxy)',layout=Layout(min_width='300px'))
+label_usemktcap = Label(value=' ',layout={'height':'22px'}) # MktCap Label
+label_usemktcap2 = Label(value='(not recommended when using ETF as proxy)',layout=Layout(min_width='300px')) # MktCap Label
 
+# Option to load your own internal portfolio different from the original input.
 port_dict = {x['name']: x['id'].split(':')[2].replace('-','U') + '-' + x['id'].split(':')[3] for x in bqport.list_portfolios()}
 load_button = Button(description='Load members')
 portfolio_dropdown = Dropdown(description='Portfolio:',options=sorted(set(port_dict.keys())))
@@ -264,9 +271,9 @@ UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktca
 
 def on_click_load_portfolio(obj=None):
     global df_portfolio_weight
-    portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-    id_ = bq.data.id() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-    df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()  #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+    portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #********************TALKS TO Bloomberg's Database************ xox
+    id_ = bq.data.id() #********************TALKS TO Bloomberg's Database************ xox
+    df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()  #******************** Directly TALKS TO Bloomberg's Database ************
     for x in range(1,num_avail_ticker+1):
         if x - 1 < len(df_portfolio_weight):
             list_sec_input[x].children[0].value = df_portfolio_weight.iloc[x-1,0]
@@ -436,7 +443,7 @@ def updatedseclist(obj=None):
         solve_intial_opt_weight()
         run_viewmodel({'new':0.})
 
-import bqcde #**********************************************************************TALKS TO Bloomberg's Database********************************************************************** AND BELOW
+import bqcde #********************TALKS TO Bloomberg's Database************ AND BELOW...interal portfolio thing
 from datetime import date
 def upload_to_cde(obj):
     obj.description = 'Uploading...'
