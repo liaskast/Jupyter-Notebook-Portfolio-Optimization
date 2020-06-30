@@ -24,7 +24,7 @@ import bqplot as bqp
 #preload_box
 
 # Instantiate an object to interface with the BQL service
-bq = bql.Service() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+#bq = bql.Service() #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
 
 #Default settings
 security = OrderedDict()
@@ -61,12 +61,14 @@ import pickle
 from collections import OrderedDict
 from datetime import timedelta
 
+
+#Creates pickle file called 'settings_bl.pckl'. This file 'serializes' python Objects.
 try: 
-    f = open('settings_bl.pckl', 'rb')
+    f = open('settings_bl.pckl', 'rb') #**************************************************Issue?
     dict_settings = pickle.load(f)
     f.close()  
-    
-except:
+      
+except:                         # Defines Python Objects.  
     dict_settings = OrderedDict()
     dict_settings['security'] = security
     dict_settings['weight'] = approximated_mkt_weight
@@ -74,7 +76,7 @@ except:
     dict_settings['scalar'] = uncertainty
     dict_settings['usemktcap'] = False
     
-def save_settings(caller=None):
+def save_settings(caller=None): # Reads from Button any changes to objects.
     temp_sec, temp_weight = loadtickerfrominput()
     dict_settings['security'] = temp_sec
     dict_settings['weight'] = temp_weight
@@ -84,7 +86,7 @@ def save_settings(caller=None):
     pickle.dump(dict_settings, f)
     f.close()
     
-def loadtickerfrominput():
+def loadtickerfrominput(): # Reads from Button any changes to objects.
     temp_ticker = []
     temp_name = []
     temp_weight = []
@@ -99,7 +101,7 @@ def loadtickerfrominput():
                 flag_missingname = True
             temp_weight.append(list_sec_input[n+1].children[2].value)
     if flag_missingname:
-        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()}) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
+        df_name=bq_ref_data(dict_missnametickers.keys(),{'name':bq.data.NAME()}) # Gets 'name' of the security in the Tickers. #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
         for index,row in df_name.iterrows():
             temp_name[dict_missnametickers[index]] = row['name']
     temp_sec=OrderedDict(zip(temp_name,temp_ticker))
@@ -107,7 +109,7 @@ def loadtickerfrominput():
     return temp_sec, temp_weight
 
 def bq_ref_data(security,datafields):
-    # Generate the request using the sercurity variable and data item
+    # Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments
     request =  bql.Request(security, datafields) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     response = bq.execute(request) #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
     def merge(response): 
@@ -173,10 +175,10 @@ def solve_intial_opt_weight():
     R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
     C = day_to_day_return.cov() *12 #252 # C is the covariance matrix
     
-    if dict_settings['usemktcap']:
+    if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if use choose index securities. We will not use!!!
         datafields = OrderedDict()
         datafields['Mkt Cap'] = bq.data.cur_mkt_cap(currency='usd') #**********************************************************************TALKS TO Bloomberg's Database**********************************************************************
-        df_mkt_cap=bq_ref_data(univ,datafields)
+        df_mkt_cap=bq_ref_data(univ,datafields)  # Gets mkt_cap of the security in the Tickers. 
         W = np.array(df_mkt_cap/df_mkt_cap.sum()) # W is the market cap weight
     else:
         W = np.array(dict_settings['weight']).reshape(len(R),1)
