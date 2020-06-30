@@ -125,7 +125,7 @@ def bq_ref_data(security,datafields):
     #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
     request = 1
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
-    response = 1
+    response = np.zeros(2,3);
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
@@ -135,7 +135,7 @@ def bq_series_data(security,datafields):
     #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
     request = 1
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
-    response = 1
+    response = np.zeros(2,3);
     result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return result
 
@@ -190,7 +190,7 @@ def solve_intial_opt_weight():
     security = dict_settings['security']
     univ = list(security.values())
     datafields = OrderedDict()
-    datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
+    #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
 
     R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
