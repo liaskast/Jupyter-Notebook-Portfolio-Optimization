@@ -28,13 +28,13 @@ from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layou
 class Bloomberg_Object:
     class data:
         def day_to_day_total_return(self):
-            print("The shark is swimming.")
+            print("Runs 1.")
 
     class execute:
-        print("The shark is being awesome.")
+        print("Runs 2.")
 
     class univ:
-        print("The shark is being awesome.")
+        print("Runs 3.")
 
 bq = Bloomberg_Object()        
 
