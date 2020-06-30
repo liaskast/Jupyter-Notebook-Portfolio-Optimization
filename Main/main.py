@@ -204,7 +204,7 @@ def solve_intial_opt_weight():
 
 solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
 
-# ************************************************************ GUI portion of the code that contains various labels,checkboxes etc.  ***********************
+# ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
 input_header = HBox([Label(value='Ticker', layout=Layout(width='120px',height='22px')), Label(value='Name of Asset', layout=Layout(width='120px',height='22px')), 
                      Label(value='Weight',layout=Layout(width='120px',height='22px'))])
@@ -390,8 +390,10 @@ def updatecontrolinui():
 
 updateviewcontrol()
 
-# Build bar charts
+# END OF ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
+# START OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************
+'''
 x_ord = bqp.OrdinalScale()
 y_sc = bqp.LinearScale()
 
@@ -430,6 +432,8 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
 UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
+'''
+# END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************
 
 tab = Tab()
 tab.children = [UI_model, UI_sec_input]
@@ -443,6 +447,8 @@ def updatedseclist(obj=None):
         solve_intial_opt_weight()
         run_viewmodel({'new':0.})
 
+# START OF ************************************************************************************************************** (use of bqcde)  *********************** 
+'''
 import bqcde #********************TALKS TO Bloomberg's Database************ AND BELOW...interal portfolio thing
 from datetime import date
 def upload_to_cde(obj):
@@ -467,7 +473,8 @@ def upload_to_cde(obj):
 #upload_to_cde()
 button = Button(description='Upload to CDE')
 button.on_click(upload_to_cde)
-
+'''
+# END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 # Black-Litterman Asset-allocation Model
 ---
 The Black-Litterman asset-allocation model is a Bayesian approach to combine the subjective views of an investor with the market equiilibrium returns to form a new, mixed estimate of expected returns.
