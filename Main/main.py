@@ -1,18 +1,18 @@
 # Import the Bloomberg Query Language (BQL) and bqfactor libraries
-import bql
-import bqport
+#import bql
+#import bqport
 # Import other data analytics and chatting libraries
 import pandas as pd
-import bqplot as bqp
-import bqviz as bqv
+#import bqplot as bqp
+#import bqviz as bqv
 import numpy as np
 from numpy.linalg import inv
 from collections import OrderedDict
 import scipy
 
-import bqwidgets as bqw
+#import bqwidgets as bqw
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
-import bqplot as bqp
+#import bqplot as bqp
 
 # Loading animation
 #loading_html = HTML("""
@@ -25,6 +25,18 @@ import bqplot as bqp
 
 # Instantiate an object to interface with the BQL service
 #bq = bql.Service() # object bq is defined #********************TALKS TO Bloomberg's Database************
+class Bloomberg_Object:
+    class data:
+        def day_to_day_total_return(self):
+            print("The shark is swimming.")
+
+    class execute:
+        print("The shark is being awesome.")
+
+    class univ:
+        print("The shark is being awesome.")
+
+bq = Bloomberg_Object()        
 
 #Default settings
 security = OrderedDict()
@@ -110,16 +122,20 @@ def loadtickerfrominput(): # Reads from Button any changes to objects.
 
 def bq_ref_data(security,datafields):
     # Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments
-    request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
-    response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
+    #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
+    request = 1
+    #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
+    response = 1
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
     return result
 
 def bq_series_data(security,datafields):
-    request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
-    response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
+    #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
+    request = 1
+    #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
+    response = 1
     result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return result
 
@@ -476,13 +492,12 @@ button.on_click(upload_to_cde)
 '''
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 # Black-Litterman Asset-allocation Model
----
-The Black-Litterman asset-allocation model is a Bayesian approach to combine the subjective views of an investor with the market equiilibrium returns to form a new, mixed estimate of expected returns.
+#---The Black-Litterman asset-allocation model is a Bayesian approach to combine the subjective views of an investor with the market equiilibrium returns to form a new, mixed estimate of expected returns.
 
 preload_box.children = []
 VBox([button,tab])
 
-[Open Weight](output.xlsx)
+#[Open Weight](output.xlsx)
 
 for slider in list_slider:
     print(slider.description, ": ", slider.value)
