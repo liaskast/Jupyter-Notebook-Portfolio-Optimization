@@ -86,7 +86,6 @@ security['MSCI World'] =  'MACXUIGB Index'
 security['Spanish Equity'] =  'IBEX Index'
 security['US Equity'] =  'SPX Index'
 security['US High Yield Bonds'] =  'IBXXHYCT Index'
-
 #security["Crypto Currency"] = 'GBTC US Equity'
 '''
 
@@ -100,7 +99,11 @@ security['Cash'] =  'Cash'
 
 #Original Weights that will provide us with the Implied returns.
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
-approximated_mkt_weight = [0.1,0.2,0.2,0.1,0.1,0.1,0.3]
+#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
+#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]
+#approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
+#approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
+approximated_mkt_weight = [0.1,0.2,0.2,0.1,0.1,0.2,0.1]
 
 rf = 0.015 # rf is the risk-free rate
 num_avail_ticker=7
@@ -110,6 +113,7 @@ uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Ca
 prices = pd.read_excel (r'C:\Users\user2\Documents\Python_files\Black_Litterman\Iolcus-Investments\Main\prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:H")
 returns = prices.pct_change()
 returns = returns.dropna()
+
 
 import pickle
 from collections import OrderedDict
@@ -376,7 +380,6 @@ def run_viewmodel(change=None):
         for relative_box in list_relative_controls:
             sec1_pos = relative_box.children[0].value - 1
             sec2_pos = relative_box.children[2].value - 1
-
             if sec1_pos >= 0 and sec2_pos >= 0:
                 npselection = np.zeros(len(dict_settings['security']))
                 npselection[sec1_pos] = 1
@@ -437,7 +440,8 @@ def updateviewcontrol():
     list_slider=[]
     list_security=list(dict_settings['security'].keys())
     for n in range(len(dict_settings['security'])):
-        temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
+        #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
+        temp_slider=FloatSlider(value=Pi[n]+0.1, description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the value chosen by user on the slider. max,min specify the maximum amount of return you can spec on an asset class
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
