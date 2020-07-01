@@ -238,7 +238,9 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
-    return W_opt, frontier, f_weights, Pi, C
+    #return W_opt, frontier, f_weights, Pi, C
+    print("\n Initial Optimal Weights")
+    return W_opt
 
 solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
 
