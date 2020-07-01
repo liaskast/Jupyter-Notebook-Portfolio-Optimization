@@ -72,13 +72,13 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Crypto Currency"] = 'GBTC US Equity'
 '''
 
-security['1-5 years GILTS'] =  'Euro Gov'
-security['Cash'] =  'Greek Gov'
-security['Chinese Bonds'] =  'EU Corporate'
-security['Chinese Equity'] =  'EU HY'
-security['Emerging Asia Equity'] =  'Eur Eq'
-security['EU High Yield Bonds'] =  'US Eq'
-security['European Banks'] =  'Cash'
+security['Euro Gov'] =  'Euro Gov'
+security['Greek Gov'] =  'Greek Gov'
+security['EU Corporate'] =  'EU Corporate'
+security['EU High Yield'] =  'EU HY'
+security['European Equities'] =  'Eur Eq'
+security['US Equities'] =  'US Eq'
+security['Cash'] =  'Cash'
 
 #Original Weights that will provide us with the Implied returns.
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
@@ -153,7 +153,7 @@ def bq_ref_data(security,datafields):
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
-    print(result)
+    #print(result)
     return result
 
 def bq_series_data(security,datafields):
