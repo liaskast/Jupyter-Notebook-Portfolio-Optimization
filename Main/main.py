@@ -2,6 +2,7 @@
 #import bql
 #import bqport
 # Import other data analytics and chatting libraries
+from __future__ import print_function
 import pandas as pd
 import bqplot as bqp
 #import bqviz as bqv
@@ -15,14 +16,31 @@ from scipy import optimize
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
 #import bqplot as bqp
 
-# Loading animation
-#loading_html = HTML("""
-#    <div style="font-size:14px; color:lightskyblue;">
-#        <i class="fa fa-circle-o-notch fa-spin"></i><span>&nbsp;Loading...</span>
-#    </div>""")
+#Loading animation
+loading_html = HTML("""
+    <div style="font-size:14px; color:lightskyblue;">
+        <i class="fa fa-circle-o-notch fa-spin"></i><span>&nbsp;Loading...</span>
+    </div>""")
 
-#preload_box = HBox([loading_html])
-#preload_box
+preload_box = HBox([loading_html])
+preload_box
+
+
+
+from bqplot import pyplot as plt
+from bqplot import topo_load
+from bqplot.interacts import panzoom
+# initializing data to be plotted
+np.random.seed(0)
+size = 100
+y_data = np.cumsum(np.random.randn(size) * 100.0)
+y_data_2 = np.cumsum(np.random.randn(size))
+y_data_3 = np.cumsum(np.random.randn(size) * 100.)
+
+x = np.linspace(0.0, 10.0, size)
+#plt.figure(title='Scatter Plot with colors')
+#plt.scatter(y_data_2, y_data_3, color=y_data, stroke='black')
+#plt.show();
 
 # Instantiate an object to interface with the BQL service
 #bq = bql.Service() # object bq is defined #********************TALKS TO Bloomberg's Database************
@@ -82,7 +100,7 @@ security['Cash'] =  'Cash'
 
 #Original Weights that will provide us with the Implied returns.
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
-approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
+approximated_mkt_weight = [0.1,0.2,0.2,0.1,0.1,0.1,0.3]
 
 rf = 0.015 # rf is the risk-free rate
 num_avail_ticker=7
@@ -213,6 +231,7 @@ def solve_for_frountier(R, C, rf):
 
 # Initial Optimization of Weights...Implied Returns
 def solve_intial_opt_weight():
+    print("trigger")
     global W_opt, frontier, f_weights, Pi, C, lmb, new_mean, W, R, mean_opt, var_opt
     security = dict_settings['security']
     univ = list(security.values())
@@ -220,8 +239,8 @@ def solve_intial_opt_weight():
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
 
-    R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov() *12 #252 # C is the covariance matrix
+    R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
+    C = day_to_day_return.cov() *52 #252 # C is the covariance matrix
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -243,9 +262,10 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
+    print("\n Initial Optimal Weights")
+    print(W_opt)
     return W_opt, frontier, f_weights, Pi, C
-    #print("\n Initial Optimal Weights")
-    #return W_opt
+
 
 solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
 # ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
@@ -348,7 +368,8 @@ def run_viewmodel(change=None):
     if isinstance(change['new'],float):
         Q=[]
         for n in range(len(dict_settings['security'])):
-            alpha = (0.5 - Pi[n][0]) * (floattext_confidence.value)
+            #alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value)
+            alpha = (0.9 - Pi[n][0]) * (floattext_confidence.value)
             Q.append(alpha + Pi[n][0])
 
         '''
@@ -366,7 +387,8 @@ def run_viewmodel(change=None):
         '''
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
-        tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
+        #tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
+        tau=0.025
 
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
@@ -527,7 +549,7 @@ button.on_click(upload_to_cde)
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
 
-#preload_box.children = []
+preload_box.children = []
 VBox([button,tab])
 
 #[Open Weight](output.xlsx)
