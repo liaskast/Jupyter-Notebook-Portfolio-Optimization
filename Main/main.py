@@ -17,24 +17,10 @@ from scipy import optimize
 
 #import bqwidgets as bqw
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
-from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
+#from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
 #import bqplot as bqp
-
-widgets.IntSlider(
-    value=7,
-    min=0,
-    max=10,
-    step=1,
-    description='Test:',
-    disabled=False,
-    continuous_update=False,
-    orientation='horizontal',
-    readout=True,
-    readout_format='d'
-)
-slider = widgets.IntSlider()
-display(slider)
-print("heyyy")
 
 #Loading animation
 loading_html = HTML("""
@@ -44,6 +30,7 @@ loading_html = HTML("""
 
 preload_box = HBox([loading_html])
 preload_box
+#display(preload_box) #if you want to force it to show you this.
 
 from bqplot import pyplot as plt
 from bqplot import topo_load
@@ -66,15 +53,15 @@ x = np.linspace(0.0, 10.0, size)
 class Bloomberg_Object:
     class data:
         def day_to_day_total_return(self):
-            print("Runs 1.")
+            print("")
         def NAME(self):
-            print("Runs 1.")    
+            print("")    
 
     class execute:
-        print("Runs 2.")
+        print("")
 
     class univ:
-        print("Runs 3.")
+        print("")
 
     class port:
         def list_portfolios():
@@ -85,27 +72,27 @@ bq = Bloomberg_Object()
 
 #Default settings
 security = OrderedDict()
-'''
-security['1-5 years GILTS'] =  'LF56TRGU Index'
-security['Cash'] =  'DBDCONIA Index'
-security['Chinese Bonds'] =  'I32561US Index'
-security['Chinese Equity'] =  'SHSZ300 Index'
-security['Emerging Asia Equity'] =  'NDUEEGFA Index'
-security['EU High Yield Bonds'] =  'EUNW GY Equity'
-security['European Banks'] =  'SX7E Index'
-security['European Corp'] =  'EUN5 GR Equity'
-security['European Equity'] =  'SXXE Index'
-security['German Equity'] =  'DAX Index'
-security['Greek Equity'] =  'FTASE Index'
-security['Greek Govies'] =  'BEGCGA Index'
-security['Italian Equity'] =  'FTSEMIB Index'
-security['MSCI Info tech'] =  'NDWUIT Index'
-security['MSCI World'] =  'MACXUIGB Index'
-security['Spanish Equity'] =  'IBEX Index'
-security['US Equity'] =  'SPX Index'
-security['US High Yield Bonds'] =  'IBXXHYCT Index'
+
+#security['1-5 years GILTS'] =  'LF56TRGU Index'
+#security['Cash'] =  'DBDCONIA Index'
+#security['Chinese Bonds'] =  'I32561US Index'
+#security['Chinese Equity'] =  'SHSZ300 Index'
+#security['Emerging Asia Equity'] =  'NDUEEGFA Index'
+#security['EU High Yield Bonds'] =  'EUNW GY Equity'
+#security['European Banks'] =  'SX7E Index'
+#security['European Corp'] =  'EUN5 GR Equity'
+#security['European Equity'] =  'SXXE Index'
+#security['German Equity'] =  'DAX Index'
+#security['Greek Equity'] =  'FTASE Index'
+#security['Greek Govies'] =  'BEGCGA Index'
+#security['Italian Equity'] =  'FTSEMIB Index'
+#security['MSCI Info tech'] =  'NDWUIT Index'
+#security['MSCI World'] =  'MACXUIGB Index'
+#security['Spanish Equity'] =  'IBEX Index'
+#security['US Equity'] =  'SPX Index'
+#security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Crypto Currency"] = 'GBTC US Equity'
-'''
+
 
 #security['Euro Gov'] =  'Euro Gov'
 #security['Greek Gov'] =  'Greek Gov'
@@ -205,7 +192,7 @@ def bq_ref_data(security,datafields):
     #request = 1
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
     #response = np.zeros(2,3)
-    print("entered bq_ref_data")
+    #print("entered bq_ref_data")
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
@@ -216,7 +203,7 @@ def bq_series_data(security,datafields):
     #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
     #request = 1
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
-    print("entered bq_series_data")
+    #print("entered bq_series_data")
     response = returns
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     #print(result)
@@ -269,7 +256,6 @@ def solve_for_frountier(R, C, rf):
 
 # Initial Optimization of Weights...Implied Returns
 def solve_intial_opt_weight():
-    print("trigger")
     global W_opt, frontier, f_weights, Pi, C, lmb, new_mean, W, R, mean_opt, var_opt
     security = dict_settings['security']
     univ = list(security.values())
@@ -414,7 +400,7 @@ def run_viewmodel(change=None):
                                                                                      # Hence, we move the 'slider' from the 6% position to the 8% position. This is done later inside function "updateviewcontrol"
             Q.append(alpha + Pi[n][0])
 
-        '''
+        
         for relative_box in list_relative_controls:
             sec1_pos = relative_box.children[0].value - 1
             sec2_pos = relative_box.children[2].value - 1
@@ -425,7 +411,7 @@ def run_viewmodel(change=None):
                 P = np.array(pd.DataFrame(P).append(pd.DataFrame(npselection).T))
                 alpha = (relative_box.children[-1].value - (Pi[sec1_pos][0] - Pi[sec2_pos][0])) * (floattext_confidence.value)
                 Q.append(alpha +  (Pi[sec1_pos][0] - Pi[sec2_pos][0]))
-        '''
+        
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
         tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
@@ -468,7 +454,7 @@ def run_viewmodel(change=None):
 
 floattext_confidence = FloatSlider(description='Confidence Level on Views', value=dict_settings['confidence'],style={'description_width':'initial'}, readout_format='.2%', max=1, min=0,
                                    layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
-
+                                   
 floattext_confidence.observe(run_viewmodel) 
 
 #sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)
@@ -480,6 +466,7 @@ def updateviewcontrol():
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
         temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class
+        display(temp_slider)
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
