@@ -440,7 +440,7 @@ def run_viewmodel(change=None):
         weights['Opt Portfolio with View']=new_weights[::-1]
         
         output_df = pd.DataFrame(weights, index=list_security[::-1])
-        #output_df.to_excel('output.xlsx')
+        output_df.to_excel('output.xlsx')
 
         mean, var = _port_mean_var(new_weights[::-1], Pi_new + rf, C)
         scatt.x = [np.sqrt(var_opt)]
