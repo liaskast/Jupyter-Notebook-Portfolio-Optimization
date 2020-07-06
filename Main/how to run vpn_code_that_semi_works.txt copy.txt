@@ -1,0 +1,29 @@
+#1
+pip install ipywidgets
+pip install traitlets
+pip install traittypes
+pip install numpy
+pip install pandas
+
+#2 
+pip install bqplot
+
+
+#3 - Cell 1
+import numpy as np
+import bqplot.pyplot as plt
+
+#4 - Cell 2
+size = 100
+scale = 100.
+np.random.seed(0)
+x_data = np.arange(size)
+y_data = np.cumsum(np.random.randn(size)  * scale)
+
+#5 - Cell 3, should output a graph 
+fig = plt.figure(title='First Example')
+plt.plot(y_data)
+fig
+
+#6 
+then run the code
