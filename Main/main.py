@@ -17,7 +17,7 @@ from scipy import optimize
 
 #import bqwidgets as bqw
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
-#from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
+from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 #import bqplot as bqp
@@ -349,6 +349,7 @@ check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
 def onclickapplysettings(obj=None):
+    print("heeeeeeeeeeeeeeeee yentered onclick")
     save_settings()
     updateinputboxes()
     solve_intial_opt_weight()
@@ -356,7 +357,9 @@ def onclickapplysettings(obj=None):
     updatecontrolinui()
     run_viewmodel({'new':0.})
     
+display(button_applysettings)
 button_applysettings.on_click(onclickapplysettings)
+
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
 UI_sec_input = HBox([VBox(list_sec_input),VBox([label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})]) # Have taken load_members_hbox out because it requires a call to bloomberg's cde library which is not accessible to us.
 
@@ -415,7 +418,7 @@ def run_viewmodel(change=None):
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
         tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
-        #tau=0.025
+        #tau=0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
 
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
@@ -487,6 +490,7 @@ def updateviewcontrol():
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
     UI_viewcontrol = [header_abs_html, VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
     
+    
 def updatecontrolinui():
     UI_model.children[0].children = UI_viewcontrol
 
@@ -532,7 +536,10 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       legend_location='top-left', layout=Layout(width='800px'), 
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
-UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
+#UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
+UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px'))])
+#UI_model = HBox([loading_html])
+
 
 # END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************
 
