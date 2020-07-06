@@ -136,6 +136,7 @@ returns = prices.pct_change()
 returns = returns.dropna()
 
 
+
 import pickle
 from collections import OrderedDict
 from datetime import timedelta
@@ -536,8 +537,8 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       legend_location='top-left', layout=Layout(width='800px'), 
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
-#UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
-UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px'))])
+UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
+#UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px'))])
 #UI_model = HBox([loading_html])
 
 
