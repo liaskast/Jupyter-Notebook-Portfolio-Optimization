@@ -119,6 +119,7 @@ security["Emerging Mkts"] = 'EEM US Equity'
 #approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
 #approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
 approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+views = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
 
 rf = 0.015 # rf is the risk-free rate
 num_avail_ticker=13
@@ -387,8 +388,12 @@ def run_viewmodel(change=None):
     if isinstance(change['new'],float):
         Q=[]
         for n in range(len(dict_settings['security'])):
-            #alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value)
-            alpha = (0.9 - Pi[n][0]) * (floattext_confidence.value)
+            alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value) # We supply the [primary 'view'] which is the Implied Return for each Asset Class.
+                                                                                     # For example, we assume the first asset class will have implied return 6% as calculated from the historical data
+                                                                                     # then, list_slider[n].value contains that 6% value. This is the [primary 'view'] for this asset class. 
+                                                                                     # Then on top of this [primary 'view'] we will add our own [portfolio manager 'view']. 
+                                                                                     # For example we believe that this asset class instead of 6% will have a 8% return. 
+                                                                                     # Hence, we move the 'slider' from the 6% position to the 8% position. This is done later inside function "updateviewcontrol"
             Q.append(alpha + Pi[n][0])
 
         '''
@@ -456,7 +461,7 @@ def updateviewcontrol():
     list_security=list(dict_settings['security'].keys())
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
-        temp_slider=FloatSlider(value=Pi[n]+0.1, description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the value chosen by user on the slider. max,min specify the maximum amount of return you can spec on an asset class
+        temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the value chosen by user on the slider. max,min specify the maximum amount of return you can spec on an asset class
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
