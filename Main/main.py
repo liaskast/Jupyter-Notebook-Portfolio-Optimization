@@ -2,6 +2,8 @@
 #import bql
 #import bqport
 # Import other data analytics and chatting libraries
+
+
 from __future__ import print_function
 import pandas as pd
 import bqplot as bqp
@@ -10,11 +12,29 @@ import numpy as np
 from numpy.linalg import inv
 from collections import OrderedDict
 import scipy
+import ipywidgets as widgets
 from scipy import optimize
 
 #import bqwidgets as bqw
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
+from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
 #import bqplot as bqp
+
+widgets.IntSlider(
+    value=7,
+    min=0,
+    max=10,
+    step=1,
+    description='Test:',
+    disabled=False,
+    continuous_update=False,
+    orientation='horizontal',
+    readout=True,
+    readout_format='d'
+)
+slider = widgets.IntSlider()
+display(slider)
+print("heyyy")
 
 #Loading animation
 loading_html = HTML("""
@@ -24,8 +44,6 @@ loading_html = HTML("""
 
 preload_box = HBox([loading_html])
 preload_box
-
-
 
 from bqplot import pyplot as plt
 from bqplot import topo_load
@@ -354,7 +372,7 @@ def onclickapplysettings(obj=None):
     
 button_applysettings.on_click(onclickapplysettings)
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
-UI_sec_input = HBox([VBox(list_sec_input),VBox([label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
+UI_sec_input = HBox([VBox(list_sec_input),VBox([label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})]) # Have taken load_members_hbox out because it requires a call to bloomberg's cde library which is not accessible to us.
 
 def on_click_load_portfolio(obj=None):
     global df_portfolio_weight
@@ -461,7 +479,7 @@ def updateviewcontrol():
     list_security=list(dict_settings['security'].keys())
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
-        temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the value chosen by user on the slider. max,min specify the maximum amount of return you can spec on an asset class
+        temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
@@ -571,7 +589,6 @@ button = Button(description='Upload to CDE')
 button.on_click(upload_to_cde)
 
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
-
 
 preload_box.children = []
 VBox([button,tab])
