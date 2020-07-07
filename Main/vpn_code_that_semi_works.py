@@ -19,7 +19,7 @@ from scipy import optimize
 from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layout, FloatText, IntText, Checkbox, Button, FloatSlider, Dropdown, HTML # python library that contains items such labels, checkbox
 from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
 from IPython.core.interactiveshell import InteractiveShell
-#InteractiveShell.ast_node_interactivity = "all"
+InteractiveShell.ast_node_interactivity = "all"
 #import bqplot as bqp
 
 #Loading animation
