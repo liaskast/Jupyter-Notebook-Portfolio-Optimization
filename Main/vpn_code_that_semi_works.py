@@ -349,6 +349,7 @@ def updateinputboxes(obj=None):
 check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
+button_reset=Button(description = 'Reset')
 def onclickapplysettings(obj=None):
     save_settings()
     updateinputboxes()
@@ -357,7 +358,8 @@ def onclickapplysettings(obj=None):
     updatecontrolinui()
     run_viewmodel({'new':0.})
     
-display(button_applysettings)
+display(button_reset)
+button_reset.on_click(onclickapplysettings)
 button_applysettings.on_click(onclickapplysettings)
 
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
