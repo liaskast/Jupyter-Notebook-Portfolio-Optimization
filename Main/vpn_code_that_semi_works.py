@@ -186,7 +186,7 @@ def loadtickerfrominput(): # Reads from Button any changes to objects.
     temp_sec=OrderedDict(zip(temp_name,temp_ticker))
     
     return temp_sec, temp_weight
-dict_settings['security'] = security
+
 def bq_ref_data(security,datafields):
     # Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments
     #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
@@ -209,6 +209,9 @@ def bq_series_data(security,datafields):
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     #print(result)
     return response
+
+dict_settings['security'] = security
+print(len(dict_settings['security']))
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
