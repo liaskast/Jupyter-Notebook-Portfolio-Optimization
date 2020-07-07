@@ -92,7 +92,7 @@ security['Spanish Equity'] =  'IBEX Index'
 security['US Equity'] =  'SPX Index'
 security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Crypto Currency"] = 'GBTC US Equity'
-
+dict_settings['security'] = security
 
 #security['Euro Gov'] =  'Euro Gov'
 #security['Greek Gov'] =  'Greek Gov'
@@ -186,7 +186,7 @@ def loadtickerfrominput(): # Reads from Button any changes to objects.
     temp_sec=OrderedDict(zip(temp_name,temp_ticker))
     
     return temp_sec, temp_weight
-
+dict_settings['security'] = security
 def bq_ref_data(security,datafields):
     # Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments
     #request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg's Database ************
@@ -394,7 +394,7 @@ def run_viewmodel(change=None):
     
     P=np.identity(len(dict_settings['security']))
 
-    print("heyyyyy")
+    print("heyyyyy22222222222222")
     print(len(dict_settings['security']))
 
     if isinstance(change['new'],float):
