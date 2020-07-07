@@ -349,7 +349,7 @@ def updateinputboxes(obj=None):
 check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
-button_reset=Button(description = 'Reset')
+button_reset=Button(description = 'Reset to No Views')
 def onclickapplysettings(obj=None):
     save_settings()
     updateinputboxes()
