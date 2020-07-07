@@ -250,7 +250,7 @@ def solve_for_frountier(R, C, rf):
         frontier_var.append(_port_var(weight, C))
         weights.append(weight)
     weights = pd.DataFrame(weights)
-    weights.index.name = 'portolio'
+    weights.index.name = 'portfolio'
     frontier = pd.DataFrame([np.array(frontier_mean), np.sqrt(frontier_var)], index=['return', 'risk']).T
     frontier.index.name = 'portfolio'
     return frontier, weights
@@ -287,12 +287,12 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
-    print("\n Initial Optimal Weights")
-    print(W_opt)
+    #print("\n Initial Optimal Weights")
+    #print(W_opt)
     return W_opt, frontier, f_weights, Pi, C
 
 
-solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
+#solve_intial_opt_weight() # Here we call the Optimization function that returns the initial optimal weights.
 # ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
 input_header = HBox([Label(value='Ticker', layout=Layout(width='120px',height='22px')), Label(value='Name of Asset', layout=Layout(width='120px',height='22px')), 
