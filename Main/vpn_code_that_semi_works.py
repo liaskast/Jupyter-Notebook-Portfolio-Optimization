@@ -73,24 +73,24 @@ bq = Bloomberg_Object()
 #Default settings
 security = OrderedDict()
 
-#security['1-5 years GILTS'] =  'LF56TRGU Index'
-#security['Cash'] =  'DBDCONIA Index'
+security['1-5 years GILTS'] =  'LF56TRGU Index'
+security['Cash'] =  'DBDCONIA Index'
 #security['Chinese Bonds'] =  'I32561US Index'
-#security['Chinese Equity'] =  'SHSZ300 Index'
-#security['Emerging Asia Equity'] =  'NDUEEGFA Index'
-#security['EU High Yield Bonds'] =  'EUNW GY Equity'
-#security['European Banks'] =  'SX7E Index'
-#security['European Corp'] =  'EUN5 GR Equity'
-#security['European Equity'] =  'SXXE Index'
-#security['German Equity'] =  'DAX Index'
-#security['Greek Equity'] =  'FTASE Index'
-#security['Greek Govies'] =  'BEGCGA Index'
-#security['Italian Equity'] =  'FTSEMIB Index'
-#security['MSCI Info tech'] =  'NDWUIT Index'
-#security['MSCI World'] =  'MACXUIGB Index'
-#security['Spanish Equity'] =  'IBEX Index'
-#security['US Equity'] =  'SPX Index'
-#security['US High Yield Bonds'] =  'IBXXHYCT Index'
+security['Chinese Equity'] =  'SHSZ300 Index'
+security['Emerging Asia Equity'] =  'NDUEEGFA Index'
+security['EU High Yield Bonds'] =  'EUNW GY Equity'
+security['European Banks'] =  'SX7E Index'
+security['European Corp'] =  'EUN5 GR Equity'
+security['European Equity'] =  'SXXE Index'
+security['German Equity'] =  'DAX Index'
+security['Greek Equity'] =  'FTASE Index'
+security['Greek Govies'] =  'BEGCGA Index'
+security['Italian Equity'] =  'FTSEMIB Index'
+security['MSCI Info tech'] =  'NDWUIT Index'
+security['MSCI World'] =  'MACXUIGB Index'
+security['Spanish Equity'] =  'IBEX Index'
+security['US Equity'] =  'SPX Index'
+security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Crypto Currency"] = 'GBTC US Equity'
 
 
@@ -102,36 +102,36 @@ security = OrderedDict()
 #security['US Equities'] =  'US Eq'
 #security['Cash'] =  'Cash'
 
-security['S&P 500'] = 'SPY US Equity'
-security['Real Estate'] = 'IYR US Equity'
-security['Russ 1K Val'] = 'IWD US Equity'
-security['Small Stocks'] = 'IWM US Equity'
-security['Commodities'] = 'DBC US Equity'
-security['GOLD'] = 'GLD US Equity'
-security['Russ 1K Gro'] = 'IWF US Equity'
-security['Bonds - Agg'] = 'AGG US Equity'
-security["Int'l Bonds"] = 'BWX US Equity'
-security["High Yield"] = 'HYG US Equity'
-security["US Treasuries"] = 'GOVT US Equity'
-security["Emerging Mkts"] = 'EEM US Equity'
+#security['S&P 500'] = 'SPY US Equity'
+#security['Real Estate'] = 'IYR US Equity'
+#security['Russ 1K Val'] = 'IWD US Equity'
+#security['Small Stocks'] = 'IWM US Equity'
+#security['Commodities'] = 'DBC US Equity'
+#security['GOLD'] = 'GLD US Equity'
+#security['Russ 1K Gro'] = 'IWF US Equity'
+#security['Bonds - Agg'] = 'AGG US Equity'
+#security["Int'l Bonds"] = 'BWX US Equity'
+#security["High Yield"] = 'HYG US Equity'
+#security["US Treasuries"] = 'GOVT US Equity'
+#security["Emerging Mkts"] = 'EEM US Equity'
 
 
 
 #Original Weights that will provide us with the Implied returns.
-#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
+approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]
 #approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
 #approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
-approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
-views = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
 
 rf = 0.015 # rf is the risk-free rate
-num_avail_ticker=13
+num_avail_ticker=20
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
-prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:M")
+#prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:M")
+prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:S")
 returns = prices.pct_change()
 returns = returns.dropna()
 
@@ -264,8 +264,8 @@ def solve_intial_opt_weight():
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
 
-    R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov() *12 #252 # C is the covariance matrix
+    R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
+    C = day_to_day_return.cov()*52 #252 # C is the covariance matrix
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -393,6 +393,9 @@ def run_viewmodel(change=None):
     weights=OrderedDict()
     
     P=np.identity(len(dict_settings['security']))
+
+    print("heyyyyy")
+    print(len(dict_settings['security']))
 
     if isinstance(change['new'],float):
         Q=[]
