@@ -349,7 +349,6 @@ def updateinputboxes(obj=None):
 check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
-button_delete_views=Button(description = 'Delete Views')
 def onclickapplysettings(obj=None):
     save_settings()
     updateinputboxes()
@@ -358,8 +357,7 @@ def onclickapplysettings(obj=None):
     updatecontrolinui()
     run_viewmodel({'new':0.})
     
-display(button_delete_views)
-button_delete_views.on_click(onclickapplysettings)
+display(button_applysettings)
 button_applysettings.on_click(onclickapplysettings)
 
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
@@ -471,7 +469,7 @@ def updateviewcontrol():
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
         temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class
-        #display(temp_slider)
+        #display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
@@ -581,13 +579,14 @@ def upload_to_cde(obj):
     obj.description = 'Upload to CDE'
 
 #upload_to_cde()
-button = Button(description='Upload to CDE')
-button.on_click(upload_to_cde)
+#button = Button(description='Upload to CDE')
+#button.on_click(upload_to_cde)
 
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
 preload_box.children = []
-VBox([button,tab])
+#VBox([button,tab])
+VBox([tab])
 
 #[Open Weight](output.xlsx)
 
