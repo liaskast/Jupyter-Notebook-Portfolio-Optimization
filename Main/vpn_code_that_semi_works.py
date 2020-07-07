@@ -349,8 +349,8 @@ def updateinputboxes(obj=None):
 check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
+button_delete_views=Button(description = 'Delete Views')
 def onclickapplysettings(obj=None):
-    print("heeeeeeeeeeeeeeeee yentered onclick")
     save_settings()
     updateinputboxes()
     solve_intial_opt_weight()
@@ -358,7 +358,8 @@ def onclickapplysettings(obj=None):
     updatecontrolinui()
     run_viewmodel({'new':0.})
     
-display(button_applysettings)
+display(button_delete_views)
+button_delete_views.on_click(onclickapplysettings)
 button_applysettings.on_click(onclickapplysettings)
 
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
