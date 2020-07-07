@@ -580,13 +580,14 @@ def upload_to_cde(obj):
     obj.description = 'Upload to CDE'
 
 #upload_to_cde()
-button = Button(description='Upload to CDE')
-button.on_click(upload_to_cde)
+#button = Button(description='Upload to CDE')
+#button.on_click(upload_to_cde)
 
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
 preload_box.children = []
-VBox([button,tab])
+#VBox([button,tab])
+VBox([tab])
 
 #[Open Weight](output.xlsx)
 
