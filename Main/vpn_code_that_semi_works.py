@@ -75,7 +75,6 @@ security = OrderedDict()
 
 security['1-5 years GILTS'] =  'LF56TRGU Index'
 security['Cash'] =  'DBDCONIA Index'
-#security['Chinese Bonds'] =  'I32561US Index'
 security['Chinese Equity'] =  'SHSZ300 Index'
 security['Emerging Asia Equity'] =  'NDUEEGFA Index'
 security['EU High Yield Bonds'] =  'EUNW GY Equity'
@@ -92,7 +91,7 @@ security['Spanish Equity'] =  'IBEX Index'
 security['US Equity'] =  'SPX Index'
 security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Crypto Currency"] = 'GBTC US Equity'
-dict_settings['security'] = security
+
 
 #security['Euro Gov'] =  'Euro Gov'
 #security['Greek Gov'] =  'Greek Gov'
@@ -102,7 +101,7 @@ dict_settings['security'] = security
 #security['US Equities'] =  'US Eq'
 #security['Cash'] =  'Cash'
 
-#security['S&P 500'] = 'SPY US Equity'
+#security['S&P 60'] = 'SPY US Equity'
 #security['Real Estate'] = 'IYR US Equity'
 #security['Russ 1K Val'] = 'IWD US Equity'
 #security['Small Stocks'] = 'IWM US Equity'
@@ -118,23 +117,35 @@ dict_settings['security'] = security
 
 
 #Original Weights that will provide us with the Implied returns.
-approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
+# Without gilts and chinese
+#approximated_mkt_weight = [0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+
+
+
+
+print(len(approximated_mkt_weight))
+
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]
 #approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
 #approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
+
+dict_settings = OrderedDict()
+dict_settings['security'] = security
+dict_settings['weight'] = approximated_mkt_weight
 
 rf = 0.015 # rf is the risk-free rate
-num_avail_ticker=20
+num_avail_ticker=len(dict_settings['security'])
+print(len(dict_settings['security']))
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
-#prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:M")
 prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:S")
 returns = prices.pct_change()
 returns = returns.dropna()
-
 
 
 import pickle
@@ -142,18 +153,10 @@ from collections import OrderedDict
 from datetime import timedelta
 
 #Creates pickle file called 'settings_bl.pckl'. This file 'serializes' python Objects.
-try: 
-    f = open('settings_bl.pckl', 'rb') #**************************************************Issue?
-    dict_settings = pickle.load(f)
-    f.close()  
-      
-except:                         # Defines Python Objects.  
-    dict_settings = OrderedDict()
-    dict_settings['security'] = security
-    dict_settings['weight'] = approximated_mkt_weight
-    dict_settings['confidence'] = 0.8
-    dict_settings['scalar'] = uncertainty
-    dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
+
+dict_settings['confidence'] = 0.8
+dict_settings['scalar'] = uncertainty
+dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     
 def save_settings(caller=None): # Reads from Button any changes to objects.
     temp_sec, temp_weight = loadtickerfrominput()
@@ -210,9 +213,6 @@ def bq_series_data(security,datafields):
     #print(result)
     return response
 
-dict_settings['security'] = security
-print(len(dict_settings['security']))
-
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
     return((expected_returns.T * weights).sum())
@@ -260,15 +260,17 @@ def solve_for_frountier(R, C, rf):
 
 # Initial Optimization of Weights...Implied Returns
 def solve_intial_opt_weight():
+    print("func called")
     global W_opt, frontier, f_weights, Pi, C, lmb, new_mean, W, R, mean_opt, var_opt
     security = dict_settings['security']
     univ = list(security.values())
     datafields = OrderedDict()
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
-
     R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov()*52 #252 # C is the covariance matrix
+    C = day_to_day_return.cov() *52 #252 # C is the covariance matrix
+    print("heyyy")
+    print(C.size)
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -295,7 +297,7 @@ def solve_intial_opt_weight():
     return W_opt, frontier, f_weights, Pi, C
 
 
-#solve_intial_opt_weight() # Here we call the Optimization function that returns the initial optimal weights.
+solve_intial_opt_weight() # Here we call the Optimization function that returns the initial optimal weights.
 # ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
 input_header = HBox([Label(value='Ticker', layout=Layout(width='120px',height='22px')), Label(value='Name of Asset', layout=Layout(width='120px',height='22px')), 
@@ -397,9 +399,6 @@ def run_viewmodel(change=None):
     
     P=np.identity(len(dict_settings['security']))
 
-    print("heyyyyy22222222222222")
-    print(len(dict_settings['security']))
-
     if isinstance(change['new'],float):
         Q=[]
         for n in range(len(dict_settings['security'])):
@@ -426,8 +425,8 @@ def run_viewmodel(change=None):
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
         tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
-        #tau=0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
-
+        #tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
+        print(C.size)
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
         # Compute equilibrium excess returns taking into account views on assets
