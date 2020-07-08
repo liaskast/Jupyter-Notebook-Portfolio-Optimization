@@ -275,7 +275,6 @@ def solve_for_frountier(R, C, rf):
 
 # Initial Optimization of Weights...Implied Returns
 def solve_intial_opt_weight():
-    print("func called")
     global W_opt, frontier, f_weights, Pi, C, lmb, new_mean, W, R, mean_opt, var_opt
     security = dict_settings['security']
     univ = list(security.values())
