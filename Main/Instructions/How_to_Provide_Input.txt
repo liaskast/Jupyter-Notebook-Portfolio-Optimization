@@ -13,3 +13,11 @@ Description: To input the weights of each asset class please provide the weights
 approximated_mkt_weight = [weight_of_asset_class_#1,weight_of_asset_class_#2,weight_of_asset_class_#3,...]
 
 N.B.: make sure that the same number of weights as asset classes are provided other wise you will receive Error #1.
+
+**command**: #3 - Read in Asset Classes from Excel.
+
+Description: To read in asset classes Directly from Excel the user has to specify the file name from which they have to be read as well as the number of columns from that excel file that contain data. This is performed by the following line of code:
+
+prices = pd.read_excel ('filename.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:N")
+
+N.B. By default the excel file that contains the data series provided as input should be placed in the same directory as the Jupyter Notebook that uses it as input. We call file "filename.xlsx" but the user provide their own file name by also chaning it in the above line of code. Parameter "usecols" specifies  which columns are read-in by the program. It should be column "A" until "last_column_of_data + 1".

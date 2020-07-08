@@ -146,6 +146,7 @@ print(len(dict_settings['security']))
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
+#3 - Read in Asset Classes from Excel.
 prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:R") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 returns = prices.pct_change()
 returns = returns.dropna()
