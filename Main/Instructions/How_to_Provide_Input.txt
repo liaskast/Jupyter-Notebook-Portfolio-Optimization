@@ -1,0 +1,15 @@
+N.B. To locate at which location in the code to find each of the below steps please find in the code (i.e. ctrl+f) the following commands.
+
+**command**: #1 - Input the assets to portfolio.
+
+Description: To specify which assets are included in our portfolio we need to provide each product in the form below:
+
+security['Name'] =  'Ticker'
+
+**command**: #2 - Input the weights of the portfolio.
+
+Description: To input the weights of each asset class please provide the weights of each product in the form below:
+
+approximated_mkt_weight = [weight_of_asset_class_#1,weight_of_asset_class_#2,weight_of_asset_class_#3,...]
+
+N.B.: make sure that the same number of weights as asset classes are provided other wise you will receive Error #1.

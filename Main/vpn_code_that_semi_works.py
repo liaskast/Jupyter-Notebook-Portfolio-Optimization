@@ -69,7 +69,7 @@ class Bloomberg_Object:
 
 bq = Bloomberg_Object()        
 
-#Default settings
+#1 - Input the assets to portfolio.
 security = OrderedDict()
 
 security['1-5 years GILTS'] =  'SYB5 GY Equity'
@@ -114,7 +114,7 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Emerging Mkts"] = 'EEM US Equity'
 
 
-
+#2 - Input the weights of the portfolio.
 #Original Weights that will provide us with the Implied returns.
 
 #Experimental Weights
