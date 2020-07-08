@@ -73,8 +73,8 @@ bq = Bloomberg_Object()
 #Default settings
 security = OrderedDict()
 
-security['1-5 years GILTS'] =  'LF56TRGU Index'
-security['Cash'] =  'DBDCONIA Index'
+security['1-5 years GILTS'] =  'SYB5 GY Equity'
+#security['Cash'] =  'BNPIEGI LX Equity'
 security['Chinese Equity'] =  'SHSZ300 Index'
 security['Emerging Asia Equity'] =  'NDUEEGFA Index'
 security['EU High Yield Bonds'] =  'EUNW GY Equity'
@@ -101,7 +101,7 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security['US Equities'] =  'US Eq'
 #security['Cash'] =  'Cash'
 
-#security['S&P 60'] = 'SPY US Equity'
+#security['S&P 500'] = 'SPY US Equity'
 #security['Real Estate'] = 'IYR US Equity'
 #security['Russ 1K Val'] = 'IWD US Equity'
 #security['Small Stocks'] = 'IWM US Equity'
@@ -117,20 +117,24 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 
 
 #Original Weights that will provide us with the Implied returns.
-# Without gilts and chinese
+
+#Experimental Weights
+# Weights for a portfolio Without Gilts and Chinese Equity.
 #approximated_mkt_weight = [0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
-approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+# Weights for a portfolio without Cash
+approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.177439098902766,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
 
+#print(len(approximated_mkt_weight)) # Prints the size of weights to confirm the right amount of products.
 
-
-
-print(len(approximated_mkt_weight))
-
+# Original Apolis Weights
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]
 #approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
 #approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
+# Weights for Original Portfolio
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+# Example Weights for attempt with 4 products
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
 
 dict_settings = OrderedDict()
@@ -143,10 +147,9 @@ print(len(dict_settings['security']))
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
-prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:S")
+prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:R") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 returns = prices.pct_change()
 returns = returns.dropna()
-
 
 import pickle
 from collections import OrderedDict
