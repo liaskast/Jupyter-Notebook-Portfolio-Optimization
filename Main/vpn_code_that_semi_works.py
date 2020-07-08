@@ -20,7 +20,6 @@ from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layou
 from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
-#import bqplot as bqp
 
 #Loading animation
 loading_html = HTML("""
@@ -30,7 +29,7 @@ loading_html = HTML("""
 
 preload_box = HBox([loading_html])
 preload_box
-#display(preload_box) #if you want to force it to show you this.
+#display(preload_box) # Required to force the system to display the preload_box.
 
 from bqplot import pyplot as plt
 from bqplot import topo_load
@@ -48,7 +47,7 @@ x = np.linspace(0.0, 10.0, size)
 #plt.show();
 
 # Instantiate an object to interface with the BQL service
-#bq = bql.Service() # object bq is defined #********************TALKS TO Bloomberg's Database************
+#bq = bql.Service() # object bq is defined #Requires Bloomberg's Database and is henceforth unaccessible to us.
 
 class Bloomberg_Object:
     class data:
@@ -156,6 +155,18 @@ from collections import OrderedDict
 from datetime import timedelta
 
 #Creates pickle file called 'settings_bl.pckl'. This file 'serializes' python Objects.
+#try: 
+    #f = open('settings_bl.pckl', 'rb') #**************************************************Issue?
+    #dict_settings = pickle.load(f)
+    #f.close()  
+      
+#except:                         # Defines Python Objects.  
+    #dict_settings = OrderedDict()
+    #dict_settings['security'] = security
+    #dict_settings['weight'] = approximated_mkt_weight
+    #dict_settings['confidence'] = 0.8
+    #dict_settings['scalar'] = uncertainty
+    #dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
 
 dict_settings['confidence'] = 0.8
 dict_settings['scalar'] = uncertainty
@@ -375,8 +386,8 @@ UI_sec_input = HBox([VBox(list_sec_input),VBox([label_usemktcap,check_usemktcap,
 
 def on_click_load_portfolio(obj=None):
     global df_portfolio_weight
-    #portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #********************TALKS TO Bloomberg's Database************ xox
-    #id_ = bq.data.id() #********************TALKS TO Bloomberg's Database************ xox
+    #portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #Requires Bloomberg's Database and is henceforth unaccessible to us.
+    #id_ = bq.data.id() #Requires Bloomberg's Database and is henceforth unaccessible to us.
     #df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()  #******************** Directly TALKS TO Bloomberg's Database ************
     df_portfolio_weight =  approximated_mkt_weight
     for x in range(1,num_avail_ticker+1):
@@ -567,7 +578,7 @@ def updatedseclist(obj=None):
 
 # START OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
-#import bqcde #********************TALKS TO Bloomberg's Database************ AND BELOW...interal portfolio thing
+#import bqcde #Requires Bloomberg's Database and is henceforth unaccessible to us. AND BELOW...interal portfolio thing
 from datetime import date
 def upload_to_cde(obj):
     obj.description = 'Uploading...'
