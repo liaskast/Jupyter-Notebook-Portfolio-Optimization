@@ -16,7 +16,7 @@ security['Name'] =  'Ticker'
 
 Description: To input the weights of each asset class please provide the weights of each product in the form below:
 ```python
-approximated_mkt_weight = [weight_of_asset_class_#1,weight_of_asset_class_#2,weight_of_asset_class_#3,...]
+approximated_mkt_weight = [weight_of_asset_class_no1,weight_of_asset_class_no2,weight_of_asset_class_no3,...]
 ```
 N.B.: make sure that the same number of weights as asset classes are provided other wise you will receive Error #1.
 
