@@ -7,6 +7,7 @@
 from __future__ import print_function
 import pandas as pd
 import bqplot as bqp
+import math as math
 #import bqviz as bqv
 import numpy as np
 from numpy.linalg import inv
@@ -126,7 +127,7 @@ security['EUR001M Index'] =  'Cash'
 
 
 #2 - Input the weights of the portfolio.
-#Original Weights that will provide us with the Implied returns.
+#Original Weights that will provide us with the Implied returns. They only infulence the Implied returns' values and not the allocation policy. Even if originally we allocate 100% of our portfolio to one asset class the code will allocate according to the returns and will not be influenced by our weights, the weights only affect the implied returns.
 
 #Experimental Weights
 # Weights for a portfolio Without Gilts and Chinese Equity.
@@ -148,6 +149,10 @@ security['EUR001M Index'] =  'Cash'
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
 # TEA - weights
 approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+
+#approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+#approximated_mkt_weight = [0.3,0.3, 0.15, 0.1,0.1,0.05]
+
 
 dict_settings = OrderedDict()
 dict_settings['security'] = security
@@ -293,7 +298,7 @@ def solve_intial_opt_weight():
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
     R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov() *52 #252 # C is the covariance matrix
+    C = day_to_day_return.cov()*52 #252 # C is the covariance matrix
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -315,6 +320,8 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
+    print(mean_opt*100)
+    print(math.sqrt(var_opt)*100)
     #print("\n Initial Optimal Weights")
     #print(W_opt)
     return W_opt, frontier, f_weights, Pi, C
@@ -447,8 +454,8 @@ def run_viewmodel(change=None):
         
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
-        tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
-        #tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
+        tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty. As specified in the Black-Litterman paper it should be anywhere between [0.01,0.05] and this formula guarantees that in the majority of cases. 
+        #tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value, equal to the above formula when 20 asset classes are supplied as input..
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
         # Compute equilibrium excess returns taking into account views on assets
