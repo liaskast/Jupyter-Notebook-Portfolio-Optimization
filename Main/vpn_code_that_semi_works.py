@@ -71,27 +71,26 @@ bq = Bloomberg_Object()
 
 #1 - Input the assets to portfolio.
 security = OrderedDict()
-
-security['1-5 years GILTS'] =  'SYB5 GY Equity'
+#APOLIS
+#security['1-5 years GILTS'] =  'SYB5 GY Equity'
 #security['Cash'] =  'BNPIEGI LX Equity'
-security['Chinese Equity'] =  'SHSZ300 Index'
-security['Emerging Asia Equity'] =  'NDUEEGFA Index'
-security['EU High Yield Bonds'] =  'EUNW GY Equity'
-security['European Banks'] =  'SX7E Index'
-security['European Corp'] =  'EUN5 GR Equity'
-security['European Equity'] =  'SXXE Index'
-security['German Equity'] =  'DAX Index'
-security['Greek Equity'] =  'FTASE Index'
-security['Greek Govies'] =  'BEGCGA Index'
-security['Italian Equity'] =  'FTSEMIB Index'
-security['MSCI Info tech'] =  'NDWUIT Index'
-security['MSCI World'] =  'MACXUIGB Index'
-security['Spanish Equity'] =  'IBEX Index'
-security['US Equity'] =  'SPX Index'
-security['US High Yield Bonds'] =  'IBXXHYCT Index'
-#security["Crypto Currency"] = 'GBTC US Equity'
+#security['Chinese Equity'] =  'SHSZ300 Index'
+#security['Emerging Asia Equity'] =  'NDUEEGFA Index'
+#security['EU High Yield Bonds'] =  'EUNW GY Equity'
+#security['European Banks'] =  'SX7E Index'
+#security['European Corp'] =  'EUN5 GR Equity'
+#security['European Equity'] =  'SXXE Index'
+#security['German Equity'] =  'DAX Index'
+#security['Greek Equity'] =  'FTASE Index'
+#security['Greek Govies'] =  'BEGCGA Index'
+#security['Italian Equity'] =  'FTSEMIB Index'
+#security['MSCI Info tech'] =  'NDWUIT Index'
+#security['MSCI World'] =  'MACXUIGB Index'
+#security['Spanish Equity'] =  'IBEX Index'
+#security['US Equity'] =  'SPX Index'
+#security['US High Yield Bonds'] =  'IBXXHYCT Index'
 
-
+#Benchmarks
 #security['Euro Gov'] =  'Euro Gov'
 #security['Greek Gov'] =  'Greek Gov'
 #security['EU Corporate'] =  'EU Corporate'
@@ -100,6 +99,16 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security['US Equities'] =  'US Eq'
 #security['Cash'] =  'Cash'
 
+#Benchmarks 2 - TEA
+security['LEATTREU Index'] =  'EU Gov'
+security['LEC4TREU Index'] =  'EU Corps'
+security['BEGCGA Index'] =  'GR Corps'
+security['SXUSR Index	US'] =  'US Equity'
+security['SX5R Index'] =  'EU Equity'
+security['LEF1TREU Index'] =  'FRN EU'
+security['EUR001M Index'] =  'Cash'
+
+#Bloomberg
 #security['S&P 500'] = 'SPY US Equity'
 #security['Real Estate'] = 'IYR US Equity'
 #security['Russ 1K Val'] = 'IWD US Equity'
@@ -114,6 +123,8 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #security["Emerging Mkts"] = 'EEM US Equity'
 
 
+
+
 #2 - Input the weights of the portfolio.
 #Original Weights that will provide us with the Implied returns.
 
@@ -122,7 +133,7 @@ security['US High Yield Bonds'] =  'IBXXHYCT Index'
 #approximated_mkt_weight = [0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
 # Weights for a portfolio without Cash
-approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.177439098902766,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+#approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.177439098902766,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
 
 #print(len(approximated_mkt_weight)) # Prints the size of weights to confirm the right amount of products.
 
@@ -135,6 +146,8 @@ approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
 # Example Weights for attempt with 4 products
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
+# TEA - weights
+approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
 
 dict_settings = OrderedDict()
 dict_settings['security'] = security
@@ -147,7 +160,7 @@ uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Ca
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
 #3 - Read in Asset Classes from Excel.
-prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:R") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
+prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 returns = prices.pct_change()
 returns = returns.dropna()
 
@@ -481,7 +494,8 @@ def updateviewcontrol():
     global UI_viewcontrol, list_slider, list_relative_controls, floattext_uncertainty
     
     list_slider=[]
-    list_security=list(dict_settings['security'].keys())
+    #list_security=list(dict_settings['security'].keys()) # Original line
+    list_security=list(dict_settings['security'].values()) # Changed the name next to sliders to ticker name.
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
         temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class
