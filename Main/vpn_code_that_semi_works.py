@@ -142,7 +142,7 @@ dict_settings['weight'] = approximated_mkt_weight
 
 rf = 0.015 # rf is the risk-free rate
 num_avail_ticker=len(dict_settings['security'])
-print(len(dict_settings['security']))
+#print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
@@ -215,7 +215,6 @@ def bq_ref_data(security,datafields):
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
-    #print(result)
     return result
 
 def bq_series_data(security,datafields):
@@ -225,7 +224,6 @@ def bq_series_data(security,datafields):
     #print("entered bq_series_data")
     response = returns
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
-    #print(result)
     return response
 
 # Portfolio Mean
@@ -283,8 +281,6 @@ def solve_intial_opt_weight():
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
     R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
     C = day_to_day_return.cov() *52 #252 # C is the covariance matrix
-    print("heyyy")
-    print(C.size)
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -440,7 +436,6 @@ def run_viewmodel(change=None):
         #tau = floattext_uncertainty.value 
         tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
         #tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
-        print(C.size)
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
         # Compute equilibrium excess returns taking into account views on assets
