@@ -253,7 +253,10 @@ def bq_series_data(security,datafields):
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    return((expected_returns.T * weights).sum())
+    if((expected_returns.T * weights).sum()>0.03):
+        return((expected_returns.T * weights).sum())
+    else:
+        return 1
 
 # Portfolio Var
 def _port_var(weights, risk_matrix):
