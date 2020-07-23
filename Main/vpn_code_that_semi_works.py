@@ -101,13 +101,22 @@ security = OrderedDict()
 #security['Cash'] =  'Cash'
 
 #Benchmarks 2 - TEA
-security['LEATTREU Index'] =  'EU Gov'
-security['LEC4TREU Index'] =  'EU Corps'
-security['BEGCGA Index'] =  'GR Corps'
-security['SXUSR Index	US'] =  'US Equity'
-security['SX5R Index'] =  'EU Equity'
-security['LEF1TREU Index'] =  'FRN EU'
-security['EUR001M Index'] =  'Cash'
+#security['LEATTREU Index'] =  'EU Gov'
+#security['LEC4TREU Index'] =  'EU Corps'
+#security['BEGCGA Index'] =  'GR Corps'
+#security['SXUSR Index	US'] =  'US Equity'
+#security['SX5R Index'] =  'EU Equity'
+#security['LEF1TREU Index'] =  'FRN EU'
+#security['EUR001M Index'] =  'Cash'
+
+#Benchmarks 3 - TEA ETFs
+security['EUNH GY Equity'] =  'EU Gov'
+security['EUN5 GY Equity'] =  'EU Corps'
+security['LFGGBDR LX Equity'] =  'GR Corps'
+security['SPY US Equity'] =  'US Equity'
+security['SX5EEX GY Equity'] =  'EU Equity'
+security['FLOT FP Equity'] =  'FRN EU'
+security['PARSTEI LX Equity'] =  'Cash'
 
 #Bloomberg
 #security['S&P 500'] = 'SPY US Equity'
@@ -122,9 +131,6 @@ security['EUR001M Index'] =  'Cash'
 #security["High Yield"] = 'HYG US Equity'
 #security["US Treasuries"] = 'GOVT US Equity'
 #security["Emerging Mkts"] = 'EEM US Equity'
-
-
-
 
 #2 - Input the weights of the portfolio.
 #Original Weights that will provide us with the Implied returns. They only infulence the Implied returns' values and not the allocation policy. Even if originally we allocate 100% of our portfolio to one asset class the code will allocate according to the returns and will not be influenced by our weights, the weights only affect the implied returns.
@@ -149,6 +155,7 @@ security['EUR001M Index'] =  'Cash'
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
 # TEA - weights
 approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+#approximated_mkt_weight = [0.35,0.2, 0.15, 0.1,0.2]
 
 #approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
 #approximated_mkt_weight = [0.3,0.3, 0.15, 0.1,0.1,0.05]
@@ -297,8 +304,8 @@ def solve_intial_opt_weight():
     datafields = OrderedDict()
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
-    R = day_to_day_return.dropna().mean()*52 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov()*52 #252 # C is the covariance matrix
+    R = day_to_day_return.dropna().mean()*52 # Input: 252 yearly  # Description:  R is the vector of expected returns in the "Step-by-Step Guide..." paper
+    C = day_to_day_return.cov()*52 # Input: 252 yearly # Description: C is the covariance matrix i.e. Sigma in the "Step-by-Step Guide..." paper
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -308,10 +315,10 @@ def solve_intial_opt_weight():
     else:
         W = np.array(dict_settings['weight']).reshape(len(R),1)
         
-    new_mean = _port_mean(W.T[0],R)
-    new_var = _port_var(W,C)
+    new_mean = _port_mean(W.T[0],R) # this variable is not used
+    new_var = _port_var(W,C) # this variable is not used
 
-    lmb = 0.5/np.sqrt(W.T.dot(C).dot(W))[0][0] # Compute implied risk adversion coefficient
+    lmb = 0.5/np.sqrt(W.T.dot(C).dot(W))[0][0] # Compute implied risk adversion coefficient: 1/(2*(wΣw))
     Pi = np.dot(lmb * C, W) # Compute equilibrium excess returns
 
     frontier, f_weights = solve_for_frountier(Pi+rf, C, rf)
