@@ -28,7 +28,7 @@ prices = pd.read_excel ('filename.xlsx',header=1,index_col=0, parse_dates= True,
 ```
 N.B. By default the excel file that contains the data series provided as input should be placed in the same directory as the Jupyter Notebook that uses it as input. We call file "filename.xlsx" but the user provide their own file name by also chaning it in the above line of code. Parameter "usecols" specifies  which columns are read-in by the program. It should be column "A" until "last_column_of_data + 1".
 
-### Common Errors 
+## Common Errors 
 
 **#1**
 ```python
