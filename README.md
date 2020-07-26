@@ -1,10 +1,12 @@
 # Black-Litterman Model for Portfolio Weight Optimization
 
+The Black–Litterman model is a mathematical model for portfolio allocation. The model expands upon the de facto standard for portfolio optimization, **Markowitz's classical Modern Portfolio Theory** by incorporating the opinion of the investor regarding future asset performance and modifying the allocation accordingly.
+
 ## Instructions
 
 ### How to Input your Own Portfolio
 
-N.B. To locate at which location in the code to find each of the below steps please find in the code (i.e. ctrl+f) the following commands.
+N.B. To determine at which location in the code to find each of the below steps please find in the code (i.e. ctrl+f) the following commands.
 
 **command**: #1 - Input the assets to portfolio.
 
@@ -28,7 +30,9 @@ prices = pd.read_excel ('filename.xlsx',header=1,index_col=0, parse_dates= True,
 ```
 N.B. By default the excel file that contains the data series provided as input should be placed in the same directory as the Jupyter Notebook that uses it as input. We call file "filename.xlsx" but the user provide their own file name by also chaning it in the above line of code. Parameter "usecols" specifies  which columns are read-in by the program. It should be column "A" until "last_column_of_data + 1".
 
-## Common Errors 
+## Common Errors and Solutions
+
+Below is a collection of commons errors faced during the development phase of this product and the respective solutions that frequently resolved those. 
 
 **#1**
 ```python
