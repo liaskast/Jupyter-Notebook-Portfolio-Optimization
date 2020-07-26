@@ -8,13 +8,13 @@ The Black–Litterman model is a mathematical model for portfolio allocation. Th
 
 N.B. To determine at which location in the code to find each of the below steps please find in the code (i.e. ctrl+f) the following commands.
 
-**command**: #1 - Input the assets to portfolio.
+**Step**: #1 - Input the assets to portfolio.
 
 Description: To specify which assets are included in our portfolio we need to provide each product in the form below:
 ```python
 security['Name'] =  'Ticker'
 ```
-**command**: #2 - Input the weights of the portfolio.
+**Step**: #2 - Input the weights of the portfolio.
 
 Description: To input the weights of each asset class please provide the weights of each product in the form below:
 ```python
@@ -22,7 +22,7 @@ approximated_mkt_weight = [weight_of_asset_class_no1,weight_of_asset_class_no2,w
 ```
 N.B.: make sure that the same number of weights as asset classes are provided other wise you will receive Error #1.
 
-**command**: #3 - Read in Asset Classes from Excel.
+**Step**: #3 - Read in Asset Classes from Excel.
 
 Description: To read in asset classes Directly from Excel the user has to specify the file name from which they have to be read as well as the number of columns from that excel file that contain data. This is performed by the following line of code:
 ```python
