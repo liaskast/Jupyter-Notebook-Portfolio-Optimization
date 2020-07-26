@@ -1,4 +1,4 @@
-# Black Litterman Model for Portfolio Weight Optimization
+# Black-Litterman Model for Portfolio Weight Optimization
 
 ## Instructions
 
