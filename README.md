@@ -4,6 +4,10 @@ The Black–Litterman model is a mathematical model for portfolio allocation. Th
 
 ## Instructions
 
+### How to Run
+
+The main piece of code the drives the notebook can be found in file [main](Main/main.py), while the notebook where the code is run is called [Terminal](Main/Terminal.ipynb). 
+
 ### How to Input your Own Portfolio
 
 N.B. To determine at which location in the code to find each of the below steps please find in the code (i.e. ctrl+f) the following commands.
