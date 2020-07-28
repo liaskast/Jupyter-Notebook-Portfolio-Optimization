@@ -7,6 +7,7 @@
 from __future__ import print_function
 import pandas as pd
 import bqplot as bqp
+import math as math
 #import bqviz as bqv
 import numpy as np
 from numpy.linalg import inv
@@ -20,7 +21,6 @@ from ipywidgets import HBox, VBox, IntSlider, Text, Tab, FloatText, Label, Layou
 from IPython.display import display # Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
-#import bqplot as bqp
 
 #Loading animation
 loading_html = HTML("""
@@ -30,7 +30,7 @@ loading_html = HTML("""
 
 preload_box = HBox([loading_html])
 preload_box
-#display(preload_box) #if you want to force it to show you this.
+#display(preload_box) # Required to force the system to display the preload_box.
 
 from bqplot import pyplot as plt
 from bqplot import topo_load
@@ -48,7 +48,7 @@ x = np.linspace(0.0, 10.0, size)
 #plt.show();
 
 # Instantiate an object to interface with the BQL service
-#bq = bql.Service() # object bq is defined #********************TALKS TO Bloomberg's Database************
+#bq = bql.Service() # object bq is defined #Requires Bloomberg's Database and is henceforth unaccessible to us.
 
 class Bloomberg_Object:
     class data:
@@ -70,12 +70,11 @@ class Bloomberg_Object:
 
 bq = Bloomberg_Object()        
 
-#Default settings
+#1 - Input the assets to portfolio.
 security = OrderedDict()
-
-#security['1-5 years GILTS'] =  'LF56TRGU Index'
-#security['Cash'] =  'DBDCONIA Index'
-#security['Chinese Bonds'] =  'I32561US Index'
+#APOLIS
+#security['1-5 years GILTS'] =  'SYB5 GY Equity'
+#security['Cash'] =  'BNPIEGI LX Equity'
 #security['Chinese Equity'] =  'SHSZ300 Index'
 #security['Emerging Asia Equity'] =  'NDUEEGFA Index'
 #security['EU High Yield Bonds'] =  'EUNW GY Equity'
@@ -91,9 +90,8 @@ security = OrderedDict()
 #security['Spanish Equity'] =  'IBEX Index'
 #security['US Equity'] =  'SPX Index'
 #security['US High Yield Bonds'] =  'IBXXHYCT Index'
-#security["Crypto Currency"] = 'GBTC US Equity'
 
-
+#Benchmarks
 #security['Euro Gov'] =  'Euro Gov'
 #security['Greek Gov'] =  'Greek Gov'
 #security['EU Corporate'] =  'EU Corporate'
@@ -102,58 +100,103 @@ security = OrderedDict()
 #security['US Equities'] =  'US Eq'
 #security['Cash'] =  'Cash'
 
-security['S&P 500'] = 'SPY US Equity'
-security['Real Estate'] = 'IYR US Equity'
-security['Russ 1K Val'] = 'IWD US Equity'
-security['Small Stocks'] = 'IWM US Equity'
-security['Commodities'] = 'DBC US Equity'
-security['GOLD'] = 'GLD US Equity'
-security['Russ 1K Gro'] = 'IWF US Equity'
-security['Bonds - Agg'] = 'AGG US Equity'
-security["Int'l Bonds"] = 'BWX US Equity'
-security["High Yield"] = 'HYG US Equity'
-security["US Treasuries"] = 'GOVT US Equity'
-security["Emerging Mkts"] = 'EEM US Equity'
+#Benchmarks 2 - TEA
+#security['LEATTREU Index'] =  'EU Gov'
+#security['LEC4TREU Index'] =  'EU Corps'
+#security['BEGCGA Index'] =  'GR Corps'
+#security['SXUSR Index	US'] =  'US Equity'
+#security['SX5R Index'] =  'EU Equity'
+#security['LEF1TREU Index'] =  'FRN EU'
+#security['EUR001M Index'] =  'Cash'
 
+#Benchmarks 3 - TEA ETFs
+security['EUNH GY Equity'] =  'EU Gov'
+security['EUN5 GY Equity'] =  'EU Corps'
+security['LFGGBDR LX Equity'] =  'GR Corps'
+security['SPY US Equity'] =  'US Equity'
+security['SX5EEX GY Equity'] =  'EU Equity'
+security['FLOT FP Equity'] =  'FRN EU'
+security['PARSTEI LX Equity'] =  'Cash'
 
+#Bloomberg
+#security['S&P 500'] = 'SPY US Equity'
+#security['Real Estate'] = 'IYR US Equity'
+#security['Russ 1K Val'] = 'IWD US Equity'
+#security['Small Stocks'] = 'IWM US Equity'
+#security['Commodities'] = 'DBC US Equity'
+#security['GOLD'] = 'GLD US Equity'
+#security['Russ 1K Gro'] = 'IWF US Equity'
+#security['Bonds - Agg'] = 'AGG US Equity'
+#security["Int'l Bonds"] = 'BWX US Equity'
+#security["High Yield"] = 'HYG US Equity'
+#security["US Treasuries"] = 'GOVT US Equity'
+#security["Emerging Mkts"] = 'EEM US Equity'
 
-#Original Weights that will provide us with the Implied returns.
-#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0410143843855553]
+#2 - Input the weights of the portfolio.
+#Original Weights that will provide us with the Implied returns. They only infulence the Implied returns' values and not the allocation policy. Even if originally we allocate 100% of our portfolio to one asset class the code will allocate according to the returns and will not be influenced by our weights, the weights only affect the implied returns.
+
+#Experimental Weights
+# Weights for a portfolio Without Gilts and Chinese Equity.
+#approximated_mkt_weight = [0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+# Weights for a portfolio without Cash
+#approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.177439098902766,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]
+
+#print(len(approximated_mkt_weight)) # Prints the size of weights to confirm the right amount of products.
+
+# Original Apolis Weights
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]
 #approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]
 #approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]
 #approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]
-approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
-views = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+# Weights for Original Portfolio
+#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]
+# Example Weights for attempt with 4 products
+#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
+# TEA - weights
+approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+#approximated_mkt_weight = [0.35,0.2, 0.15, 0.1,0.2]
+
+#approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+#approximated_mkt_weight = [0.3,0.3, 0.15, 0.1,0.1,0.05]
+
+
+dict_settings = OrderedDict()
+dict_settings['security'] = security
+dict_settings['weight'] = approximated_mkt_weight
 
 rf = 0.015 # rf is the risk-free rate
-num_avail_ticker=13
+num_avail_ticker=len(dict_settings['security'])
+#print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
-prices = pd.read_excel (r'C:\Users\user2\Documents\Python_files\Black_Litterman\Iolcus-Investments\Main\prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:M")
+#3 - Read in Asset Classes from Excel.
+prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 returns = prices.pct_change()
 returns = returns.dropna()
-
-
 
 import pickle
 from collections import OrderedDict
 from datetime import timedelta
 
 #Creates pickle file called 'settings_bl.pckl'. This file 'serializes' python Objects.
-try: 
-    f = open('settings_bl.pckl', 'rb') #**************************************************Issue?
-    dict_settings = pickle.load(f)
-    f.close()  
+#try: 
+    #f = open('settings_bl.pckl', 'rb') #**************************************************Issue?
+    #dict_settings = pickle.load(f)
+    #f.close()  
       
-except:                         # Defines Python Objects.  
-    dict_settings = OrderedDict()
-    dict_settings['security'] = security
-    dict_settings['weight'] = approximated_mkt_weight
-    dict_settings['confidence'] = 0.8
-    dict_settings['scalar'] = uncertainty
-    dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
+#except:                         # Defines Python Objects.  
+    #dict_settings = OrderedDict()
+    #dict_settings['security'] = security
+    #dict_settings['weight'] = approximated_mkt_weight
+    #dict_settings['confidence'] = 0.8
+    #dict_settings['scalar'] = uncertainty
+    #dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
+
+dict_settings['confidence'] = 0.8
+dict_settings['scalar'] = uncertainty
+dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     
 def save_settings(caller=None): # Reads from Button any changes to objects.
     temp_sec, temp_weight = loadtickerfrominput()
@@ -197,7 +240,6 @@ def bq_ref_data(security,datafields):
     def merge(response): 
         return pd.concat([sir.df()[sir.name] for sir in response], axis=1)
     result=merge(response)
-    #print(result)
     return result
 
 def bq_series_data(security,datafields):
@@ -207,12 +249,14 @@ def bq_series_data(security,datafields):
     #print("entered bq_series_data")
     response = returns
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
-    #print(result)
     return response
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    return((expected_returns.T * weights).sum())
+    if((expected_returns.T * weights).sum()>0.03):
+        return((expected_returns.T * weights).sum())
+    else:
+        return 1
 
 # Portfolio Var
 def _port_var(weights, risk_matrix):
@@ -250,7 +294,7 @@ def solve_for_frountier(R, C, rf):
         frontier_var.append(_port_var(weight, C))
         weights.append(weight)
     weights = pd.DataFrame(weights)
-    weights.index.name = 'portolio'
+    weights.index.name = 'portfolio'
     frontier = pd.DataFrame([np.array(frontier_mean), np.sqrt(frontier_var)], index=['return', 'risk']).T
     frontier.index.name = 'portfolio'
     return frontier, weights
@@ -263,9 +307,8 @@ def solve_intial_opt_weight():
     datafields = OrderedDict()
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
-
-    R = day_to_day_return.dropna().mean()*12 #252  # R is the vector of expected returns
-    C = day_to_day_return.cov() *12 #252 # C is the covariance matrix
+    R = day_to_day_return.dropna().mean()*52 # Input: 252 yearly  # Description:  R is the vector of expected returns in the "Step-by-Step Guide..." paper
+    C = day_to_day_return.cov()*52 # Input: 252 yearly # Description: C is the covariance matrix i.e. Sigma in the "Step-by-Step Guide..." paper
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
@@ -275,10 +318,10 @@ def solve_intial_opt_weight():
     else:
         W = np.array(dict_settings['weight']).reshape(len(R),1)
         
-    new_mean = _port_mean(W.T[0],R)
-    new_var = _port_var(W,C)
+    new_mean = _port_mean(W.T[0],R) # this variable is not used
+    new_var = _port_var(W,C) # this variable is not used
 
-    lmb = 0.5/np.sqrt(W.T.dot(C).dot(W))[0][0] # Compute implied risk adversion coefficient
+    lmb = 0.5/np.sqrt(W.T.dot(C).dot(W))[0][0] # Compute implied risk adversion coefficient: 1/(2*(wΣw))
     Pi = np.dot(lmb * C, W) # Compute equilibrium excess returns
 
     frontier, f_weights = solve_for_frountier(Pi+rf, C, rf)
@@ -287,12 +330,14 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
-    print("\n Initial Optimal Weights")
-    print(W_opt)
+    print(mean_opt*100)
+    print(math.sqrt(var_opt)*100)
+    #print("\n Initial Optimal Weights")
+    #print(W_opt)
     return W_opt, frontier, f_weights, Pi, C
 
 
-solve_intial_opt_weight() # Here we call the Optimization function that returns the optimal weights.
+solve_intial_opt_weight() # Here we call the Optimization function that returns the initial optimal weights.
 # ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************
 
 input_header = HBox([Label(value='Ticker', layout=Layout(width='120px',height='22px')), Label(value='Name of Asset', layout=Layout(width='120px',height='22px')), 
@@ -349,8 +394,8 @@ def updateinputboxes(obj=None):
 check_usemktcap.observe(updateinputboxes, 'value')
 
 button_applysettings=Button(description = 'Apply Settings')
+button_reset=Button(description = 'Reset to No Views')
 def onclickapplysettings(obj=None):
-    print("heeeeeeeeeeeeeeeee yentered onclick")
     save_settings()
     updateinputboxes()
     solve_intial_opt_weight()
@@ -358,7 +403,8 @@ def onclickapplysettings(obj=None):
     updatecontrolinui()
     run_viewmodel({'new':0.})
     
-display(button_applysettings)
+display(button_reset)
+button_reset.on_click(onclickapplysettings)
 button_applysettings.on_click(onclickapplysettings)
 
 #UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={'margin':'0px 0px 0px 10px'})])
@@ -366,8 +412,8 @@ UI_sec_input = HBox([VBox(list_sec_input),VBox([label_usemktcap,check_usemktcap,
 
 def on_click_load_portfolio(obj=None):
     global df_portfolio_weight
-    #portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #********************TALKS TO Bloomberg's Database************ xox
-    #id_ = bq.data.id() #********************TALKS TO Bloomberg's Database************ xox
+    #portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type='PORT') #Requires Bloomberg's Database and is henceforth unaccessible to us.
+    #id_ = bq.data.id() #Requires Bloomberg's Database and is henceforth unaccessible to us.
     #df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_['Weights']/100]))],axis=1).reset_index()  #******************** Directly TALKS TO Bloomberg's Database ************
     df_portfolio_weight =  approximated_mkt_weight
     for x in range(1,num_avail_ticker+1):
@@ -418,9 +464,8 @@ def run_viewmodel(change=None):
         
         Q=np.array([Q]).T 
         #tau = floattext_uncertainty.value 
-        tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty 
-        #tau=0.025 # this allows us to fix the uncertainty value to a pre-determined standard value.
-
+        tau = 1/(5*12-len(list_security)) #tau is a scalar indicating the uncertainty. As specified in the Black-Litterman paper it should be anywhere between [0.01,0.05] and this formula guarantees that in the majority of cases. 
+        #tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value, equal to the above formula when 20 asset classes are supplied as input..
         omega = np.dot(np.dot(np.dot(tau, P), C), P.T)# omega represents uncertanity of views implied uncertainty from market parameters.
 
         # Compute equilibrium excess returns taking into account views on assets
@@ -466,11 +511,12 @@ def updateviewcontrol():
     global UI_viewcontrol, list_slider, list_relative_controls, floattext_uncertainty
     
     list_slider=[]
-    list_security=list(dict_settings['security'].keys())
+    #list_security=list(dict_settings['security'].keys()) # Original line
+    list_security=list(dict_settings['security'].values()) # Changed the name next to sliders to ticker name.
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
         temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class
-        display(temp_slider)
+        #display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
     
@@ -558,7 +604,7 @@ def updatedseclist(obj=None):
 
 # START OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
-#import bqcde #********************TALKS TO Bloomberg's Database************ AND BELOW...interal portfolio thing
+#import bqcde #Requires Bloomberg's Database and is henceforth unaccessible to us. AND BELOW...interal portfolio thing
 from datetime import date
 def upload_to_cde(obj):
     obj.description = 'Uploading...'
@@ -580,13 +626,14 @@ def upload_to_cde(obj):
     obj.description = 'Upload to CDE'
 
 #upload_to_cde()
-button = Button(description='Upload to CDE')
-button.on_click(upload_to_cde)
+#button = Button(description='Upload to CDE')
+#button.on_click(upload_to_cde)
 
 # END OF ************************************************************************************************************** (use of bqcde)  *********************** 
 
 preload_box.children = []
-VBox([button,tab])
+#VBox([button,tab])
+VBox([tab])
 
 #[Open Weight](output.xlsx)
 
