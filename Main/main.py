@@ -165,7 +165,8 @@ dict_settings = OrderedDict()
 dict_settings['security'] = security
 dict_settings['weight'] = approximated_mkt_weight
 
-rf = 0.015 # rf is the risk-free rate
+#rf = 0.015 # rf is the risk-free rate
+rf = 0 # rf is the risk-free rate
 num_avail_ticker=len(dict_settings['security'])
 #print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
