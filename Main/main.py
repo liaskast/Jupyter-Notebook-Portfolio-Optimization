@@ -481,6 +481,7 @@ def run_viewmodel(change=None):
         new_weights = np.array(new_f_weights.iloc[new_frontier.loc[new_frontier['sharpe']==new_frontier['sharpe'].max()].index.values[0]])
 
         leverage = np.sum(abs(new_weights))
+        weights['Initial Weights']=approximated_mkt_weight[::-1]
         weights['Opt Portfolio']=W_opt[::-1]
         weights['Opt Portfolio with View']=new_weights[::-1]
         
@@ -549,21 +550,29 @@ updateviewcontrol()
 x_ord = bqp.OrdinalScale()
 y_sc = bqp.LinearScale()
 
+#Plot #1 i.e. Creation of the bar plot
+
 bar = bqp.Bars(x=[], 
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
-               orientation="horizontal", display_legend=True, labels=['Mkt Efficient Portfolio','Efficient Portfolio with Views'],
-              colors=['#1B84ED','#F39F41'],
+               orientation="horizontal", display_legend=True, labels=['Initial Weights','Efficient Portfolio with Views','Mkt Efficient Portfolio'],
+              colors=['#1B84ED','#228B22','#F39F41'],
               type='grouped')
 #bar.type='grouped'
-bar.tooltip = bqp.Tooltip(fields=['y'], labels=['Weights'], formats=['.3f'])
+bar.tooltip = bqp.Tooltip(fields=['y'], labels=['Weight of Asset'], formats=['.3f']) #this displays the weight placed on each asset.
 
 ax_x = bqp.Axis(scale=x_ord, orientation="vertical")
 ax_y = bqp.Axis(scale=y_sc, label='Weight')
 
+#fig_bar = bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
+                     #layout=Layout(width='800px'), legend_location='top-right', 
+                     #fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
+
 fig_bar = bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
-                     layout=Layout(width='800px'), legend_location='top-right', 
-                     fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
+                     layout=Layout(width='600px'), legend_location='top', 
+                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})                     
+
+#Plot #2 i.e. the efficient froniter plot
 
 x_lin = bqp.LinearScale()
 y_lin = bqp.LinearScale()
@@ -571,7 +580,8 @@ y_lin = bqp.LinearScale()
 x_ax = bqp.Axis(label='risk', scale=x_lin, grid_lines='solid')
 x_ay = bqp.Axis(label='return', scale=y_lin, orientation='vertical', grid_lines='solid')
 
-def_tt = bqp.Tooltip(fields=['x', 'y'], formats=['.3f', '.3f'])
+def_tt = bqp.Tooltip(fields=['x', 'y'], formats=['.3f', '.3f']) 
+
 scatt = bqp.Scatter(x=[],y=[], scales={'x': x_lin, 'y': y_lin}, tooltip=def_tt,
                     display_legend=True, labels=['Efficient Portfolio'], colors=['#1B84ED'])
 scatt_view = bqp.Scatter(x=[],y=[], scales={'x': x_lin, 'y': y_lin}, tooltip=def_tt,
