@@ -34,6 +34,11 @@ prices = pd.read_excel ('filename.xlsx',header=1,index_col=0, parse_dates= True,
 ```
 N.B. By default the excel file that contains the data series provided as input should be placed in the same directory as the Jupyter Notebook that uses it as input. We call file "filename.xlsx" but the user provide their own file name by also chaning it in the above line of code. Parameter "usecols" specifies  which columns are read-in by the program. It should be column "A" until "last_column_of_data + 1".
 
+### How to Input a View
+
+- **Using the Slider**: Simply drag the slider to the preferred value.
+- **Type in Required Value**: Double click on the "view" attribute and then input the number required and finally press enter to confirm. N.B. the user is required to type in the value in percentage form (%), i.e. when required to type in a value of 5%, the user must type in  0.05 instead.
+
 ## Common Errors and Solutions
 
 Below is a collection of commons errors faced during the development phase of this product and the respective solutions that frequently resolved those. 
