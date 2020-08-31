@@ -555,8 +555,8 @@ y_sc = bqp.LinearScale()
 bar = bqp.Bars(x=[], 
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
-               orientation="horizontal", display_legend=True, labels=['Initial Weights','Efficient Portfolio with Views','Mkt Efficient Portfolio'],
-              colors=['#1B84ED','#228B22','#F39F41'],
+               orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'],
+              colors=['#1B84ED','#4fa110','#F39F41'],
               type='grouped')
 #bar.type='grouped'
 bar.tooltip = bqp.Tooltip(fields=['y'], labels=['Weight of Asset'], formats=['.3f']) #this displays the weight placed on each asset.
