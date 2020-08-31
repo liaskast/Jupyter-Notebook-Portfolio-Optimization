@@ -2,13 +2,19 @@
 
 The Black–Litterman model is a mathematical model for portfolio allocation. The model expands upon the de facto standard for portfolio optimization, **Markowitz's classical Modern Portfolio Theory** by incorporating the opinion of the investor regarding future asset performance and modifying the allocation accordingly.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/liaskast/Jupyter-Notebook-Portfolio-Optimization/master)
-
 ## Instructions
 
 ### How to Run
 
-The main piece of code the drives the notebook can be found in file [main](Main/main.py), while the notebook where the code is run is called [Terminal](Main/Terminal.ipynb). 
+#### Virtually
+
+Please find a link to a virtual workspace where the porfolio optimization can be launched.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/liaskast/Jupyter-Notebook-Portfolio-Optimization/master)
+
+#### Locally
+
+The main piece of code that drives the notebook can be found in file [main](Main/main.py), while the notebook where the code is run is called [Terminal](Main/Terminal.ipynb). 
 
 ### How to Input your Own Portfolio
 
