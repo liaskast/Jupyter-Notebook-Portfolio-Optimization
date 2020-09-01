@@ -165,7 +165,8 @@ dict_settings = OrderedDict()
 dict_settings['security'] = security
 dict_settings['weight'] = approximated_mkt_weight
 
-rf = 0.015 # rf is the risk-free rate
+#rf = 0.015 # Original line of code - rf is the risk-free rate
+rf = 0 # New line of code - rf is the risk-free rate
 num_avail_ticker=len(dict_settings['security'])
 #print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
 uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
@@ -253,7 +254,7 @@ def bq_series_data(security,datafields):
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    if((expected_returns.T * weights).sum()>0.04): # This is where we place a bound on the return provided by the portfolio.
+    if((expected_returns.T * weights).sum()>0.01): # This is where we place a bound on the return provided by the portfolio.
         return((expected_returns.T * weights).sum())
     else:
         return 1
