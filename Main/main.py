@@ -497,6 +497,9 @@ def run_viewmodel(change=None):
             
         bar.x = list_security[::-1]
         bar.y = [weights[col] for col in weights]
+
+        #bar_labels.x = list_security[::-1]
+        #bar_labels.y = [weights[col] for col in weights]
         
         line.x = frontier['risk']
         line.y = [frontier['return'],new_frontier['return']]
@@ -556,9 +559,12 @@ y_sc = bqp.LinearScale()
 bar = bqp.Bars(x=[], 
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
-               orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'],
+               orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'], #orientation decides whether the bars are horizontal or vertical
               colors=['#1B84ED','#4fa110','#F39F41'],
               type='grouped')
+bar_labels = bqp.Label(x=[], y=[], scales={'x': x_ord, 'y': y_sc},    x_offset = 2, y_offset = 7, 
+    text=[0,0,0], colors=['blue','blue', 'blue'], 
+    default_size=24,  update_on_move=True)
 #bar.type='grouped'
 bar.tooltip = bqp.Tooltip(fields=['y'], labels=['Weight of Asset'], formats=['.3f']) #this displays the weight placed on each asset.
 
@@ -569,9 +575,28 @@ ax_y = bqp.Axis(scale=y_sc, label='Weight')
                      #layout=Layout(width='800px'), legend_location='top-right', 
                      #fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 
-fig_bar = bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
+#fig_bar = bqp.Figure(marks=[bar,bar_labels], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
+#                     layout=Layout(width='600px'), legend_location='top', 
+#                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})                     
+
+x_labels = ['aaa','bbb','ccc']
+x_ord = bqp.OrdinalScale()
+y_sc = bqp.LinearScale()
+y_sc.max = 100
+bar_git = bqp.Bars(x= x_labels, y=[2,10,15], scales={'x': x_ord, 'y': y_sc},orientation="horizontal" )
+
+ax_x = bqp.Axis(scale=x_ord, orientation="vertical", color = 'Black')
+ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', color = 'White')
+
+labels =  bqp.Label(y=x_labels, x=[2,30,5], scales={'y': x_ord, 'x': y_sc}, 
+    x_offset = 2, y_offset = 7, 
+    text=[333,66666666,99999999], colors=['blue','blue', 'blue'], 
+    default_size=24,  update_on_move=True)
+fig_bar = bqp.Figure(marks=[labels,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
                      layout=Layout(width='600px'), legend_location='top', 
-                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})                     
+                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})       
+
+
 
 #Plot #2 i.e. the efficient froniter plot
 
