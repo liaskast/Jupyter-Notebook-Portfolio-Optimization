@@ -254,7 +254,7 @@ def bq_series_data(security,datafields):
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    if((expected_returns.T * weights).sum()>0.01): # This is where we place a bound on the return provided by the portfolio.
+    if((expected_returns.T * weights).sum()>0.02): # This is where we place a bound on the return provided by the portfolio.
         return((expected_returns.T * weights).sum())
     else:
         return 1
