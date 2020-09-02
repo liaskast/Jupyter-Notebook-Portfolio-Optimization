@@ -110,13 +110,13 @@ security = OrderedDict()
 #security['EUR001M Index'] =  'Cash'
 
 #Benchmarks 3 - TEA ETFs
-security['EUNH GY Equity'] =  'EU Gov'
-security['EUN5 GY Equity'] =  'EU Corps'
-security['LFGGBDR LX Equity'] =  'GR Corps'
-security['SPY US Equity'] =  'US Equity'
-security['SX5EEX GY Equity'] =  'EU Equity'
-security['FLOT FP Equity'] =  'FRN EU'
-security['PARSTEI LX Equity'] =  'Cash'
+#security['EUNH GY Equity'] =  'EU Gov'
+#security['EUN5 GY Equity'] =  'EU Corps'
+#security['LFGGBDR LX Equity'] =  'GR Corps'
+#security['SPY US Equity'] =  'US Equity'
+#security['SX5EEX GY Equity'] =  'EU Equity'
+#security['FLOT FP Equity'] =  'FRN EU'
+#security['PARSTEI LX Equity'] =  'Cash'
 
 #Bloomberg
 #security['S&P 500'] = 'SPY US Equity'
@@ -154,7 +154,7 @@ security['PARSTEI LX Equity'] =  'Cash'
 # Example Weights for attempt with 4 products
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
 # TEA - weights
-approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
+approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.05,0.05]
 #approximated_mkt_weight = [0.35,0.2, 0.15, 0.1,0.2]
 
 #approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
@@ -173,12 +173,16 @@ uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Ca
 
 #******************************************************************************** Reads in Input ****************************************************************************************************
 #3 - Read in Asset Classes from Excel.
-prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
+prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:XFD") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 returns = prices.pct_change()
 returns = returns.dropna()
 
-read_product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
-print(read_product_names.columns.ravel())
+read_product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:XFD") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
+product_names = read_product_names.columns.ravel() # product_names is an array that contains the names of the products inserted as input into our portfolio.
+
+#Benchmarks 3 - TEA ETFs
+for iterator_product_names in range(len(product_names)):
+    security[product_names[iterator_product_names]] =  product_names[iterator_product_names]    
 
 import pickle
 from collections import OrderedDict
@@ -256,6 +260,7 @@ def bq_series_data(security,datafields):
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
     #print("entered bq_series_data")
     response = returns
+    print(len(returns))
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return response
 
@@ -580,7 +585,7 @@ y_sc.max = 1
 bar = bqp.Bars(x=[], 
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
-               orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'], #orientation decides whether the bars are horizontal or vertical
+               orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio (Max Sharpe)','Efficient Portfolio with Views (BL)'], #orientation decides whether the bars are horizontal or vertical
               colors=['#1B84ED','#4fa110','#F39F41'], 
               type='grouped')
 
