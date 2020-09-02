@@ -498,6 +498,10 @@ def run_viewmodel(change=None):
         bar.x = list_security[::-1]
         bar.y = [weights[col] for col in weights]
 
+        labels.y = list_security[::-1]
+        labels.x = weights['Initial Weights']*100
+        labels.text = weights['Initial Weights']
+
         #bar_labels.x = list_security[::-1]
         #bar_labels.y = [weights[col] for col in weights]
         
@@ -582,15 +586,19 @@ ax_y = bqp.Axis(scale=y_sc, label='Weight')
 x_labels = ['aaa','bbb','ccc']
 x_ord = bqp.OrdinalScale()
 y_sc = bqp.LinearScale()
-y_sc.max = 100
-bar_git = bqp.Bars(x= x_labels, y=[2,10,15], scales={'x': x_ord, 'y': y_sc},orientation="horizontal" )
+y_sc.max = 10
+#bar_git = bqp.Bars(x= x_labels, y=[2,10,15], scales={'x': x_ord, 'y': y_sc},orientation="horizontal" )
 
 ax_x = bqp.Axis(scale=x_ord, orientation="vertical", color = 'Black')
 ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', color = 'White')
 
-labels =  bqp.Label(y=x_labels, x=[2,30,5], scales={'y': x_ord, 'x': y_sc}, 
+#labels_original =  bqp.Label(y=x_labels, x=[2,30,5], scales={'y': x_ord, 'x': y_sc}, 
+#    x_offset = 2, y_offset = 7, 
+#    text=[333,66666666,99999999], colors=['blue','blue', 'blue'], 
+#    default_size=24,  update_on_move=True)
+labels =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
     x_offset = 2, y_offset = 7, 
-    text=[333,66666666,99999999], colors=['blue','blue', 'blue'], 
+    text=[], colors=['blue','blue', 'blue'], 
     default_size=24,  update_on_move=True)
 fig_bar = bqp.Figure(marks=[labels,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
                      layout=Layout(width='600px'), legend_location='top', 
