@@ -154,7 +154,7 @@ security = OrderedDict()
 # Example Weights for attempt with 4 products
 #approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]
 # TEA - weights
-approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.05,0.05]
+approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
 #approximated_mkt_weight = [0.35,0.2, 0.15, 0.1,0.2]
 
 #approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
