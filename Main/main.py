@@ -200,6 +200,7 @@ from datetime import timedelta
 
 dict_settings['confidence'] = 0.8
 dict_settings['return target'] = 0.02
+return_slider=FloatSlider(value=dict_settings['return target'], description='Return Target', max=1, min=0, readout_format='.2%', layout={'margin':'20px 0px 0px 0px'},step=0.2/100,style={'description_width':'100PX'}) # slider for the return target
 return_slider.value = 0.02
 dict_settings['scalar'] = uncertainty
 dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
@@ -527,8 +528,6 @@ floattext_confidence = FloatSlider(description='Confidence Level on Views', valu
                                    
 floattext_confidence.observe(run_viewmodel) 
 
-    
-return_slider=FloatSlider(value=dict_settings['return target'], description='Return Target', max=1, min=0, readout_format='.2%', layout={'margin':'20px 0px 0px 0px'},step=0.2/100,style={'description_width':'100PX'}) # slider for the return target
 return_slider.observe(run_viewmodel)
 
 #sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)
