@@ -499,7 +499,7 @@ def run_viewmodel(change=None):
         bar.y = [weights[col] for col in weights]
 
         labels.y = list_security[::-1]
-        labels.x = weights['Initial Weights']*100
+        labels.x = weights['Initial Weights']
         labels.text = weights['Initial Weights']
 
         #bar_labels.x = list_security[::-1]
@@ -564,7 +564,7 @@ bar = bqp.Bars(x=[],
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
                orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'], #orientation decides whether the bars are horizontal or vertical
-              colors=['#1B84ED','#4fa110','#F39F41'],
+              colors=['#1B84ED','#4fa110','#F39F41'],opacities = [0.1, 0.1,0.1], 
               type='grouped')
 bar_labels = bqp.Label(x=[], y=[], scales={'x': x_ord, 'y': y_sc},    x_offset = 2, y_offset = 7, 
     text=[0,0,0], colors=['blue','blue', 'blue'], 
@@ -586,7 +586,7 @@ ax_y = bqp.Axis(scale=y_sc, label='Weight')
 x_labels = ['aaa','bbb','ccc']
 x_ord = bqp.OrdinalScale()
 y_sc = bqp.LinearScale()
-y_sc.max = 10
+y_sc.max = 1
 #bar_git = bqp.Bars(x= x_labels, y=[2,10,15], scales={'x': x_ord, 'y': y_sc},orientation="horizontal" )
 
 ax_x = bqp.Axis(scale=x_ord, orientation="vertical", color = 'Black')
@@ -597,9 +597,9 @@ ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', color = 'White')
 #    text=[333,66666666,99999999], colors=['blue','blue', 'blue'], 
 #    default_size=24,  update_on_move=True)
 labels =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
-    x_offset = 2, y_offset = 7, 
+    y_offset = -17, #x_offset = 2, y_offset = 7, 
     text=[], colors=['blue','blue', 'blue'], 
-    default_size=24,  update_on_move=True)
+    default_size=14,  update_on_move=True)
 fig_bar = bqp.Figure(marks=[labels,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
                      layout=Layout(width='600px'), legend_location='top', 
                      fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})       
