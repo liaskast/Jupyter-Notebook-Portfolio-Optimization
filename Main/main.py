@@ -482,7 +482,8 @@ def run_viewmodel(change=None):
         new_weights = np.array(new_f_weights.iloc[new_frontier.loc[new_frontier['sharpe']==new_frontier['sharpe'].max()].index.values[0]])
 
         leverage = np.sum(abs(new_weights))
-        weights['Initial Weights']=approximated_mkt_weight[::-1]
+        initial_weights = np.array(approximated_mkt_weight)
+        weights['Initial Weights']=initial_weights
         weights['Opt Portfolio']=W_opt[::-1]
         weights['Opt Portfolio with View']=new_weights[::-1]
         
@@ -498,9 +499,17 @@ def run_viewmodel(change=None):
         bar.x = list_security[::-1]
         bar.y = [weights[col] for col in weights]
 
-        labels.y = list_security[::-1]
-        labels.x = weights['Initial Weights']
-        labels.text = weights['Initial Weights']
+        labels_initial.y = list_security[::-1]
+        labels_initial.x = weights['Initial Weights']
+        labels_initial.text = np.around(weights['Initial Weights']*100,1)
+
+        labels_opt.y = list_security[::-1]
+        labels_opt.x = weights['Opt Portfolio']
+        labels_opt.text = np.around(weights['Opt Portfolio']*100,1)
+
+        labels_opt_view.y = list_security[::-1]
+        labels_opt_view.x = weights['Opt Portfolio with View']
+        labels_opt_view.text = np.around(weights['Opt Portfolio with View']*100,1)
 
         #bar_labels.x = list_security[::-1]
         #bar_labels.y = [weights[col] for col in weights]
@@ -557,6 +566,7 @@ updateviewcontrol()
 
 x_ord = bqp.OrdinalScale()
 y_sc = bqp.LinearScale()
+y_sc.max = 1
 
 #Plot #1 i.e. Creation of the bar plot
 
@@ -564,11 +574,9 @@ bar = bqp.Bars(x=[],
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
                orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio','Efficient Portfolio with Views'], #orientation decides whether the bars are horizontal or vertical
-              colors=['#1B84ED','#4fa110','#F39F41'],opacities = [0.1, 0.1,0.1], 
+              colors=['#1B84ED','#4fa110','#F39F41'], 
               type='grouped')
-bar_labels = bqp.Label(x=[], y=[], scales={'x': x_ord, 'y': y_sc},    x_offset = 2, y_offset = 7, 
-    text=[0,0,0], colors=['blue','blue', 'blue'], 
-    default_size=24,  update_on_move=True)
+
 #bar.type='grouped'
 bar.tooltip = bqp.Tooltip(fields=['y'], labels=['Weight of Asset'], formats=['.3f']) #this displays the weight placed on each asset.
 
@@ -583,24 +591,26 @@ ax_y = bqp.Axis(scale=y_sc, label='Weight')
 #                     layout=Layout(width='600px'), legend_location='top', 
 #                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})                     
 
-x_labels = ['aaa','bbb','ccc']
-x_ord = bqp.OrdinalScale()
-y_sc = bqp.LinearScale()
-y_sc.max = 1
-#bar_git = bqp.Bars(x= x_labels, y=[2,10,15], scales={'x': x_ord, 'y': y_sc},orientation="horizontal" )
 
 ax_x = bqp.Axis(scale=x_ord, orientation="vertical", color = 'Black')
 ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', color = 'White')
 
-#labels_original =  bqp.Label(y=x_labels, x=[2,30,5], scales={'y': x_ord, 'x': y_sc}, 
-#    x_offset = 2, y_offset = 7, 
-#    text=[333,66666666,99999999], colors=['blue','blue', 'blue'], 
-#    default_size=24,  update_on_move=True)
-labels =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
-    y_offset = -17, #x_offset = 2, y_offset = 7, 
-    text=[], colors=['blue','blue', 'blue'], 
+labels_initial =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
+    x_offset=2,y_offset = -17, 
+    text=[], colors=['#1B84ED'], 
     default_size=14,  update_on_move=True)
-fig_bar = bqp.Figure(marks=[labels,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
+
+labels_opt =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
+    x_offset=2,y_offset = 0, 
+    text=[], colors=['#4fa110'], 
+    default_size=14,  update_on_move=True)
+
+labels_opt_view =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
+    x_offset=2,y_offset = 17, 
+    text=[], colors=['#F39F41'], 
+    default_size=14,  update_on_move=True)
+
+fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
                      layout=Layout(width='600px'), legend_location='top', 
                      fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})       
 
