@@ -177,6 +177,9 @@ prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, u
 returns = prices.pct_change()
 returns = returns.dropna()
 
+product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
+print(np.array(product_names)[0])
+
 import pickle
 from collections import OrderedDict
 from datetime import timedelta
@@ -196,6 +199,8 @@ from datetime import timedelta
     #dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
 
 dict_settings['confidence'] = 0.8
+dict_settings['return target'] = 0.02
+return_slider.value = 0.02
 dict_settings['scalar'] = uncertainty
 dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     
@@ -204,6 +209,7 @@ def save_settings(caller=None): # Reads from Button any changes to objects.
     dict_settings['security'] = temp_sec
     dict_settings['weight'] = temp_weight
     dict_settings['confidence'] = floattext_confidence.value
+    dict_settings['return target'] = return_slider.value
     dict_settings['usemktcap'] = check_usemktcap.value # If check_usemktcap.value == true then you are using the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     f=open('settings_bl.pckl','wb')
     pickle.dump(dict_settings, f)
@@ -254,7 +260,7 @@ def bq_series_data(security,datafields):
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    if((expected_returns.T * weights).sum()>0.02): # This is where we place a bound on the return provided by the portfolio.
+    if((expected_returns.T * weights).sum()>return_slider.value): # This is where we place a bound on the return provided by the portfolio.
         return((expected_returns.T * weights).sum())
     else:
         return 1
@@ -510,9 +516,6 @@ def run_viewmodel(change=None):
         labels_opt_view.y = list_security[::-1]
         labels_opt_view.x = weights['Opt Portfolio with View']
         labels_opt_view.text = np.around(weights['Opt Portfolio with View']*100,1)
-
-        #bar_labels.x = list_security[::-1]
-        #bar_labels.y = [weights[col] for col in weights]
         
         line.x = frontier['risk']
         line.y = [frontier['return'],new_frontier['return']]
@@ -523,6 +526,10 @@ floattext_confidence = FloatSlider(description='Confidence Level on Views', valu
                                    layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
                                    
 floattext_confidence.observe(run_viewmodel) 
+
+    
+return_slider=FloatSlider(value=dict_settings['return target'], description='Return Target', max=1, min=0, readout_format='.2%', layout={'margin':'20px 0px 0px 0px'},step=0.2/100,style={'description_width':'100PX'}) # slider for the return target
+return_slider.observe(run_viewmodel)
 
 #sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)
 def updateviewcontrol():
@@ -537,7 +544,8 @@ def updateviewcontrol():
         #display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
-    
+
+
     list_relative_controls=[]
     sec_dropdown_options = OrderedDict(zip(['None']+list(dict_settings['security'].keys()),range(len(dict_settings['security'])+1)))
     
@@ -553,7 +561,7 @@ def updateviewcontrol():
     
     header_abs_html = HTML('<p style="color: white;">{}</p>'.format('Absolute Views'))
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
-    UI_viewcontrol = [header_abs_html, VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
+    UI_viewcontrol = [header_abs_html, VBox([return_slider]),VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
     
     
 def updatecontrolinui():
