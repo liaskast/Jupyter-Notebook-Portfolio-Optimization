@@ -177,8 +177,8 @@ prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, u
 returns = prices.pct_change()
 returns = returns.dropna()
 
-product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
-print(np.array(product_names)[0])
+read_product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:H") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
+print(read_product_names.columns.ravel())
 
 import pickle
 from collections import OrderedDict
@@ -199,9 +199,9 @@ from datetime import timedelta
     #dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
 
 dict_settings['confidence'] = 0.8
-dict_settings['return target'] = 0.02
-return_slider=FloatSlider(value=dict_settings['return target'], description='Return Target', max=1, min=0, readout_format='.2%', layout={'margin':'20px 0px 0px 0px'},step=0.2/100,style={'description_width':'100PX'}) # slider for the return target
-return_slider.value = 0.02
+#dict_settings['return target'] = 0.03
+#return_slider=FloatSlider(value=dict_settings['return target'], description='Return Target', max=1, min=0, readout_format='.2%', layout={'margin':'20px 0px 0px 0px'},step=0.2/100,style={'description_width':'100PX'}) # slider for the return target
+#return_slider.value = 0.03
 dict_settings['scalar'] = uncertainty
 dict_settings['usemktcap'] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     
@@ -210,7 +210,7 @@ def save_settings(caller=None): # Reads from Button any changes to objects.
     dict_settings['security'] = temp_sec
     dict_settings['weight'] = temp_weight
     dict_settings['confidence'] = floattext_confidence.value
-    dict_settings['return target'] = return_slider.value
+    #dict_settings['return target'] = return_slider.value
     dict_settings['usemktcap'] = check_usemktcap.value # If check_usemktcap.value == true then you are using the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
     f=open('settings_bl.pckl','wb')
     pickle.dump(dict_settings, f)
@@ -261,7 +261,7 @@ def bq_series_data(security,datafields):
 
 # Portfolio Mean
 def _port_mean(weights, expected_returns):
-    if((expected_returns.T * weights).sum()>return_slider.value): # This is where we place a bound on the return provided by the portfolio.
+    if((expected_returns.T * weights).sum()):#>return_slider.value): # This is where we place a bound on the return provided by the portfolio.
         return((expected_returns.T * weights).sum())
     else:
         return 1
@@ -500,7 +500,7 @@ def run_viewmodel(change=None):
         mean, var = _port_mean_var(new_weights[::-1], Pi_new + rf, C)
         scatt.x = [np.sqrt(var_opt)]
         scatt.y = [mean_opt]
-        scatt_view.x = [np.sqrt(var)]
+        scatt_view.x = [np.sqrt(var) ]
         scatt_view.y = [mean]
             
         bar.x = list_security[::-1]
@@ -528,7 +528,7 @@ floattext_confidence = FloatSlider(description='Confidence Level on Views', valu
                                    
 floattext_confidence.observe(run_viewmodel) 
 
-return_slider.observe(run_viewmodel)
+#return_slider.observe(run_viewmodel)
 
 #sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)
 def updateviewcontrol():
@@ -560,7 +560,7 @@ def updateviewcontrol():
     
     header_abs_html = HTML('<p style="color: white;">{}</p>'.format('Absolute Views'))
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
-    UI_viewcontrol = [header_abs_html, VBox([return_slider]),VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
+    UI_viewcontrol = [header_abs_html,VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
     
     
 def updatecontrolinui():
@@ -627,6 +627,8 @@ fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes
 
 x_lin = bqp.LinearScale()
 y_lin = bqp.LinearScale()
+x_lin.max = 0.2
+y_lin.max = 0.1
 
 x_ax = bqp.Axis(label='risk', scale=x_lin, grid_lines='solid')
 x_ay = bqp.Axis(label='return', scale=y_lin, orientation='vertical', grid_lines='solid')
