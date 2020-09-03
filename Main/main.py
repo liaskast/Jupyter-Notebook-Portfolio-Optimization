@@ -65,7 +65,7 @@ class Bloomberg_Object:
 
     class port:
         def list_portfolios():
-            mytuple = ("apple", "banana", "cherry")
+            mytuple = ("", "", "")
             return mytuple
 
 bq = Bloomberg_Object()        
