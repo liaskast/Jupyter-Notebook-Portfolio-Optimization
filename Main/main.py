@@ -457,7 +457,8 @@ def run_viewmodel(change=None):
     if isinstance(change['new'],float):
         Q=[]
         for n in range(len(dict_settings['security'])):
-            alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value) # We supply the [primary 'view'] which is the Implied Return for each Asset Class.
+            alpha = (list_slider[n].value - Pi[n][0]) * (confidence_list_slider[n].value) 
+            #alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value) # We supply the [primary 'view'] which is the Implied Return for each Asset Class.
                                                                                      # For example, we assume the first asset class will have implied return 6% as calculated from the historical data
                                                                                      # then, list_slider[n].value contains that 6% value. This is the [primary 'view'] for this asset class. 
                                                                                      # Then on top of this [primary 'view'] we will add our own [portfolio manager 'view']. 
@@ -530,26 +531,37 @@ def run_viewmodel(change=None):
         
 
 
-floattext_confidence = FloatSlider(description='Confidence Level on Views', value=dict_settings['confidence'],style={'description_width':'initial'}, readout_format='.2%', max=1, min=0,
-                                   layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
+#floattext_confidence = FloatSlider(description='Confidence Level on Views', value=dict_settings['confidence'],style={'description_width':'initial'}, readout_format='.2%', max=1, min=0,
+          #                         layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
                                    
-floattext_confidence.observe(run_viewmodel) 
+#floattext_confidence.observe(run_viewmodel) 
 
 #return_slider.observe(run_viewmodel)
 
 #sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)
 def updateviewcontrol():
-    global UI_viewcontrol, list_slider, list_relative_controls, floattext_uncertainty
+    global UI_viewcontrol, list_slider, confidence_list_slider, security_list, list_relative_controls, floattext_uncertainty
     
     list_slider=[]
+    confidence_list_slider=[]
+    security_list=[]
     #list_security=list(dict_settings['security'].keys()) # Original line
     list_security=list(dict_settings['security'].values()) # Changed the name next to sliders to ticker name.
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], continuous_update=False, max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
-        temp_slider=FloatSlider(value=Pi[n], description=list_security[n], max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class. description=list_security[n]--> contains the name attached to the left of each slider.
+        temp_slider=FloatSlider(value=Pi[n], description='View',  max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class. description=list_security[n]--> contains the name attached to the left of each slider.
         #display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
+
+        floattext_confidence = FloatSlider(description='Confidence of View', value=1,style={'description_width':'initial'}, readout_format='.2%', max=1, min=0,
+                                           layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
+        floattext_confidence.observe(run_viewmodel) 
+        confidence_list_slider.append(floattext_confidence)
+
+        security_label = Label(list_security[n])
+        security_label.observe(run_viewmodel)
+        security_list.append(security_label)
 
 
     list_relative_controls=[]
@@ -567,7 +579,7 @@ def updateviewcontrol():
     
     header_abs_html = HTML('<p style="color: white;">{}</p>'.format('Absolute Views'))
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
-    UI_viewcontrol = [header_abs_html,VBox(list_slider),header_rel_html, VBox(list_relative_controls), VBox([floattext_confidence])]
+    UI_viewcontrol = [header_abs_html, VBox([HBox([VBox(security_list), VBox(confidence_list_slider),VBox(list_slider)])]), header_rel_html]#, VBox(list_relative_controls), VBox([floattext_confidence])]
     
     
 def updatecontrolinui():
@@ -653,8 +665,7 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       legend_location='top-left', layout=Layout(width='800px'), 
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
-UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px')),VBox([fig_bar,fig_line])])
-#UI_model=HBox([VBox(UI_viewcontrol,layout=Layout(width='450px'))])
+UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface
 #UI_model = HBox([loading_html])
 
 
