@@ -160,17 +160,6 @@ approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
 #approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]
 #approximated_mkt_weight = [0.3,0.3, 0.15, 0.1,0.1,0.05]
 
-
-dict_settings = OrderedDict()
-dict_settings['security'] = security
-dict_settings['weight'] = approximated_mkt_weight
-
-#rf = 0.015 # Original line of code - rf is the risk-free rate
-rf = 0 # New line of code - rf is the risk-free rate
-num_avail_ticker=len(dict_settings['security'])
-#print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
-uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
-
 #******************************************************************************** Reads in Input ****************************************************************************************************
 #3 - Read in Asset Classes from Excel.
 prices = pd.read_excel ('prices.xlsx',header=1,index_col=0, parse_dates= True, usecols="A:XFD") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
@@ -183,6 +172,19 @@ product_names = read_product_names.columns.ravel() # product_names is an array t
 #Benchmarks 3 - TEA ETFs
 for iterator_product_names in range(len(product_names)):
     security[product_names[iterator_product_names]] =  product_names[iterator_product_names]    
+    approximated_mkt_weight[iterator_product_names] = initial_weight_from_sliders[len(product_names)-1-iterator_product_names].value
+
+dict_settings = OrderedDict()
+dict_settings['security'] = security
+dict_settings['weight'] = approximated_mkt_weight
+
+#rf = 0.015 # Original line of code - rf is the risk-free rate
+rf = 0 # New line of code - rf is the risk-free rate
+num_avail_ticker=len(dict_settings['security'])
+#print(len(dict_settings['security'])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.
+uncertainty = 0.025 # tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman
+
+
 
 import pickle
 from collections import OrderedDict
