@@ -549,13 +549,13 @@ def updateviewcontrol():
     list_security=list(dict_settings['security'].values()) # Changed the name next to sliders to ticker name.
     for n in range(len(dict_settings['security'])):
         #temp_slider=FloatSlider(value=Pi[n], description=list_security[n], continuous_update=False, max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'})
-        temp_slider=FloatSlider(value=Pi[n], description='View',  max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class. description=list_security[n]--> contains the name attached to the left of each slider.
+        temp_slider=FloatSlider(value=Pi[n], description='View on Asset',  max=0.2, min=-0.2, readout_format='.2%', step=0.2/100,style={'description_width':'100PX'}) #Slider Specficiations. Pi[n] contains the [primary 'view'] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class. description=list_security[n]--> contains the name attached to the left of each slider.
         #display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
 
-        floattext_confidence = FloatSlider(description='Confidence of View', value=1,style={'description_width':'initial'}, readout_format='.2%', max=1, min=0,
-                                           layout={'margin':'20px 0px 0px 0px'}, step=0.5/100)
+        floattext_confidence = FloatSlider(description='Confidence of View', value=1,style={'description_width':'150PX'}, readout_format='.2%', max=1, min=0,
+                                            step=0.5/100)
         floattext_confidence.observe(run_viewmodel) 
         confidence_list_slider.append(floattext_confidence)
 
@@ -579,7 +579,7 @@ def updateviewcontrol():
     
     header_abs_html = HTML('<p style="color: white;">{}</p>'.format('Absolute Views'))
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
-    UI_viewcontrol = [header_abs_html, VBox([HBox([VBox(security_list), VBox(confidence_list_slider),VBox(list_slider)])]), header_rel_html]#, VBox(list_relative_controls), VBox([floattext_confidence])]
+    UI_viewcontrol = [header_abs_html, VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]), header_rel_html]#, VBox(list_relative_controls), VBox([floattext_confidence])]
     
     
 def updatecontrolinui():
@@ -637,7 +637,7 @@ labels_opt_view =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc},
     default_size=14,  update_on_move=True)
 
 fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
-                     layout=Layout(width='600px'), legend_location='top', 
+                     layout=Layout(width='800px'), legend_location='top', 
                      fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})       
 
 
