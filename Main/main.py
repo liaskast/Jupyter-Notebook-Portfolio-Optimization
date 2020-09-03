@@ -262,7 +262,7 @@ def bq_series_data(security,datafields):
     #response = bq.execute(request) #******************** Directly TALKS TO Bloomberg's Database ************
     #print("entered bq_series_data")
     response = returns
-    print(len(returns))
+    #print(len(returns)) # for error correction: this prints the length of the returns array i.e. practically the number of rows of the excel file provided as input
     #result = response[0].df().reset_index().pivot(index='DATE',columns='ID',values=response[0].name)[security]
     return response
 
@@ -345,8 +345,8 @@ def solve_intial_opt_weight():
     # Solve for weights before incorporating views
     W_opt = np.array(f_weights.iloc[frontier.loc[frontier['sharpe']==frontier['sharpe'].max()].index.values[0]])
     mean_opt, var_opt = _port_mean_var(W_opt, Pi+rf, C)   # calculate tangency portfolio
-    print(mean_opt*100)
-    print(math.sqrt(var_opt)*100)
+    #print(mean_opt*100) # for error correction: prints the return provided by the Market Efficient Portfolio 
+    #print(math.sqrt(var_opt)*100) # for error correction: prints the risk (i.e. cov) of the Market Efficient Portfolio
     #print("\n Initial Optimal Weights")
     #print(W_opt)
     return W_opt, frontier, f_weights, Pi, C
@@ -718,5 +718,5 @@ VBox([tab])
 
 #[Open Weight](output.xlsx)
 
-for slider in list_slider:
-    print(slider.description, ": ", slider.value)        
+#for slider in list_slider:
+    #print(slider.description, ": ", slider.value)        #supressing this print out 
