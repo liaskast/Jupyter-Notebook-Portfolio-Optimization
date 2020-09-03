@@ -349,7 +349,8 @@ def solve_intial_opt_weight():
     #print(math.sqrt(var_opt)*100) # for error correction: prints the risk (i.e. cov) of the Market Efficient Portfolio
     #print("\n Initial Optimal Weights")
     #print(W_opt)
-    return W_opt, frontier, f_weights, Pi, C
+    #return W_opt, frontier, f_weights, Pi, C
+    
 
 
 solve_intial_opt_weight() # Here we call the Optimization function that returns the initial optimal weights.
