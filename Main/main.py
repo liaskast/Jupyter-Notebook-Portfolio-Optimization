@@ -476,7 +476,8 @@ def run_viewmodel(change=None):
                 npselection[sec1_pos] = 1
                 npselection[sec2_pos] = -1
                 P = np.array(pd.DataFrame(P).append(pd.DataFrame(npselection).T))
-                alpha = (relative_box.children[-1].value - (Pi[sec1_pos][0] - Pi[sec2_pos][0])) * (floattext_confidence.value)
+                #alpha = (relative_box.children[-1].value - (Pi[sec1_pos][0] - Pi[sec2_pos][0])) * (floattext_confidence.value)
+                alpha = (relative_box.children[-1].value - (Pi[sec1_pos][0] - Pi[sec2_pos][0])) * (confidence_list_slider[n].value) 
                 Q.append(alpha +  (Pi[sec1_pos][0] - Pi[sec2_pos][0]))
         
         Q=np.array([Q]).T 
