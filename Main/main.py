@@ -602,7 +602,7 @@ bar = bqp.Bars(x=[],
                y=[], 
                scales={'x': x_ord, 'y': y_sc},
                orientation="horizontal", display_legend=True, labels=['Initial Weights','Mkt Efficient Portfolio (Max Sharpe)','Efficient Portfolio with Views (BL)'], #orientation decides whether the bars are horizontal or vertical
-              colors=['#1B84ED','#4fa110','#F39F41'], 
+              colors=['#4fa110','#1B84ED','#F39F41'], opacities=[0.8, 0.9, 1],
               type='grouped')
 
 #bar.type='grouped'
@@ -623,14 +623,14 @@ ax_y = bqp.Axis(scale=y_sc, label='Weight')
 ax_x = bqp.Axis(scale=x_ord, orientation="vertical", color = 'Black')
 ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', color = 'White')
 
-labels_initial =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
+labels_initial =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, #contain value of weights but only for the labels not the bars.
     x_offset=2,y_offset = -17, 
-    text=[], colors=['#1B84ED'], 
+    text=[], colors=['#4fa110'], 
     default_size=14,  update_on_move=True)
 
 labels_opt =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
     x_offset=2,y_offset = 0, 
-    text=[], colors=['#4fa110'], 
+    text=[], colors=['#1B84ED'], 
     default_size=14,  update_on_move=True)
 
 labels_opt_view =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc}, 
@@ -638,9 +638,9 @@ labels_opt_view =  bqp.Label(y=[], x=[], scales={'y': x_ord, 'x': y_sc},
     text=[], colors=['#F39F41'], 
     default_size=14,  update_on_move=True)
 
-fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, 
-                     layout=Layout(width='800px'), legend_location='top', 
-                     fig_margin={'top':20, 'bottom':30, 'left':110, 'right':20})       
+fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.005, padding_y=0.025, 
+                     layout=Layout(width='800px'), legend_location='top', legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
+                     fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})       
 
 
 
@@ -648,8 +648,8 @@ fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes
 
 x_lin = bqp.LinearScale()
 y_lin = bqp.LinearScale()
-x_lin.max = 0.2
-y_lin.max = 0.1
+#x_lin.max = 0.2 # controls the length of the x-axis
+#y_lin.max = 0.1 # controls the length of the y-axis
 
 x_ax = bqp.Axis(label='risk', scale=x_lin, grid_lines='solid')
 x_ay = bqp.Axis(label='return', scale=y_lin, orientation='vertical', grid_lines='solid')
@@ -664,7 +664,7 @@ scatt_view = bqp.Scatter(x=[],y=[], scales={'x': x_lin, 'y': y_lin}, tooltip=def
 line = bqp.Lines(x=[], y=[], scales={'x': x_lin, 'y': y_lin}, display_legend=True, labels=['Mkt Efficient Portfolio','Efficient Portfolio with Views'], colors=['#1B84ED','#F39F41'])
 
 fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay], 
-                      legend_location='top-left', layout=Layout(width='800px'), 
+                      legend_location='top-left', layout=Layout(width='800px'), legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
 UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface
@@ -674,9 +674,10 @@ UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]
 # END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************
 
 tab = Tab()
-tab.children = [UI_model, UI_sec_input]
-tab.set_title(0, 'B-L Model')
-tab.set_title(1, 'Settings')
+#tab.children = [UI_model, UI_sec_input]
+tab.children = [UI_model]
+tab.set_title(0, 'Portfolio Optimizer')
+#tab.set_title(1, 'Settings')
 #tab.set_title(2, 'Reference Data')
 
 def updatedseclist(obj=None):
