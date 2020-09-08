@@ -174,6 +174,13 @@ for iterator_product_names in range(len(product_names)):
     security[product_names[iterator_product_names]] =  product_names[iterator_product_names]    
     approximated_mkt_weight[iterator_product_names] = initial_weight_from_sliders[len(product_names)-1-iterator_product_names].value
 
+data_freq_multiplier_choices = [252, 52, 12] # all possible multiplier choices either for daily, weekly, monthly data
+data_freq_multiplier = 0 # this variable will be what is multiplied with the returns in the 'solve_intial_opt_weight' optimization function
+
+for data_freq_iterator in range(len(data_frequency_choices)):
+    if data_frequency_checkbox[data_freq_iterator].value == True :
+        data_freq_multiplier = data_freq_multiplier_choices[data_freq_iterator]  # assigns the right choice to the variable that will be multiplied depending on choice from the data frequency choice cell above  
+
 dict_settings = OrderedDict()
 dict_settings['security'] = security
 dict_settings['weight'] = approximated_mkt_weight
@@ -322,8 +329,8 @@ def solve_intial_opt_weight():
     datafields = OrderedDict()
     #datafields['return'] = bq.data.day_to_day_total_return(start='-5y',per='m') # Datafields Parameter
     day_to_day_return=bq_series_data(univ,datafields) #******************** Calls function that calls Bloomberg's Database ************
-    R = day_to_day_return.dropna().mean()*52 # Input: 252 yearly  # Description:  R is the vector of expected returns in the "Step-by-Step Guide..." paper
-    C = day_to_day_return.cov()*52 # Input: 252 yearly # Description: C is the covariance matrix i.e. Sigma in the "Step-by-Step Guide..." paper
+    R = day_to_day_return.dropna().mean()*data_freq_multiplier # Input: 252 yearly  # Description:  R is the vector of expected returns in the "Step-by-Step Guide..." paper
+    C = day_to_day_return.cov()*data_freq_multiplier # Input: 252 yearly # Description: C is the covariance matrix i.e. Sigma in the "Step-by-Step Guide..." paper
     
     if dict_settings['usemktcap']: # This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!
         datafields = OrderedDict()
