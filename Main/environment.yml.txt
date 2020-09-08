@@ -1,0 +1,11 @@
+name: example-environment
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - psutil
+  - bqplot
+  - scipy
+  - xlrd
+  - openpyxl

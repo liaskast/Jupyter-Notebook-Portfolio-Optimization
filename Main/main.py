@@ -471,7 +471,7 @@ def run_viewmodel(change=None):
                                                                                      # then, list_slider[n].value contains that 6% value. This is the [primary 'view'] for this asset class. 
                                                                                      # Then on top of this [primary 'view'] we will add our own [portfolio manager 'view']. 
                                                                                      # For example we believe that this asset class instead of 6% will have a 8% return. 
-                                                                                     # Hence, we move the 'slider' from the 6% position to the 8% position. This is done later inside function "updateviewcontrol"
+                                                                                     # Hence, we move the 'slider' from the 6% position to the 8% position. Then on that 2% increase in excess return we multiply with the confidence on that view.
             Q.append(alpha + Pi[n][0])
 
         
