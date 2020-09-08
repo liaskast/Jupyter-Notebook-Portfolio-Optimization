@@ -563,7 +563,7 @@ def updateviewcontrol():
         temp_slider.observe(run_viewmodel)
         list_slider.append(temp_slider)
 
-        floattext_confidence = FloatSlider(description='Confidence of View', value=1,style={'description_width':'150PX'}, readout_format='.2%', max=1, min=0,
+        floattext_confidence = FloatSlider(description='Confidence of View', value=0.8,style={'description_width':'150PX'}, readout_format='.2%', max=1, min=0,
                                             step=0.5/100)
         floattext_confidence.observe(run_viewmodel) 
         confidence_list_slider.append(floattext_confidence)
