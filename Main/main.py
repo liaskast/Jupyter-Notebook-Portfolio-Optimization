@@ -176,6 +176,7 @@ for iterator_product_names in range(len(product_names)):
 
 
 #Reading from above cell the data frequency possible options
+
 data_freq_multiplier_choices = [252, 52, 12] # all possible multiplier choices either for daily, weekly, monthly data
 data_freq_multiplier = 0 # this variable will be what is multiplied with the returns in the 'solve_intial_opt_weight' optimization function
 
