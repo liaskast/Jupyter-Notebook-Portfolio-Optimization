@@ -169,11 +169,13 @@ returns = returns.dropna()
 read_product_names = pd.read_excel ('prices.xlsx',header=0,index_col=0, parse_dates= True, usecols="A:XFD") # usecols: specifies  which columns are read-in by the program. It should be column "A" until "last_column + 1".
 product_names = read_product_names.columns.ravel() # product_names is an array that contains the names of the products inserted as input into our portfolio.
 
-#Benchmarks 3 - TEA ETFs
+#Reading from above cell the initial weights
 for iterator_product_names in range(len(product_names)):
     security[product_names[iterator_product_names]] =  product_names[iterator_product_names]    
     approximated_mkt_weight[iterator_product_names] = initial_weight_from_sliders[len(product_names)-1-iterator_product_names].value
 
+
+#Reading from above cell the data frequency possible options
 data_freq_multiplier_choices = [252, 52, 12] # all possible multiplier choices either for daily, weekly, monthly data
 data_freq_multiplier = 0 # this variable will be what is multiplied with the returns in the 'solve_intial_opt_weight' optimization function
 
