@@ -589,9 +589,10 @@ def updateviewcontrol():
     header_abs_html = HTML('<p style="color: white;">{}</p>'.format('Absolute Views'))
     header_rel_html = HTML('<p style="color: white;">{}</p>'.format('Relative Views'), layout={'margin':'20px 0px 0px 0px'})
     UI_viewcontrol = [header_abs_html, VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]), header_rel_html]#, VBox(list_relative_controls), VBox([floattext_confidence])]
-    display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]))
+    #display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]))
 
-    
+
+
 def updatecontrolinui():
     UI_model.children[0].children = UI_viewcontrol
 
@@ -674,11 +675,12 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
 UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface
-display(HBox([fig_bar]))
+#display(HBox([fig_bar]))
 #display(VBox([HBox([VBox(UI_viewcontrol), VBox([fig_bar])])]))
-display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])])) 
+#display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])])) 
 #UI_model = HBox([loading_html])
 
+#interact(updateviewcontrol, UI_model)
 
 # END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************
 

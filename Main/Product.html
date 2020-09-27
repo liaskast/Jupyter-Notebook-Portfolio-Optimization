@@ -14001,9 +14001,10 @@ div#notebook {
     <span class="n">header_abs_html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;p style=&quot;color: white;&quot;&gt;</span><span class="si">{}</span><span class="s1">&lt;/p&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Absolute Views&#39;</span><span class="p">))</span>
     <span class="n">header_rel_html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;p style=&quot;color: white;&quot;&gt;</span><span class="si">{}</span><span class="s1">&lt;/p&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Relative Views&#39;</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span><span class="s1">&#39;20px 0px 0px 0px&#39;</span><span class="p">})</span>
     <span class="n">UI_viewcontrol</span> <span class="o">=</span> <span class="p">[</span><span class="n">header_abs_html</span><span class="p">,</span> <span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">(</span><span class="n">security_list</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">list_slider</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">)])]),</span> <span class="n">header_rel_html</span><span class="p">]</span><span class="c1">#, VBox(list_relative_controls), VBox([floattext_confidence])]</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">(</span><span class="n">security_list</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">list_slider</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">)])]))</span>
+    <span class="c1">#display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]))</span>
 
-    
+
+
 <span class="k">def</span> <span class="nf">updatecontrolinui</span><span class="p">():</span>
     <span class="n">UI_model</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">UI_viewcontrol</span>
 
@@ -14086,11 +14087,12 @@ div#notebook {
                       <span class="n">fig_margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;top&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">})</span>
 <span class="n">run_viewmodel</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">})</span>
 <span class="n">UI_model</span><span class="o">=</span><span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">(</span><span class="n">UI_viewcontrol</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;1000px&#39;</span><span class="p">)),</span><span class="n">HBox</span><span class="p">([</span><span class="n">fig_bar</span><span class="p">]),</span><span class="n">HBox</span><span class="p">([</span><span class="n">fig_line</span><span class="p">])])</span> <span class="c1"># specifies the length of the lhs of the interface</span>
-<span class="n">display</span><span class="p">(</span><span class="n">HBox</span><span class="p">([</span><span class="n">fig_bar</span><span class="p">]))</span>
+<span class="c1">#display(HBox([fig_bar]))</span>
 <span class="c1">#display(VBox([HBox([VBox(UI_viewcontrol), VBox([fig_bar])])]))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">(</span><span class="n">security_list</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">list_slider</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">)])]))</span> 
+<span class="c1">#display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])])) </span>
 <span class="c1">#UI_model = HBox([loading_html])</span>
 
+<span class="c1">#interact(updateviewcontrol, UI_model)</span>
 
 <span class="c1"># END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************</span>
 
@@ -14177,48 +14179,6 @@ div#notebook {
 
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
 </div>
 
 <div class="output_area">
