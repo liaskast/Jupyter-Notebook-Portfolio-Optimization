@@ -14,7 +14,6 @@ from numpy.linalg import inv
 from collections import OrderedDict
 import scipy
 import ipywidgets as widgets
-import nbinteract as nbi
 from scipy import optimize
 
 #import bqwidgets as bqw
@@ -33,20 +32,26 @@ preload_box = HBox([loading_html])
 preload_box
 #display(preload_box) # Required to force the system to display the preload_box.
 
-from bqplot import pyplot as plt
-from bqplot import topo_load
-from bqplot.interacts import panzoom
-# initializing data to be plotted
-np.random.seed(0)
+#import numpy as np
+#from bqplot import *
+
 size = 100
-y_data = np.cumsum(np.random.randn(size) * 100.0)
-y_data_2 = np.cumsum(np.random.randn(size))
+np.random.seed(0)
+
+x_data = range(size)
+y_data = np.random.randn(size)
+y_data_2 = np.random.randn(size)
 y_data_3 = np.cumsum(np.random.randn(size) * 100.)
 
-x = np.linspace(0.0, 10.0, size)
-plt.figure(title='Scatter Plot with colors')
-plt.scatter(y_data_2, y_data_3, color=y_data, stroke='black')
-plt.show()
+x_ord = bqp.OrdinalScale()
+y_sc = bqp.LinearScale()
+
+bar = bqp.Bars(x=np.arange(10), y=np.random.rand(10), scales={'x': x_ord, 'y': y_sc})
+ax_x = bqp.Axis(scale=x_ord)
+ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', orientation='vertical')
+
+bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025)
+
 
 # Instantiate an object to interface with the BQL service
 #bq = bql.Service() # object bq is defined #Requires Bloomberg's Database and is henceforth unaccessible to us.

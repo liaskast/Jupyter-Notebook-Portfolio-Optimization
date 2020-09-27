@@ -13462,39 +13462,25 @@ div#notebook {
 <span class="n">preload_box</span>
 <span class="c1">#display(preload_box) # Required to force the system to display the preload_box.</span>
 
+<span class="c1">#import numpy as np</span>
+<span class="c1">#from bqplot import *</span>
 
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">bqplot</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">bqplot</span> <span class="kn">import</span> <span class="n">topo_load</span>
-<span class="kn">from</span> <span class="nn">bqplot.interacts</span> <span class="kn">import</span> <span class="n">panzoom</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-
-
-<span class="c1"># initializing data to be plotted</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">y_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">)</span>
-<span class="n">y_data_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x_data</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">y_data_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="n">y_data_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span><span class="p">)</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">x_ord</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">OrdinalScale</span><span class="p">()</span>
+<span class="n">y_sc</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
 
-<span class="n">price_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span>
-                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Security 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Security 2&#39;</span><span class="p">],</span>
-                          <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;01-01-2007&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">150</span><span class="p">))</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Bars</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">})</span>
+<span class="n">ax_x</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">x_ord</span><span class="p">)</span>
+<span class="n">ax_y</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">y_sc</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;0.2f&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
 
-<span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;Security 1&#39;</span>
-<span class="n">dates_all</span> <span class="o">=</span> <span class="n">price_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
-<span class="n">final_prices</span> <span class="o">=</span> <span class="n">price_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-
-<span class="n">price_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">bqp</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">bar</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">],</span> <span class="n">padding_x</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">padding_y</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
 
 
 <span class="c1"># Instantiate an object to interface with the BQL service</span>
@@ -14205,75 +14191,6 @@ div#notebook {
       Loading widgets...
     </button>
   </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Lines(colors=[&#39;#1f77b4&#39;, &#39;#ff7f0e&#39;, &#39;#2ca02c&#39;, &#39;#d62728&#39;, &#39;#9467bd&#39;, &#39;#8c564b&#39;, &#39;#e377c2&#39;, &#39;#7f7f7f&#39;, &#39;#bcbd22&#39;, &#39;#17becf&#39;], interactions={&#39;hover&#39;: &#39;tooltip&#39;}, scales={&#39;x&#39;: LinearScale(), &#39;y&#39;: LinearScale()}, scales_metadata={&#39;x&#39;: {&#39;orientation&#39;: &#39;horizontal&#39;, &#39;dimension&#39;: &#39;x&#39;}, &#39;y&#39;: {&#39;orientation&#39;: &#39;vertical&#39;, &#39;dimension&#39;: &#39;y&#39;}, &#39;color&#39;: {&#39;dimension&#39;: &#39;color&#39;}}, tooltip_style={&#39;opacity&#39;: 0.9}, x=array([ 0.        ,  0.1010101 ,  0.2020202 ,  0.3030303 ,  0.4040404 ,
-        0.50505051,  0.60606061,  0.70707071,  0.80808081,  0.90909091,
-        1.01010101,  1.11111111,  1.21212121,  1.31313131,  1.41414141,
-        1.51515152,  1.61616162,  1.71717172,  1.81818182,  1.91919192,
-        2.02020202,  2.12121212,  2.22222222,  2.32323232,  2.42424242,
-        2.52525253,  2.62626263,  2.72727273,  2.82828283,  2.92929293,
-        3.03030303,  3.13131313,  3.23232323,  3.33333333,  3.43434343,
-        3.53535354,  3.63636364,  3.73737374,  3.83838384,  3.93939394,
-        4.04040404,  4.14141414,  4.24242424,  4.34343434,  4.44444444,
-        4.54545455,  4.64646465,  4.74747475,  4.84848485,  4.94949495,
-        5.05050505,  5.15151515,  5.25252525,  5.35353535,  5.45454545,
-        5.55555556,  5.65656566,  5.75757576,  5.85858586,  5.95959596,
-        6.06060606,  6.16161616,  6.26262626,  6.36363636,  6.46464646,
-        6.56565657,  6.66666667,  6.76767677,  6.86868687,  6.96969697,
-        7.07070707,  7.17171717,  7.27272727,  7.37373737,  7.47474747,
-        7.57575758,  7.67676768,  7.77777778,  7.87878788,  7.97979798,
-        8.08080808,  8.18181818,  8.28282828,  8.38383838,  8.48484848,
-        8.58585859,  8.68686869,  8.78787879,  8.88888889,  8.98989899,
-        9.09090909,  9.19191919,  9.29292929,  9.39393939,  9.49494949,
-        9.5959596 ,  9.6969697 ,  9.7979798 ,  9.8989899 , 10.        ]), y=array([ 176.4052346 ,  216.42095543,  314.29475384,  538.38407376,
-        725.13987278,  627.41208479,  722.42092654,  707.28520571,
-        696.96332053,  738.02317073,  752.42752784,  897.85487854,
-        973.95865106,  986.12615271, 1030.51247598, 1063.87990872,
-       1213.28781603, 1192.77198966, 1224.07875982, 1138.66918589,
-        883.37020431,  948.73206385, 1035.17568374,  960.9591817 ,
-       1187.9346441 , 1042.49807664, 1047.07392837, 1028.35554336,
-       1181.6334648 , 1328.56934179, 1344.06408436, 1381.88033632,
-       1293.10176156, 1095.02211473, 1060.2308998 , 1075.86579671,
-       1198.89486478, 1319.13284966, 1280.40016792, 1250.16989286,
-       1145.31459636, 1003.31280264,  832.68578358, 1027.7633231 ,
-        976.79810493,  932.99067476,  807.71113876,  885.46017434,
-        724.07038959,  702.79636157,  613.24970545,  651.93995523,
-        600.85944148,  482.79622306,  479.97800023,  522.81118728,
-        529.46290952,  559.71009929,  496.27788993,  460.00377333,
-        392.75772855,  356.8024124 ,  275.48778419,  102.85952396,
-        120.60213818,   80.42404456,  -82.59579013,  -36.31756458,
-       -127.04740102, -121.85286144,  -48.94380522,  -36.04551415,
-         77.89455431,  -45.58802773,   -5.35386361,  -73.8348727 ,
-       -160.91458762, -218.7995541 , -249.95480731, -244.33827309,
-       -360.85325717, -270.77060847, -224.2043645 , -377.82873313,
-       -229.00351375,  -39.41459614,   78.46336097,   60.47087739,
-        -46.60438476,   58.84078793,   18.52309324,  140.76760027,
-        161.59509808,  259.25900173,  294.89564145,  365.55295827,
-        366.60296034,  545.19000973,  557.881219  ,  598.08015534]))</pre>
-</div>
 
 </div>
 
