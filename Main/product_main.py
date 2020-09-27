@@ -657,9 +657,7 @@ fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes
                      layout=Layout(width='800px'), legend_location='top', legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
                      fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})       
 
-bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.005, padding_y=0.025, 
-                     layout=Layout(width='800px'), legend_location='top', legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
-                     fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})       
+#fig_bar
 
 #Plot #2 i.e. the efficient froniter plot
 
@@ -684,7 +682,10 @@ fig_line = bqp.Figure(marks=[line], axes=[x_ax, x_ay],
                       legend_location='top-left', layout=Layout(width='800px'), legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
                       fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})
 run_viewmodel({'new':0.})
-UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface
+#UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width='1000px')),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface
+HBox(UI_viewcontrol,layout=Layout(width='1000px'))
+fig_bar
+fig_line
 #display(HBox([fig_bar]))
 #display(VBox([HBox([VBox(UI_viewcontrol), VBox([fig_bar])])]))
 #display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])])) 
