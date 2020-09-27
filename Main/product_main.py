@@ -32,26 +32,27 @@ preload_box = HBox([loading_html])
 preload_box
 #display(preload_box) # Required to force the system to display the preload_box.
 
-#import numpy as np
-#from bqplot import *
+# The code below until **STOP** is utilised as a test of whether html works
 
-size = 100
-np.random.seed(0)
 
-x_data = range(size)
-y_data = np.random.randn(size)
-y_data_2 = np.random.randn(size)
-y_data_3 = np.cumsum(np.random.randn(size) * 100.)
+#size = 100
+#np.random.seed(0)
 
-x_ord = bqp.OrdinalScale()
-y_sc = bqp.LinearScale()
+#x_data = range(size)
+#y_data = np.random.randn(size)
+#y_data_2 = np.random.randn(size)
+#y_data_3 = np.cumsum(np.random.randn(size) * 100.)
 
-bar = bqp.Bars(x=np.arange(10), y=np.random.rand(10), scales={'x': x_ord, 'y': y_sc})
-ax_x = bqp.Axis(scale=x_ord)
-ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', orientation='vertical')
+#x_ord = bqp.OrdinalScale()
+#y_sc = bqp.LinearScale()
 
-bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025)
+#bar = bqp.Bars(x=np.arange(10), y=np.random.rand(10), scales={'x': x_ord, 'y': y_sc})
+#ax_x = bqp.Axis(scale=x_ord)
+#ax_y = bqp.Axis(scale=y_sc, tick_format='0.2f', orientation='vertical')
 
+#bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025)
+
+# **STOP**
 
 # Instantiate an object to interface with the BQL service
 #bq = bql.Service() # object bq is defined #Requires Bloomberg's Database and is henceforth unaccessible to us.

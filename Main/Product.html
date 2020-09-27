@@ -13462,26 +13462,27 @@ div#notebook {
 <span class="n">preload_box</span>
 <span class="c1">#display(preload_box) # Required to force the system to display the preload_box.</span>
 
-<span class="c1">#import numpy as np</span>
-<span class="c1">#from bqplot import *</span>
+<span class="c1"># The code below until **STOP** is utilised as a test of whether html works</span>
 
-<span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">x_data</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">y_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">y_data_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">y_data_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span><span class="p">)</span>
+<span class="c1">#size = 100</span>
+<span class="c1">#np.random.seed(0)</span>
 
-<span class="n">x_ord</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">OrdinalScale</span><span class="p">()</span>
-<span class="n">y_sc</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
+<span class="c1">#x_data = range(size)</span>
+<span class="c1">#y_data = np.random.randn(size)</span>
+<span class="c1">#y_data_2 = np.random.randn(size)</span>
+<span class="c1">#y_data_3 = np.cumsum(np.random.randn(size) * 100.)</span>
 
-<span class="n">bar</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Bars</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">})</span>
-<span class="n">ax_x</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">x_ord</span><span class="p">)</span>
-<span class="n">ax_y</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">y_sc</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;0.2f&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="c1">#x_ord = bqp.OrdinalScale()</span>
+<span class="c1">#y_sc = bqp.LinearScale()</span>
 
-<span class="n">bqp</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">bar</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">],</span> <span class="n">padding_x</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">padding_y</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="c1">#bar = bqp.Bars(x=np.arange(10), y=np.random.rand(10), scales={&#39;x&#39;: x_ord, &#39;y&#39;: y_sc})</span>
+<span class="c1">#ax_x = bqp.Axis(scale=x_ord)</span>
+<span class="c1">#ax_y = bqp.Axis(scale=y_sc, tick_format=&#39;0.2f&#39;, orientation=&#39;vertical&#39;)</span>
 
+<span class="c1">#bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025)</span>
+
+<span class="c1"># **STOP**</span>
 
 <span class="c1"># Instantiate an object to interface with the BQL service</span>
 <span class="c1">#bq = bql.Service() # object bq is defined #Requires Bloomberg&#39;s Database and is henceforth unaccessible to us.</span>
@@ -14184,20 +14185,6 @@ div#notebook {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
 
 <div class="output_area">
 
