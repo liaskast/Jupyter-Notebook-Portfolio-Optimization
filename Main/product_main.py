@@ -14,6 +14,7 @@ from numpy.linalg import inv
 from collections import OrderedDict
 import scipy
 import ipywidgets as widgets
+import nbinteract as nbi
 from scipy import optimize
 
 #import bqwidgets as bqw
@@ -43,9 +44,9 @@ y_data_2 = np.cumsum(np.random.randn(size))
 y_data_3 = np.cumsum(np.random.randn(size) * 100.)
 
 x = np.linspace(0.0, 10.0, size)
-#plt.figure(title='Scatter Plot with colors')
-#plt.scatter(y_data_2, y_data_3, color=y_data, stroke='black')
-#plt.show();
+plt.figure(title='Scatter Plot with colors')
+plt.scatter(y_data_2, y_data_3, color=y_data, stroke='black')
+plt.show()
 
 # Instantiate an object to interface with the BQL service
 #bq = bql.Service() # object bq is defined #Requires Bloomberg's Database and is henceforth unaccessible to us.
