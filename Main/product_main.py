@@ -657,6 +657,10 @@ fig_bar = bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes
                      layout=Layout(width='800px'), legend_location='top', legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
                      fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})       
 
+bqp.Figure(marks=[labels_opt_view,labels_opt,labels_initial,bar], axes=[ax_x, ax_y], padding_x=0.005, padding_y=0.025, 
+                     layout=Layout(width='800px'), legend_location='top', legend_text={'font-size': 13}, legend_style = {'stroke-width': 0},
+                     fig_margin={'top':20, 'bottom':30, 'left':80, 'right':20})       
+
 #Plot #2 i.e. the efficient froniter plot
 
 x_lin = bqp.LinearScale()
