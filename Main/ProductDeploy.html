@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+
+    <title>Product</title>
+
+<style type="text/css">
+  /* Temporary definitions which will become obsolete with Notebook release 5.0 */
+  .ansi-black-fg {
+      color: #3E424D;
+  }
+
+  .ansi-black-bg {
+      background-color: #3E424D;
+  }
+
+  .ansi-black-intense-fg {
+      color: #282C36;
+  }
+
+  .ansi-black-intense-bg {
+      background-color: #282C36;
+  }
+
+  .ansi-red-fg {
+      color: #E75C58;
+  }
+
+  .ansi-red-bg {
+      background-color: #E75C58;
+  }
+
+  .ansi-red-intense-fg {
+      color: #B22B31;
+  }
+
+  .ansi-red-intense-bg {
+      background-color: #B22B31;
+  }
+
+  .ansi-green-fg {
+      color: #00A250;
+  }
+
+  .ansi-green-bg {
+      background-color: #00A250;
+  }
+
+  .ansi-green-intense-fg {
+      color: #007427;
+  }
+
+  .ansi-green-intense-bg {
+      background-color: #007427;
+  }
+
+  .ansi-yellow-fg {
+      color: #DDB62B;
+  }
+
+  .ansi-yellow-bg {
+      background-color: #DDB62B;
+  }
+
+  .ansi-yellow-intense-fg {
+      color: #B27D12;
+  }
+
+  .ansi-yellow-intense-bg {
+      background-color: #B27D12;
+  }
+
+  .ansi-blue-fg {
+      color: #208FFB;
+  }
+
+  .ansi-blue-bg {
+      background-color: #208FFB;
+  }
+
+  .ansi-blue-intense-fg {
+      color: #0065CA;
+  }
+
+  .ansi-blue-intense-bg {
+      background-color: #0065CA;
+  }
+
+  .ansi-magenta-fg {
+      color: #D160C4;
+  }
+
+  .ansi-magenta-bg {
+      background-color: #D160C4;
+  }
+
+  .ansi-magenta-intense-fg {
+      color: #A03196;
+  }
+
+  .ansi-magenta-intense-bg {
+      background-color: #A03196;
+  }
+
+  .ansi-cyan-fg {
+      color: #60C6C8;
+  }
+
+  .ansi-cyan-bg {
+      background-color: #60C6C8;
+  }
+
+  .ansi-cyan-intense-fg {
+      color: #258F8F;
+  }
+
+  .ansi-cyan-intense-bg {
+      background-color: #258F8F;
+  }
+
+  .ansi-white-fg {
+      color: #C5C1B4;
+  }
+
+  .ansi-white-bg {
+      background-color: #C5C1B4;
+  }
+
+  .ansi-white-intense-fg {
+      color: #A1A6B2;
+  }
+
+  .ansi-white-intense-bg {
+      background-color: #A1A6B2;
+  }
+
+  .ansi-bold {
+      font-weight: bold;
+  }
+</style>
+
+
+<style type="text/css">
+  /* Overrides of notebook CSS for static HTML export */
+  body {
+      overflow: visible;
+      padding: 8px;
+  }
+
+  div#notebook {
+      overflow: visible;
+      border-top: none;
+  }
+
+  @media print {
+      div.cell {
+          display: block;
+          page-break-inside: avoid;
+      }
+
+      div.output_wrapper {
+          display: block;
+          page-break-inside: avoid;
+      }
+
+      div.output {
+          display: block;
+          page-break-inside: avoid;
+      }
+  }
+</style>
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<!-- MathJax configuration -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true
+  },
+  // Center justify equations in code and markdown cells. Elsewhere
+  // we use CSS to left justify single line equations in code cells.
+  displayAlign: 'center',
+  "HTML-CSS": {
+      styles: {'.MathJax_Display': {"margin": 0}},
+      linebreaks: { automatic: true }
+  }
+});
+</script>
+<!-- End of mathjax configuration -->
+
+<style>
+  .cell.nbinteract-left {
+      width: 50%;
+      float: left;
+  }
+
+  .cell.nbinteract-right {
+      width: 50%;
+      float: right;
+  }
+
+  .cell.nbinteract-hide_in>.input {
+      display: none;
+  }
+
+  .cell.nbinteract-hide_out>.output_wrapper {
+      display: none;
+  }
+
+  .cell:after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+
+  div.output_subarea {
+      max-width: initial;
+  }
+
+  .jp-OutputPrompt {
+      display: none;
+  }
+</style>
+
+<style>
+  .buttons .interact-button,
+  .js-nbinteract-widget {
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.5;
+      background-color: #477dca;
+      border-radius: 3px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: 700;
+      width: 100%;
+      padding: 6px 18px;
+      text-decoration: none;
+  }
+</style>
+
+</head>
+<body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container">
+      
+
+
+
+  <div class="cell text_cell">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+
+
+
+  
+
+
+
+  
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Set-the-Initial-Weights">Set the Initial Weights<a class="anchor-link" href="#Set-the-Initial-Weights">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+  
+
+  <div class="nbinteract-hide_in
+  cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">bqplot</span> <span class="k">as</span> <span class="nn">bqp</span>
+<span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">math</span>
+<span class="c1">#import bqviz as bqv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Layout</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">Label</span>
+
+
+<span class="c1">#import bqwidgets as bqw</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">,</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Tab</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">,</span> <span class="n">IntText</span><span class="p">,</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">HTML</span> <span class="c1"># python library that contains items such labels, checkbox</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span> <span class="c1"># Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.</span>
+<span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">interact_manual</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="n">read_product_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span> <span class="p">(</span><span class="s1">&#39;https://github.com/liaskast/Jupyter-Notebook-Portfolio-Optimization/raw/master/Main/prices.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s2">&quot;A:XFD&quot;</span><span class="p">)</span> <span class="c1"># usecols: specifies  which columns are read-in by the program. It should be column &quot;A&quot; until &quot;last_column + 1&quot;.</span>
+<span class="n">product_names</span> <span class="o">=</span> <span class="n">read_product_names</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1"># product_names is an array that contains the names of the products inserted as input into our portfolio.</span>
+
+<span class="n">initial_weight_from_sliders</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">product_names</span><span class="p">)</span> <span class="c1"># empty array that will contain the product names </span>
+
+<span class="k">for</span> <span class="n">product_names_iterator</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">product_names</span><span class="p">)):</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">}</span> <span class="c1"># sets the style of the slider</span>
+    <span class="n">initial_weight_from_sliders</span><span class="p">[</span><span class="n">product_names_iterator</span><span class="p">]</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">product_names</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;300&#39;</span><span class="p">},</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2%&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.2</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">product_names</span><span class="p">[</span><span class="n">product_names_iterator</span><span class="p">]),</span> <span class="n">initial_weight_from_sliders</span><span class="p">[</span><span class="n">product_names_iterator</span><span class="p">]])]))</span> <span class="c1"># label contains the name displayed above the slider</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="nbinteract-hide_in
+  cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+<span class="k">def</span> <span class="nf">run_all</span><span class="p">(</span><span class="n">ev</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s1">&#39;IPython.notebook.execute_cells_below()&#39;</span><span class="p">))</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Update weights&quot;</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">run_all</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Black-Litterman-Portfolio-Optimization">Black-Litterman Portfolio Optimization<a class="anchor-link" href="#Black-Litterman-Portfolio-Optimization">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+  
+
+  <div class="nbinteract-hide_in
+  cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import the Bloomberg Query Language (BQL) and bqfactor libraries</span>
+<span class="c1">#import bql</span>
+<span class="c1">#import bqport</span>
+<span class="c1"># Import other data analytics and chatting libraries</span>
+
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">bqplot</span> <span class="k">as</span> <span class="nn">bqp</span>
+<span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">math</span>
+<span class="c1">#import bqviz as bqv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+
+<span class="c1">#import bqwidgets as bqw</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">,</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Tab</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">,</span> <span class="n">IntText</span><span class="p">,</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">interact</span> <span class="c1"># python library that contains items such labels, checkbox</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span> <span class="c1"># Required so that we are able to display widgets and other code at the same time otherwise widgets are supressed and not displayed.</span>
+<span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+
+<span class="c1">#Loading animation</span>
+<span class="n">loading_html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;div style=&quot;font-size:14px; color:lightskyblue;&quot;&gt;</span>
+<span class="s2">        &lt;i class=&quot;fa fa-circle-o-notch fa-spin&quot;&gt;&lt;/i&gt;&lt;span&gt;&amp;nbsp;Loading...&lt;/span&gt;</span>
+<span class="s2">    &lt;/div&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">preload_box</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">loading_html</span><span class="p">])</span>
+<span class="n">preload_box</span>
+<span class="c1">#display(preload_box) # Required to force the system to display the preload_box.</span>
+
+<span class="c1"># The code below until **STOP** is utilised as a test of whether html works</span>
+
+
+<span class="c1">#size = 100</span>
+<span class="c1">#np.random.seed(0)</span>
+
+<span class="c1">#x_data = range(size)</span>
+<span class="c1">#y_data = np.random.randn(size)</span>
+<span class="c1">#y_data_2 = np.random.randn(size)</span>
+<span class="c1">#y_data_3 = np.cumsum(np.random.randn(size) * 100.)</span>
+
+<span class="c1">#x_ord = bqp.OrdinalScale()</span>
+<span class="c1">#y_sc = bqp.LinearScale()</span>
+
+<span class="c1">#bar = bqp.Bars(x=np.arange(10), y=np.random.rand(10), scales={&#39;x&#39;: x_ord, &#39;y&#39;: y_sc})</span>
+<span class="c1">#ax_x = bqp.Axis(scale=x_ord)</span>
+<span class="c1">#ax_y = bqp.Axis(scale=y_sc, tick_format=&#39;0.2f&#39;, orientation=&#39;vertical&#39;)</span>
+
+<span class="c1">#bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025)</span>
+
+<span class="c1"># **STOP**</span>
+
+<span class="c1"># Instantiate an object to interface with the BQL service</span>
+<span class="c1">#bq = bql.Service() # object bq is defined #Requires Bloomberg&#39;s Database and is henceforth unaccessible to us.</span>
+
+<span class="k">class</span> <span class="nc">Bloomberg_Object</span><span class="p">:</span>
+    <span class="k">class</span> <span class="nc">data</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">day_to_day_total_return</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">NAME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>    
+
+    <span class="k">class</span> <span class="nc">execute</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">univ</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">port</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">list_portfolios</span><span class="p">():</span>
+            <span class="n">mytuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">mytuple</span>
+
+<span class="n">bq</span> <span class="o">=</span> <span class="n">Bloomberg_Object</span><span class="p">()</span>        
+
+<span class="c1">#1 - Input the assets to portfolio.</span>
+<span class="n">security</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="c1">#APOLIS</span>
+<span class="c1">#security[&#39;1-5 years GILTS&#39;] =  &#39;SYB5 GY Equity&#39;</span>
+<span class="c1">#security[&#39;Cash&#39;] =  &#39;BNPIEGI LX Equity&#39;</span>
+<span class="c1">#security[&#39;Chinese Equity&#39;] =  &#39;SHSZ300 Index&#39;</span>
+<span class="c1">#security[&#39;Emerging Asia Equity&#39;] =  &#39;NDUEEGFA Index&#39;</span>
+<span class="c1">#security[&#39;EU High Yield Bonds&#39;] =  &#39;EUNW GY Equity&#39;</span>
+<span class="c1">#security[&#39;European Banks&#39;] =  &#39;SX7E Index&#39;</span>
+<span class="c1">#security[&#39;European Corp&#39;] =  &#39;EUN5 GR Equity&#39;</span>
+<span class="c1">#security[&#39;European Equity&#39;] =  &#39;SXXE Index&#39;</span>
+<span class="c1">#security[&#39;German Equity&#39;] =  &#39;DAX Index&#39;</span>
+<span class="c1">#security[&#39;Greek Equity&#39;] =  &#39;FTASE Index&#39;</span>
+<span class="c1">#security[&#39;Greek Govies&#39;] =  &#39;BEGCGA Index&#39;</span>
+<span class="c1">#security[&#39;Italian Equity&#39;] =  &#39;FTSEMIB Index&#39;</span>
+<span class="c1">#security[&#39;MSCI Info tech&#39;] =  &#39;NDWUIT Index&#39;</span>
+<span class="c1">#security[&#39;MSCI World&#39;] =  &#39;MACXUIGB Index&#39;</span>
+<span class="c1">#security[&#39;Spanish Equity&#39;] =  &#39;IBEX Index&#39;</span>
+<span class="c1">#security[&#39;US Equity&#39;] =  &#39;SPX Index&#39;</span>
+<span class="c1">#security[&#39;US High Yield Bonds&#39;] =  &#39;IBXXHYCT Index&#39;</span>
+
+<span class="c1">#Benchmarks</span>
+<span class="c1">#security[&#39;Euro Gov&#39;] =  &#39;Euro Gov&#39;</span>
+<span class="c1">#security[&#39;Greek Gov&#39;] =  &#39;Greek Gov&#39;</span>
+<span class="c1">#security[&#39;EU Corporate&#39;] =  &#39;EU Corporate&#39;</span>
+<span class="c1">#security[&#39;EU High Yield&#39;] =  &#39;EU HY&#39;</span>
+<span class="c1">#security[&#39;European Equities&#39;] =  &#39;Eur Eq&#39;</span>
+<span class="c1">#security[&#39;US Equities&#39;] =  &#39;US Eq&#39;</span>
+<span class="c1">#security[&#39;Cash&#39;] =  &#39;Cash&#39;</span>
+
+<span class="c1">#Benchmarks 2 - TEA</span>
+<span class="c1">#security[&#39;LEATTREU Index&#39;] =  &#39;EU Gov&#39;</span>
+<span class="c1">#security[&#39;LEC4TREU Index&#39;] =  &#39;EU Corps&#39;</span>
+<span class="c1">#security[&#39;BEGCGA Index&#39;] =  &#39;GR Corps&#39;</span>
+<span class="c1">#security[&#39;SXUSR Index	US&#39;] =  &#39;US Equity&#39;</span>
+<span class="c1">#security[&#39;SX5R Index&#39;] =  &#39;EU Equity&#39;</span>
+<span class="c1">#security[&#39;LEF1TREU Index&#39;] =  &#39;FRN EU&#39;</span>
+<span class="c1">#security[&#39;EUR001M Index&#39;] =  &#39;Cash&#39;</span>
+
+<span class="c1">#Benchmarks 3 - TEA ETFs</span>
+<span class="c1">#security[&#39;EUNH GY Equity&#39;] =  &#39;EU Gov&#39;</span>
+<span class="c1">#security[&#39;EUN5 GY Equity&#39;] =  &#39;EU Corps&#39;</span>
+<span class="c1">#security[&#39;LFGGBDR LX Equity&#39;] =  &#39;GR Corps&#39;</span>
+<span class="c1">#security[&#39;SPY US Equity&#39;] =  &#39;US Equity&#39;</span>
+<span class="c1">#security[&#39;SX5EEX GY Equity&#39;] =  &#39;EU Equity&#39;</span>
+<span class="c1">#security[&#39;FLOT FP Equity&#39;] =  &#39;FRN EU&#39;</span>
+<span class="c1">#security[&#39;PARSTEI LX Equity&#39;] =  &#39;Cash&#39;</span>
+
+<span class="c1">#Bloomberg</span>
+<span class="c1">#security[&#39;S&amp;P 500&#39;] = &#39;SPY US Equity&#39;</span>
+<span class="c1">#security[&#39;Real Estate&#39;] = &#39;IYR US Equity&#39;</span>
+<span class="c1">#security[&#39;Russ 1K Val&#39;] = &#39;IWD US Equity&#39;</span>
+<span class="c1">#security[&#39;Small Stocks&#39;] = &#39;IWM US Equity&#39;</span>
+<span class="c1">#security[&#39;Commodities&#39;] = &#39;DBC US Equity&#39;</span>
+<span class="c1">#security[&#39;GOLD&#39;] = &#39;GLD US Equity&#39;</span>
+<span class="c1">#security[&#39;Russ 1K Gro&#39;] = &#39;IWF US Equity&#39;</span>
+<span class="c1">#security[&#39;Bonds - Agg&#39;] = &#39;AGG US Equity&#39;</span>
+<span class="c1">#security[&quot;Int&#39;l Bonds&quot;] = &#39;BWX US Equity&#39;</span>
+<span class="c1">#security[&quot;High Yield&quot;] = &#39;HYG US Equity&#39;</span>
+<span class="c1">#security[&quot;US Treasuries&quot;] = &#39;GOVT US Equity&#39;</span>
+<span class="c1">#security[&quot;Emerging Mkts&quot;] = &#39;EEM US Equity&#39;</span>
+
+<span class="c1">#2 - Input the weights of the portfolio.</span>
+<span class="c1">#Original Weights that will provide us with the Implied returns. They only infulence the Implied returns&#39; values and not the allocation policy. Even if originally we allocate 100% of our portfolio to one asset class the code will allocate according to the returns and will not be influenced by our weights, the weights only affect the implied returns.</span>
+
+<span class="c1">#Experimental Weights</span>
+<span class="c1"># Weights for a portfolio Without Gilts and Chinese Equity.</span>
+<span class="c1">#approximated_mkt_weight = [0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]</span>
+<span class="c1">#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.0125595027532384,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]</span>
+<span class="c1"># Weights for a portfolio without Cash</span>
+<span class="c1">#approximated_mkt_weight = [0.0112878580039961,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412,0.0967099088024052,0.0828703866165383,0.0235103219298358,0.177439098902766,0.0120035820663699,0.0106296429781949,0.0202795023703381,0.035435880040154,0.00992384006540524,0.0311647410666334,0.0659143843855553]</span>
+
+<span class="c1">#print(len(approximated_mkt_weight)) # Prints the size of weights to confirm the right amount of products.</span>
+
+<span class="c1"># Original Apolis Weights</span>
+<span class="c1">#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.00416351972379412]</span>
+<span class="c1">#approximated_mkt_weight = [0.0112878580039961,0.164879596149528,0.0248550020344915,0.00957643167488187,0.010241765265639,0.398894134073001,0.380265213]</span>
+<span class="c1">#approximated_mkt_weight = [0.1465,0.2869,0.21863,0.214563,0.114563,0.11463,0.1146]</span>
+<span class="c1">#approximated_mkt_weight = [0.01,0.16,0.024,0.00957,0.010241,0.39889,0.380265]</span>
+<span class="c1"># Weights for Original Portfolio</span>
+<span class="c1">#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01,0.05,0.05,0.1, 0.05, 0.20, 0.05, 0.15, 0.03]</span>
+<span class="c1"># Example Weights for attempt with 4 products</span>
+<span class="c1">#approximated_mkt_weight = [0.14,0.02, 0.15, 0.01]</span>
+<span class="c1"># TEA - weights</span>
+<span class="n">approximated_mkt_weight</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]</span>
+<span class="c1">#approximated_mkt_weight = [0.35,0.2, 0.15, 0.1,0.2]</span>
+
+<span class="c1">#approximated_mkt_weight = [0.3,0.2, 0.15, 0.1,0.1,0.05,0.1]</span>
+<span class="c1">#approximated_mkt_weight = [0.3,0.3, 0.15, 0.1,0.1,0.05]</span>
+
+<span class="c1">#******************************************************************************** Reads in Input ****************************************************************************************************</span>
+<span class="c1">#3 - Read in Asset Classes from Excel.</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span> <span class="p">(</span><span class="s1">&#39;https://github.com/liaskast/Jupyter-Notebook-Portfolio-Optimization/raw/master/Main/prices.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s2">&quot;A:XFD&quot;</span><span class="p">)</span> <span class="c1"># usecols: specifies  which columns are read-in by the program. It should be column &quot;A&quot; until &quot;last_column + 1&quot;.</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
+<span class="n">returns</span> <span class="o">=</span> <span class="n">returns</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">read_product_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span> <span class="p">(</span><span class="s1">&#39;https://github.com/liaskast/Jupyter-Notebook-Portfolio-Optimization/raw/master/Main/prices.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s2">&quot;A:XFD&quot;</span><span class="p">)</span> <span class="c1"># usecols: specifies  which columns are read-in by the program. It should be column &quot;A&quot; until &quot;last_column + 1&quot;.</span>
+<span class="n">product_names</span> <span class="o">=</span> <span class="n">read_product_names</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1"># product_names is an array that contains the names of the products inserted as input into our portfolio.</span>
+
+<span class="c1">#Benchmarks 3 - TEA ETFs</span>
+<span class="k">for</span> <span class="n">iterator_product_names</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">product_names</span><span class="p">)):</span>
+    <span class="n">security</span><span class="p">[</span><span class="n">product_names</span><span class="p">[</span><span class="n">iterator_product_names</span><span class="p">]]</span> <span class="o">=</span>  <span class="n">product_names</span><span class="p">[</span><span class="n">iterator_product_names</span><span class="p">]</span>    
+    <span class="n">approximated_mkt_weight</span><span class="p">[</span><span class="n">iterator_product_names</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_weight_from_sliders</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">product_names</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">iterator_product_names</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">data_freq_multiplier_choices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span> <span class="c1"># all possible multiplier choices either for daily, weekly, monthly data</span>
+<span class="n">data_freq_multiplier</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># this variable will be what is multiplied with the returns in the &#39;solve_intial_opt_weight&#39; optimization function</span>
+
+<span class="k">for</span> <span class="n">data_freq_iterator</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_frequency_choices</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">data_frequency_checkbox</span><span class="p">[</span><span class="n">data_freq_iterator</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="kc">True</span> <span class="p">:</span>
+        <span class="n">data_freq_multiplier</span> <span class="o">=</span> <span class="n">data_freq_multiplier_choices</span><span class="p">[</span><span class="n">data_freq_iterator</span><span class="p">]</span>  <span class="c1"># assigns the right choice to the variable that will be multiplied depending on choice from the data frequency choice cell above  </span>
+
+<span class="n">dict_settings</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">security</span>
+<span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">approximated_mkt_weight</span>
+
+<span class="c1">#rf = 0.015 # Original line of code - rf is the risk-free rate</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># New line of code - rf is the risk-free rate</span>
+<span class="n">num_avail_ticker</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">])</span>
+<span class="c1">#print(len(dict_settings[&#39;security&#39;])) # prints the number of securities considered. This is used as a test to see whether the right portfolio is read as input.</span>
+<span class="n">uncertainty</span> <span class="o">=</span> <span class="mf">0.025</span> <span class="c1"># tau is a scalar indicating the uncertainty in the CAPM (Capital Asset Pricing Model), this is a parameter for Black-Litterman</span>
+
+
+
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="c1">#Creates pickle file called &#39;settings_bl.pckl&#39;. This file &#39;serializes&#39; python Objects.</span>
+<span class="c1">#try: </span>
+    <span class="c1">#f = open(&#39;settings_bl.pckl&#39;, &#39;rb&#39;) #**************************************************Issue?</span>
+    <span class="c1">#dict_settings = pickle.load(f)</span>
+    <span class="c1">#f.close()  </span>
+      
+<span class="c1">#except:                         # Defines Python Objects.  </span>
+    <span class="c1">#dict_settings = OrderedDict()</span>
+    <span class="c1">#dict_settings[&#39;security&#39;] = security</span>
+    <span class="c1">#dict_settings[&#39;weight&#39;] = approximated_mkt_weight</span>
+    <span class="c1">#dict_settings[&#39;confidence&#39;] = 0.8</span>
+    <span class="c1">#dict_settings[&#39;scalar&#39;] = uncertainty</span>
+    <span class="c1">#dict_settings[&#39;usemktcap&#39;] = False # Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!</span>
+
+<span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="c1">#dict_settings[&#39;return target&#39;] = 0.03</span>
+<span class="c1">#return_slider=FloatSlider(value=dict_settings[&#39;return target&#39;], description=&#39;Return Target&#39;, max=1, min=0, readout_format=&#39;.2%&#39;, layout={&#39;margin&#39;:&#39;20px 0px 0px 0px&#39;},step=0.2/100,style={&#39;description_width&#39;:&#39;100PX&#39;}) # slider for the return target</span>
+<span class="c1">#return_slider.value = 0.03</span>
+<span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;scalar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uncertainty</span>
+<span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;usemktcap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Here we define the option to use the mkt cap as weighting if you choose index securities. We will not use!!!</span>
+    
+<span class="k">def</span> <span class="nf">save_settings</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># Reads from Button any changes to objects.</span>
+    <span class="n">temp_sec</span><span class="p">,</span> <span class="n">temp_weight</span> <span class="o">=</span> <span class="n">loadtickerfrominput</span><span class="p">()</span>
+    <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_sec</span>
+    <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_weight</span>
+    <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">floattext_confidence</span><span class="o">.</span><span class="n">value</span>
+    <span class="c1">#dict_settings[&#39;return target&#39;] = return_slider.value</span>
+    <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;usemktcap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_usemktcap</span><span class="o">.</span><span class="n">value</span> <span class="c1"># If check_usemktcap.value == true then you are using the option to use the mkt cap as weighting if you choose index securities. We will not use!!!</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;settings_bl.pckl&#39;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">loadtickerfrominput</span><span class="p">():</span> <span class="c1"># Reads from Button any changes to objects.</span>
+    <span class="n">temp_ticker</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">temp_name</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">temp_weight</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dict_missnametickers</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="n">flag_missingname</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avail_ticker</span><span class="p">):</span> 
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">temp_ticker</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">temp_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">dict_missnametickers</span><span class="p">[</span><span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+                <span class="n">flag_missingname</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">temp_weight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flag_missingname</span><span class="p">:</span>
+        <span class="n">df_name</span><span class="o">=</span><span class="n">bq_ref_data</span><span class="p">(</span><span class="n">dict_missnametickers</span><span class="o">.</span><span class="n">keys</span><span class="p">(),{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">bq</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">NAME</span><span class="p">()})</span> <span class="c1"># Gets &#39;name&#39; of the security in the Tickers supplied as input. #******************** Calls function that calls Bloomberg&#39;s Database ************</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df_name</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">temp_name</span><span class="p">[</span><span class="n">dict_missnametickers</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">temp_sec</span><span class="o">=</span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">temp_name</span><span class="p">,</span><span class="n">temp_ticker</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">temp_sec</span><span class="p">,</span> <span class="n">temp_weight</span>
+
+<span class="k">def</span> <span class="nf">bq_ref_data</span><span class="p">(</span><span class="n">security</span><span class="p">,</span><span class="n">datafields</span><span class="p">):</span>
+    <span class="c1"># Generate the request using the sercurity variable and data item...i.e. the Tickers of financial instruments</span>
+    <span class="c1">#request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg&#39;s Database ************</span>
+    <span class="c1">#request = 1</span>
+    <span class="c1">#response = bq.execute(request) #******************** Directly TALKS TO Bloomberg&#39;s Database ************</span>
+    <span class="c1">#response = np.zeros(2,3)</span>
+    <span class="c1">#print(&quot;entered bq_ref_data&quot;)</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">response</span><span class="p">):</span> 
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sir</span><span class="o">.</span><span class="n">df</span><span class="p">()[</span><span class="n">sir</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">sir</span> <span class="ow">in</span> <span class="n">response</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">=</span><span class="n">merge</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">bq_series_data</span><span class="p">(</span><span class="n">security</span><span class="p">,</span><span class="n">datafields</span><span class="p">):</span>
+    <span class="c1">#request =  bql.Request(security, datafields) #******************** Directly TALKS TO Bloomberg&#39;s Database ************</span>
+    <span class="c1">#request = 1</span>
+    <span class="c1">#response = bq.execute(request) #******************** Directly TALKS TO Bloomberg&#39;s Database ************</span>
+    <span class="c1">#print(&quot;entered bq_series_data&quot;)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">returns</span>
+    <span class="c1">#print(len(returns)) # for error correction: this prints the length of the returns array i.e. practically the number of rows of the excel file provided as input</span>
+    <span class="c1">#result = response[0].df().reset_index().pivot(index=&#39;DATE&#39;,columns=&#39;ID&#39;,values=response[0].name)[security]</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="c1"># Portfolio Mean</span>
+<span class="k">def</span> <span class="nf">_port_mean</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_returns</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">((</span><span class="n">expected_returns</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()):</span><span class="c1">#&gt;return_slider.value): # This is where we place a bound on the return provided by the portfolio.</span>
+        <span class="k">return</span><span class="p">((</span><span class="n">expected_returns</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<span class="c1"># Portfolio Var</span>
+<span class="k">def</span> <span class="nf">_port_var</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">risk_matrix</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">risk_matrix</span><span class="p">),</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="c1"># Portfolio Mean Var</span>
+<span class="k">def</span> <span class="nf">_port_mean_var</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_returns</span><span class="p">,</span> <span class="n">risk_matrix</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_port_mean</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_returns</span><span class="p">),</span> <span class="n">_port_var</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">risk_matrix</span><span class="p">)</span>
+
+<span class="c1"># Calculates Mean Var</span>
+<span class="k">def</span> <span class="nf">_find_mean_variance</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_returns</span><span class="p">,</span> <span class="n">covar</span><span class="p">,</span> <span class="n">return_target</span><span class="p">):</span>
+    <span class="n">mean</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">_port_mean_var</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_returns</span><span class="p">,</span> <span class="n">covar</span><span class="p">)</span>
+    <span class="n">penalty</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mean</span><span class="o">-</span><span class="n">return_target</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">var</span> <span class="o">+</span> <span class="n">penalty</span>
+
+<span class="c1"># Solve for optimal portfolio weights</span>
+<span class="k">def</span> <span class="nf">solve_weights</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">target_r</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">n</span><span class="p">])</span><span class="o">/</span><span class="n">n</span> <span class="c1"># Start optimization with equal weights</span>
+    <span class="n">b_</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1"># Bounds for decision variables</span>
+    <span class="n">c_</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">W</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span> <span class="p">})</span> <span class="c1"># Constraints - weights must sum to 1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">W</span><span class="p">)</span> <span class="k">if</span> <span class="n">target_r</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">target_r</span>
+    <span class="c1"># &#39;target&#39; return is the expected return on the market portfolio</span>
+    <span class="n">optimized</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">_find_mean_variance</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">c_</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">b_</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">optimized</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">BaseException</span><span class="p">(</span><span class="n">optimized</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optimized</span><span class="o">.</span><span class="n">x</span> 
+
+<span class="c1"># Constructs Efficient Frontier</span>
+<span class="k">def</span> <span class="nf">solve_for_frountier</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">rf</span><span class="p">):</span>
+    <span class="n">frontier_mean</span><span class="p">,</span> <span class="n">frontier_var</span> <span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">R</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">num</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">solve_weights</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="n">frontier_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">frontier_var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_port_var</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+        <span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">weights</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;portfolio&#39;</span>
+    <span class="n">frontier</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frontier_mean</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">frontier_var</span><span class="p">)],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="s1">&#39;risk&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">frontier</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;portfolio&#39;</span>
+    <span class="k">return</span> <span class="n">frontier</span><span class="p">,</span> <span class="n">weights</span>
+
+<span class="c1"># Initial Optimization of Weights...Implied Returns</span>
+<span class="k">def</span> <span class="nf">solve_intial_opt_weight</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">W_opt</span><span class="p">,</span> <span class="n">frontier</span><span class="p">,</span> <span class="n">f_weights</span><span class="p">,</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">lmb</span><span class="p">,</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">mean_opt</span><span class="p">,</span> <span class="n">var_opt</span>
+    <span class="n">security</span> <span class="o">=</span> <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span>
+    <span class="n">univ</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">security</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">datafields</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="c1">#datafields[&#39;return&#39;] = bq.data.day_to_day_total_return(start=&#39;-5y&#39;,per=&#39;m&#39;) # Datafields Parameter</span>
+    <span class="n">day_to_day_return</span><span class="o">=</span><span class="n">bq_series_data</span><span class="p">(</span><span class="n">univ</span><span class="p">,</span><span class="n">datafields</span><span class="p">)</span> <span class="c1">#******************** Calls function that calls Bloomberg&#39;s Database ************</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">day_to_day_return</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="n">data_freq_multiplier</span> <span class="c1"># Input: 252 yearly  # Description:  R is the vector of expected returns in the &quot;Step-by-Step Guide...&quot; paper</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">day_to_day_return</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">*</span><span class="n">data_freq_multiplier</span> <span class="c1"># Input: 252 yearly # Description: C is the covariance matrix i.e. Sigma in the &quot;Step-by-Step Guide...&quot; paper</span>
+    
+    <span class="k">if</span> <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;usemktcap&#39;</span><span class="p">]:</span> <span class="c1"># This is the option to use the mkt cap as weighting if you choose index securities. We will not use!!!</span>
+        <span class="n">datafields</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="n">datafields</span><span class="p">[</span><span class="s1">&#39;Mkt Cap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cur_mkt_cap</span><span class="p">(</span><span class="n">currency</span><span class="o">=</span><span class="s1">&#39;usd&#39;</span><span class="p">)</span> <span class="c1"># Datafields Parameter</span>
+        <span class="n">df_mkt_cap</span><span class="o">=</span><span class="n">bq_ref_data</span><span class="p">(</span><span class="n">univ</span><span class="p">,</span><span class="n">datafields</span><span class="p">)</span>  <span class="c1"># Gets mkt_cap of the security in the Tickers. </span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_mkt_cap</span><span class="o">/</span><span class="n">df_mkt_cap</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># W is the market cap weight</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="n">new_mean</span> <span class="o">=</span> <span class="n">_port_mean</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">R</span><span class="p">)</span> <span class="c1"># this variable is not used</span>
+    <span class="n">new_var</span> <span class="o">=</span> <span class="n">_port_var</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">C</span><span class="p">)</span> <span class="c1"># this variable is not used</span>
+
+    <span class="n">lmb</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Compute implied risk adversion coefficient: 1/(2*(wΣw))</span>
+    <span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lmb</span> <span class="o">*</span> <span class="n">C</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="c1"># Compute equilibrium excess returns</span>
+
+    <span class="n">frontier</span><span class="p">,</span> <span class="n">f_weights</span> <span class="o">=</span> <span class="n">solve_for_frountier</span><span class="p">(</span><span class="n">Pi</span><span class="o">+</span><span class="n">rf</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+    <span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;risk&#39;</span><span class="p">]</span>
+    <span class="n">f_weights</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="c1"># Solve for weights before incorporating views</span>
+    <span class="n">W_opt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_weights</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">frontier</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">mean_opt</span><span class="p">,</span> <span class="n">var_opt</span> <span class="o">=</span> <span class="n">_port_mean_var</span><span class="p">(</span><span class="n">W_opt</span><span class="p">,</span> <span class="n">Pi</span><span class="o">+</span><span class="n">rf</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>   <span class="c1"># calculate tangency portfolio</span>
+    <span class="c1">#print(mean_opt*100) # for error correction: prints the return provided by the Market Efficient Portfolio </span>
+    <span class="c1">#print(math.sqrt(var_opt)*100) # for error correction: prints the risk (i.e. cov) of the Market Efficient Portfolio</span>
+    <span class="c1">#print(&quot;\n Initial Optimal Weights&quot;)</span>
+    <span class="c1">#print(W_opt)</span>
+    <span class="c1">#return W_opt, frontier, f_weights, Pi, C</span>
+    
+
+
+<span class="n">solve_intial_opt_weight</span><span class="p">()</span> <span class="c1"># Here we call the Optimization function that returns the initial optimal weights.</span>
+<span class="c1"># ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************</span>
+
+<span class="n">input_header</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Ticker&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;22px&#39;</span><span class="p">)),</span> <span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Name of Asset&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;22px&#39;</span><span class="p">)),</span> 
+                     <span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;22px&#39;</span><span class="p">))])</span>
+<span class="n">list_sec_input</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_header</span><span class="p">]</span>
+<span class="n">lst_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">lst_ticker</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">lst_weight</span> <span class="o">=</span> <span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+
+<span class="c1"># Checkbox that determines the mktcap option. Places in python object&#39;s &#39;check_usemktcap&#39; value field a true or false value</span>
+<span class="n">check_usemktcap</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Use Market Cap as Weight&#39;</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;usemktcap&#39;</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_width</span><span class="o">=</span><span class="s1">&#39;15px&#39;</span><span class="p">),</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span><span class="s1">&#39;initial&#39;</span><span class="p">})</span> 
+
+<span class="n">label_usemktcap</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;22px&#39;</span><span class="p">})</span> <span class="c1"># MktCap Label</span>
+<span class="n">label_usemktcap2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;(not recommended when using ETF as proxy)&#39;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_width</span><span class="o">=</span><span class="s1">&#39;300px&#39;</span><span class="p">))</span> <span class="c1"># MktCap Label</span>
+
+<span class="c1"># Option to load your own internal portfolio different from the original input.</span>
+
+<span class="c1">#port_dict = {x[&#39;name&#39;]: x[&#39;id&#39;].split(&#39;:&#39;)[2].replace(&#39;-&#39;,&#39;U&#39;) + &#39;-&#39; + x[&#39;id&#39;].split(&#39;:&#39;)[3] for x in bqport.list_portfolios()}</span>
+<span class="c1">#port_dict = {x[&#39;name&#39;]: x[&#39;id&#39;].split(&#39;:&#39;)[2].replace(&#39;-&#39;,&#39;U&#39;) + &#39;-&#39; + x[&#39;id&#39;].split(&#39;:&#39;)[3] for x in bq.port.list_portfolios()}</span>
+<span class="c1">#load_button = Button(description=&#39;Load members&#39;)</span>
+<span class="c1">#portfolio_dropdown = Dropdown(description=&#39;Portfolio:&#39;,options=sorted(set(port_dict.keys())))</span>
+<span class="c1">#load_members_hbox = HBox([portfolio_dropdown, load_button])</span>
+
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avail_ticker</span><span class="p">):</span>
+    <span class="n">text_name</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">))</span>
+    <span class="n">text_ticker</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">))</span>
+
+    <span class="n">list_sec_input</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HBox</span><span class="p">([</span><span class="n">text_ticker</span><span class="p">,</span> <span class="n">text_name</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">))]))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">check_usemktcap</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">visibility</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span>
+        <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">lst_ticker</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">lst_name</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst_name</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="k">else</span> <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> 
+        <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">lst_weight</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+        
+<span class="k">def</span> <span class="nf">updateinputboxes</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">lst_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">lst_ticker</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avail_ticker</span><span class="p">):</span> 
+        <span class="k">if</span> <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">lst_name</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">check_usemktcap</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">visibility</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">visibility</span> <span class="o">=</span> <span class="s1">&#39;visible&#39;</span>
+
+<span class="n">check_usemktcap</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">updateinputboxes</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">button_applysettings</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Apply Settings&#39;</span><span class="p">)</span>
+<span class="c1">#button_reset=Button(description = &#39;Reset to No Views&#39;)</span>
+<span class="k">def</span> <span class="nf">onclickapplysettings</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">save_settings</span><span class="p">()</span>
+    <span class="n">updateinputboxes</span><span class="p">()</span>
+    <span class="n">solve_intial_opt_weight</span><span class="p">()</span>
+    <span class="n">updateviewcontrol</span><span class="p">()</span>
+    <span class="n">updatecontrolinui</span><span class="p">()</span>
+    <span class="n">run_viewmodel</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">})</span>
+    
+<span class="c1">#display(button_reset)</span>
+<span class="c1">#button_reset.on_click(onclickapplysettings)</span>
+<span class="n">button_applysettings</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">onclickapplysettings</span><span class="p">)</span>
+
+<span class="c1">#UI_sec_input = HBox([VBox(list_sec_input),VBox([load_members_hbox,label_usemktcap,check_usemktcap,label_usemktcap2,button_applysettings],layout={&#39;margin&#39;:&#39;0px 0px 0px 10px&#39;})])</span>
+<span class="n">UI_sec_input</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">(</span><span class="n">list_sec_input</span><span class="p">),</span><span class="n">VBox</span><span class="p">([</span><span class="n">label_usemktcap</span><span class="p">,</span><span class="n">check_usemktcap</span><span class="p">,</span><span class="n">label_usemktcap2</span><span class="p">,</span><span class="n">button_applysettings</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span><span class="s1">&#39;0px 0px 0px 10px&#39;</span><span class="p">})])</span> <span class="c1"># Have taken load_members_hbox out because it requires a call to bloomberg&#39;s cde library which is not accessible to us.</span>
+
+<span class="k">def</span> <span class="nf">on_click_load_portfolio</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">df_portfolio_weight</span>
+    <span class="c1">#portfolio_univ = bq.univ.members(port_dict[portfolio_dropdown.value],type=&#39;PORT&#39;) #Requires Bloomberg&#39;s Database and is henceforth unaccessible to us.</span>
+    <span class="c1">#id_ = bq.data.id() #Requires Bloomberg&#39;s Database and is henceforth unaccessible to us.</span>
+    <span class="c1">#df_portfolio_weight = pd.concat([x.df() for x in bq.execute(bql.Request(portfolio_univ, [bq.data.name(),id_[&#39;Weights&#39;]/100]))],axis=1).reset_index()  #******************** Directly TALKS TO Bloomberg&#39;s Database ************</span>
+    <span class="n">df_portfolio_weight</span> <span class="o">=</span>  <span class="n">approximated_mkt_weight</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_avail_ticker</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_portfolio_weight</span><span class="p">):</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">df_portfolio_weight</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_portfolio_weight</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">df_portfolio_weight</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">list_sec_input</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">#on_click_load_portfolio()</span>
+<span class="c1">#load_button.on_click(on_click_load_portfolio)</span>
+
+<span class="k">def</span> <span class="nf">run_viewmodel</span><span class="p">(</span><span class="n">change</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># VIEWS ON ASSET PERFORMANCE</span>
+    
+    <span class="c1"># for troubleshoot</span>
+    <span class="k">global</span> <span class="n">sub_a</span><span class="p">,</span> <span class="n">sub_b</span><span class="p">,</span> <span class="n">sub_c</span><span class="p">,</span> <span class="n">sub_d</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">Pi_new</span>
+    <span class="n">list_security</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">weights</span><span class="o">=</span><span class="n">OrderedDict</span><span class="p">()</span>
+    
+    <span class="n">P</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]))</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">],</span><span class="nb">float</span><span class="p">):</span>
+        <span class="n">Q</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">])):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="n">list_slider</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> 
+            <span class="c1">#alpha = (list_slider[n].value - Pi[n][0]) * (floattext_confidence.value) # We supply the [primary &#39;view&#39;] which is the Implied Return for each Asset Class.</span>
+                                                                                     <span class="c1"># For example, we assume the first asset class will have implied return 6% as calculated from the historical data</span>
+                                                                                     <span class="c1"># then, list_slider[n].value contains that 6% value. This is the [primary &#39;view&#39;] for this asset class. </span>
+                                                                                     <span class="c1"># Then on top of this [primary &#39;view&#39;] we will add our own [portfolio manager &#39;view&#39;]. </span>
+                                                                                     <span class="c1"># For example we believe that this asset class instead of 6% will have a 8% return. </span>
+                                                                                     <span class="c1"># Hence, we move the &#39;slider&#39; from the 6% position to the 8% position. Then on that 2% increase in excess return we multiply with the confidence on that view.</span>
+            <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">Pi</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        
+        <span class="k">for</span> <span class="n">relative_box</span> <span class="ow">in</span> <span class="n">list_relative_controls</span><span class="p">:</span>
+            <span class="n">sec1_pos</span> <span class="o">=</span> <span class="n">relative_box</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">sec2_pos</span> <span class="o">=</span> <span class="n">relative_box</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">sec1_pos</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sec2_pos</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">npselection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]))</span>
+                <span class="n">npselection</span><span class="p">[</span><span class="n">sec1_pos</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">npselection</span><span class="p">[</span><span class="n">sec2_pos</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">npselection</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+                <span class="c1">#alpha = (relative_box.children[-1].value - (Pi[sec1_pos][0] - Pi[sec2_pos][0])) * (floattext_confidence.value)</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="n">relative_box</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pi</span><span class="p">[</span><span class="n">sec1_pos</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">[</span><span class="n">sec2_pos</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span> <span class="o">*</span> <span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> 
+                <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alpha</span> <span class="o">+</span>  <span class="p">(</span><span class="n">Pi</span><span class="p">[</span><span class="n">sec1_pos</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">[</span><span class="n">sec2_pos</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+        
+        <span class="n">Q</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Q</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> 
+        <span class="c1">#tau = floattext_uncertainty.value </span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">12</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">list_security</span><span class="p">))</span> <span class="c1">#tau is a scalar indicating the uncertainty. As specified in the Black-Litterman paper it should be anywhere between [0.01,0.05] and this formula guarantees that in the majority of cases. </span>
+        <span class="c1">#tau = 0.025 # this allows us to fix the uncertainty value to a pre-determined standard value, equal to the above formula when 20 asset classes are supplied as input..</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">P</span><span class="p">),</span> <span class="n">C</span><span class="p">),</span> <span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="c1"># omega represents uncertanity of views implied uncertainty from market parameters.</span>
+
+        <span class="c1"># Compute equilibrium excess returns taking into account views on assets</span>
+        <span class="n">sub_a</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+        <span class="n">sub_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">omega</span><span class="p">)),</span> <span class="n">P</span><span class="p">)</span>
+        <span class="n">sub_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">C</span><span class="p">)),</span> <span class="n">Pi</span><span class="p">)</span>
+        <span class="n">sub_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">omega</span><span class="p">)),</span> <span class="n">Q</span><span class="p">)</span>
+        <span class="n">Pi_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">sub_a</span> <span class="o">+</span> <span class="n">sub_b</span><span class="p">),</span> <span class="p">(</span><span class="n">sub_c</span> <span class="o">+</span> <span class="n">sub_d</span><span class="p">))</span>         
+        <span class="c1"># Perform a mean-variance optimization taking into account views   </span>
+        <span class="n">new_frontier</span><span class="p">,</span> <span class="n">new_f_weights</span> <span class="o">=</span> <span class="n">solve_for_frountier</span><span class="p">(</span><span class="n">Pi_new</span> <span class="o">+</span> <span class="n">rf</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+        <span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;risk&#39;</span><span class="p">]</span>
+        <span class="c1"># Solve for weights before incorporating views</span>
+        <span class="n">new_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_f_weights</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">new_frontier</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;sharpe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+        <span class="n">leverage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">new_weights</span><span class="p">))</span>
+        <span class="n">initial_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">approximated_mkt_weight</span><span class="p">)</span>
+        <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Initial Weights&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">initial_weights</span>
+        <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">W_opt</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio with View&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">new_weights</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="n">output_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">list_security</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">output_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;output.xlsx&#39;</span><span class="p">)</span>
+
+        <span class="n">mean</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">_port_mean_var</span><span class="p">(</span><span class="n">new_weights</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Pi_new</span> <span class="o">+</span> <span class="n">rf</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="n">scatt</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_opt</span><span class="p">)]</span>
+        <span class="n">scatt</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_opt</span><span class="p">]</span>
+        <span class="n">scatt_view</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">scatt_view</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean</span><span class="p">]</span>
+            
+        <span class="n">bar</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">list_security</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">weights</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">]</span>
+
+        <span class="n">labels_initial</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">list_security</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">labels_initial</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Initial Weights&#39;</span><span class="p">]</span>
+        <span class="n">labels_initial</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Initial Weights&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">labels_opt</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">list_security</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">labels_opt</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio&#39;</span><span class="p">]</span>
+        <span class="n">labels_opt</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">labels_opt_view</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">list_security</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">labels_opt_view</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio with View&#39;</span><span class="p">]</span>
+        <span class="n">labels_opt_view</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="s1">&#39;Opt Portfolio with View&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">line</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;risk&#39;</span><span class="p">]</span>
+        <span class="n">line</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">frontier</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">],</span><span class="n">new_frontier</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">]]</span>
+        
+
+
+<span class="c1">#floattext_confidence = FloatSlider(description=&#39;Confidence Level on Views&#39;, value=dict_settings[&#39;confidence&#39;],style={&#39;description_width&#39;:&#39;initial&#39;}, readout_format=&#39;.2%&#39;, max=1, min=0,</span>
+          <span class="c1">#                         layout={&#39;margin&#39;:&#39;20px 0px 0px 0px&#39;}, step=0.5/100)</span>
+                                   
+<span class="c1">#floattext_confidence.observe(run_viewmodel) </span>
+
+<span class="c1">#return_slider.observe(run_viewmodel)</span>
+
+<span class="c1">#sv = pd.Series(np.sqrt(np.diag(Pi.T.dot(C.dot(Pi))).astype(float)), index=C.index)</span>
+<span class="k">def</span> <span class="nf">updateviewcontrol</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">UI_viewcontrol</span><span class="p">,</span> <span class="n">list_slider</span><span class="p">,</span> <span class="n">confidence_list_slider</span><span class="p">,</span> <span class="n">security_list</span><span class="p">,</span> <span class="n">list_relative_controls</span><span class="p">,</span> <span class="n">floattext_uncertainty</span>
+    
+    <span class="n">list_slider</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">confidence_list_slider</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">security_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="c1">#list_security=list(dict_settings[&#39;security&#39;].keys()) # Original line</span>
+    <span class="n">list_security</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c1"># Changed the name next to sliders to ticker name.</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">])):</span>
+        <span class="c1">#temp_slider=FloatSlider(value=Pi[n], description=list_security[n], continuous_update=False, max=0.2, min=-0.2, readout_format=&#39;.2%&#39;, step=0.2/100,style={&#39;description_width&#39;:&#39;100PX&#39;})</span>
+        <span class="n">temp_slider</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">Pi</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;View on Asset&#39;</span><span class="p">,</span>  <span class="nb">max</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2%&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.2</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span><span class="s1">&#39;100PX&#39;</span><span class="p">})</span> <span class="c1">#Slider Specficiations. Pi[n] contains the [primary &#39;view&#39;] and is the starting point of the slider. max,min specify the maximum amount of return you can spec on an asset class. description=list_security[n]--&gt; contains the name attached to the left of each slider.</span>
+        <span class="c1">#display(temp_slider) # this command was required to forcefully display sliders when bqplot did not use to work. It is no longer required as Bqplot now works on the jupyter notebook.</span>
+        <span class="n">temp_slider</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">run_viewmodel</span><span class="p">)</span>
+        <span class="n">list_slider</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_slider</span><span class="p">)</span>
+
+        <span class="n">floattext_confidence</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Confidence of View&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span><span class="s1">&#39;150PX&#39;</span><span class="p">},</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2%&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">floattext_confidence</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">run_viewmodel</span><span class="p">)</span> 
+        <span class="n">confidence_list_slider</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floattext_confidence</span><span class="p">)</span>
+
+        <span class="n">security_label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">list_security</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">security_label</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">run_viewmodel</span><span class="p">)</span>
+        <span class="n">security_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">security_label</span><span class="p">)</span>
+
+
+    <span class="n">list_relative_controls</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">sec_dropdown_options</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;None&#39;</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">dropdown1</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">sec_dropdown_options</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100px&#39;</span><span class="p">})</span>
+        <span class="n">dropdown2</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">sec_dropdown_options</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100px&#39;</span><span class="p">})</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;over&#39;</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;30px&#39;</span><span class="p">})</span>
+        <span class="n">float_value</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2%&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span><span class="s1">&#39;initial&#39;</span><span class="p">},</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+        <span class="n">float_value</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">run_viewmodel</span><span class="p">)</span>
+        <span class="n">relative_box</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">dropdown1</span><span class="p">,</span><span class="n">label</span><span class="p">,</span><span class="n">dropdown2</span><span class="p">,</span><span class="n">float_value</span><span class="p">])</span>
+        <span class="n">list_relative_controls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relative_box</span><span class="p">)</span>
+    
+    <span class="n">header_abs_html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;p style=&quot;color: white;&quot;&gt;</span><span class="si">{}</span><span class="s1">&lt;/p&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Absolute Views&#39;</span><span class="p">))</span>
+    <span class="n">header_rel_html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;p style=&quot;color: white;&quot;&gt;</span><span class="si">{}</span><span class="s1">&lt;/p&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Relative Views&#39;</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span><span class="s1">&#39;20px 0px 0px 0px&#39;</span><span class="p">})</span>
+    <span class="n">UI_viewcontrol</span> <span class="o">=</span> <span class="p">[</span><span class="n">header_abs_html</span><span class="p">,</span> <span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">([</span><span class="n">VBox</span><span class="p">(</span><span class="n">security_list</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">list_slider</span><span class="p">),</span> <span class="n">VBox</span><span class="p">(</span><span class="n">confidence_list_slider</span><span class="p">)])]),</span> <span class="n">header_rel_html</span><span class="p">]</span><span class="c1">#, VBox(list_relative_controls), VBox([floattext_confidence])]</span>
+    <span class="c1">#display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])]))</span>
+
+
+
+<span class="k">def</span> <span class="nf">updatecontrolinui</span><span class="p">():</span>
+    <span class="n">UI_model</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">UI_viewcontrol</span>
+
+<span class="n">updateviewcontrol</span><span class="p">()</span>
+
+<span class="c1"># END OF ************************************************************************************* GUI portion of the code that contains various labels,checkboxes etc.  ***********************</span>
+<span class="c1"># START OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************</span>
+
+<span class="n">x_ord</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">OrdinalScale</span><span class="p">()</span>
+<span class="n">y_sc</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
+<span class="n">y_sc</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1">#Plot #1 i.e. Creation of the bar plot</span>
+
+<span class="n">bar</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Bars</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span> 
+               <span class="n">y</span><span class="o">=</span><span class="p">[],</span> 
+               <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">},</span>
+               <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="n">display_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Initial Weights&#39;</span><span class="p">,</span><span class="s1">&#39;Mkt Efficient Portfolio (Max Sharpe)&#39;</span><span class="p">,</span><span class="s1">&#39;Efficient Portfolio with Views (BL)&#39;</span><span class="p">],</span> <span class="c1">#orientation decides whether the bars are horizontal or vertical</span>
+              <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#4fa110&#39;</span><span class="p">,</span><span class="s1">&#39;#1B84ED&#39;</span><span class="p">,</span><span class="s1">&#39;#F39F41&#39;</span><span class="p">],</span> <span class="n">opacities</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;grouped&#39;</span><span class="p">)</span>
+
+<span class="c1">#bar.type=&#39;grouped&#39;</span>
+<span class="n">bar</span><span class="o">.</span><span class="n">tooltip</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Weight of Asset&#39;</span><span class="p">],</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.3f&#39;</span><span class="p">])</span> <span class="c1">#this displays the weight placed on each asset.</span>
+
+<span class="n">ax_x</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">x_ord</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">ax_y</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">y_sc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+
+<span class="c1">#fig_bar = bqp.Figure(marks=[bar], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, </span>
+                     <span class="c1">#layout=Layout(width=&#39;800px&#39;), legend_location=&#39;top-right&#39;, </span>
+                     <span class="c1">#fig_margin={&#39;top&#39;:20, &#39;bottom&#39;:30, &#39;left&#39;:80, &#39;right&#39;:20})</span>
+
+<span class="c1">#fig_bar = bqp.Figure(marks=[bar,bar_labels], axes=[ax_x, ax_y], padding_x=0.025, padding_y=0.025, </span>
+<span class="c1">#                     layout=Layout(width=&#39;600px&#39;), legend_location=&#39;top&#39;, </span>
+<span class="c1">#                     fig_margin={&#39;top&#39;:20, &#39;bottom&#39;:30, &#39;left&#39;:110, &#39;right&#39;:20})                     </span>
+
+
+<span class="n">ax_x</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">x_ord</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Black&#39;</span><span class="p">)</span>
+<span class="n">ax_y</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">y_sc</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;0.2f&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;White&#39;</span><span class="p">)</span>
+
+<span class="n">labels_initial</span> <span class="o">=</span>  <span class="n">bqp</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">},</span> <span class="c1">#contain value of weights but only for the labels not the bars.</span>
+    <span class="n">x_offset</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">17</span><span class="p">,</span> 
+    <span class="n">text</span><span class="o">=</span><span class="p">[],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#4fa110&#39;</span><span class="p">],</span> 
+    <span class="n">default_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>  <span class="n">update_on_move</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">labels_opt</span> <span class="o">=</span>  <span class="n">bqp</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">},</span> 
+    <span class="n">x_offset</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y_offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">text</span><span class="o">=</span><span class="p">[],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1B84ED&#39;</span><span class="p">],</span> 
+    <span class="n">default_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>  <span class="n">update_on_move</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">labels_opt_view</span> <span class="o">=</span>  <span class="n">bqp</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">},</span> 
+    <span class="n">x_offset</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y_offset</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span> 
+    <span class="n">text</span><span class="o">=</span><span class="p">[],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#F39F41&#39;</span><span class="p">],</span> 
+    <span class="n">default_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>  <span class="n">update_on_move</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig_bar</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">labels_opt_view</span><span class="p">,</span><span class="n">labels_opt</span><span class="p">,</span><span class="n">labels_initial</span><span class="p">,</span><span class="n">bar</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">],</span> <span class="n">padding_x</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">padding_y</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> 
+                     <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;800px&#39;</span><span class="p">),</span> <span class="n">legend_location</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">legend_text</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">},</span> <span class="n">legend_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+                     <span class="n">fig_margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;top&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">})</span>       
+
+<span class="c1">#fig_bar</span>
+
+<span class="c1">#Plot #2 i.e. the efficient froniter plot</span>
+
+<span class="n">x_lin</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
+<span class="n">y_lin</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
+<span class="c1">#x_lin.max = 0.2 # controls the length of the x-axis</span>
+<span class="c1">#y_lin.max = 0.1 # controls the length of the y-axis</span>
+
+<span class="n">x_ax</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;risk&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">x_lin</span><span class="p">,</span> <span class="n">grid_lines</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">)</span>
+<span class="n">x_ay</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">y_lin</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">grid_lines</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">)</span>
+
+<span class="n">def_tt</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.3f&#39;</span><span class="p">,</span> <span class="s1">&#39;.3f&#39;</span><span class="p">])</span> 
+
+<span class="n">scatt</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span><span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_lin</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_lin</span><span class="p">},</span> <span class="n">tooltip</span><span class="o">=</span><span class="n">def_tt</span><span class="p">,</span>
+                    <span class="n">display_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Efficient Portfolio&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1B84ED&#39;</span><span class="p">])</span>
+<span class="n">scatt_view</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span><span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_lin</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_lin</span><span class="p">},</span> <span class="n">tooltip</span><span class="o">=</span><span class="n">def_tt</span><span class="p">,</span>
+                           <span class="n">display_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Efficient Portfolio with Views Portfolio&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#F39F41&#39;</span><span class="p">])</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Lines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_lin</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_lin</span><span class="p">},</span> <span class="n">display_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mkt Efficient Portfolio&#39;</span><span class="p">,</span><span class="s1">&#39;Efficient Portfolio with Views&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1B84ED&#39;</span><span class="p">,</span><span class="s1">&#39;#F39F41&#39;</span><span class="p">])</span>
+
+<span class="n">fig_line</span> <span class="o">=</span> <span class="n">bqp</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">line</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">x_ax</span><span class="p">,</span> <span class="n">x_ay</span><span class="p">],</span> 
+                      <span class="n">legend_location</span><span class="o">=</span><span class="s1">&#39;top-left&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;800px&#39;</span><span class="p">),</span> <span class="n">legend_text</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">},</span> <span class="n">legend_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+                      <span class="n">fig_margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;top&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">})</span>
+<span class="n">run_viewmodel</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">})</span>
+<span class="c1">#UI_model=VBox([HBox(UI_viewcontrol,layout=Layout(width=&#39;1000px&#39;)),HBox([fig_bar]),HBox([fig_line])]) # specifies the length of the lhs of the interface</span>
+<span class="n">HBox</span><span class="p">(</span><span class="n">UI_viewcontrol</span><span class="p">,</span><span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;1000px&#39;</span><span class="p">))</span>
+<span class="n">fig_bar</span>
+<span class="n">fig_line</span>
+<span class="c1">#display(HBox([fig_bar]))</span>
+<span class="c1">#display(VBox([HBox([VBox(UI_viewcontrol), VBox([fig_bar])])]))</span>
+<span class="c1">#display(VBox([HBox([VBox(security_list), VBox(list_slider), VBox(confidence_list_slider)])])) </span>
+<span class="c1">#UI_model = HBox([loading_html])</span>
+
+<span class="c1">#interact(updateviewcontrol, UI_model)</span>
+
+<span class="c1"># END OF ************************************************************************************************************** Build bar charts (use of bqp)  ***********************</span>
+
+<span class="n">tab</span> <span class="o">=</span> <span class="n">Tab</span><span class="p">()</span>
+<span class="c1">#tab.children = [UI_model, UI_sec_input]</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">UI_model</span><span class="p">]</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Portfolio Optimizer&#39;</span><span class="p">)</span>
+<span class="c1">#tab.set_title(1, &#39;Settings&#39;)</span>
+<span class="c1">#tab.set_title(2, &#39;Reference Data&#39;)</span>
+
+<span class="k">def</span> <span class="nf">updatedseclist</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;old&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">save_settings</span><span class="p">()</span>
+        <span class="n">solve_intial_opt_weight</span><span class="p">()</span>
+        <span class="n">run_viewmodel</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">})</span>
+
+<span class="c1"># START OF ************************************************************************************************************** (use of bqcde)  *********************** </span>
+
+<span class="c1">#import bqcde #Requires Bloomberg&#39;s Database and is henceforth unaccessible to us. AND BELOW...interal portfolio thing</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="k">def</span> <span class="nf">upload_to_cde</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Uploading...&#39;</span>
+    <span class="c1">#lmb_2 = 0.5/np.sqrt(np.asarray([W_opt]).dot(C).dot(np.asarray([W_opt]).T))[0][0]</span>
+    <span class="c1">#Pi_2 = np.dot(lmb_2 * C, np.asarray([W_opt]).T)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;ID&#39;</span><span class="p">:</span><span class="nb">list</span><span class="p">(</span><span class="n">dict_settings</span><span class="p">[</span><span class="s1">&#39;security&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span><span class="s1">&#39;Equil Return&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Pi</span><span class="p">],</span> <span class="s1">&#39;BL Return&#39;</span><span class="p">:[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Pi_new</span><span class="p">]</span> <span class="p">})</span>
+    <span class="n">as_of_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">upload_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Equil Return&#39;</span><span class="p">:</span><span class="s1">&#39;UD_EQUIL_RETURN&#39;</span><span class="p">,</span><span class="s1">&#39;BL Return&#39;</span><span class="p">:</span><span class="s1">&#39;UD_BL_RETURN&#39;</span><span class="p">}</span>
+    <span class="c1">#pd.DataFrame({&#39;ID&#39;:list(dict_settings[&#39;security&#39;].keys()),&#39;Equil Return&#39;: [x[0] for x in Pi]}).set_index(&#39;ID&#39;)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">upload_dict</span><span class="p">)</span>
+        <span class="n">list_to_upload</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">upload_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="c1">#fs = bqcde.get_fields(mnemonics=list_to_upload)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;AS_OF_DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">as_of_date</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;AS_OF_DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;AS_OF_DATE&#39;</span><span class="p">])</span>
+        <span class="c1">#bqcde.write(fields=fs, dataframe=df.fillna(&quot;N/A&quot;))</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Upload to CDE&#39;</span>
+
+<span class="c1">#upload_to_cde()</span>
+<span class="c1">#button = Button(description=&#39;Upload to CDE&#39;)</span>
+<span class="c1">#button.on_click(upload_to_cde)</span>
+
+<span class="c1"># END OF ************************************************************************************************************** (use of bqcde)  *********************** </span>
+
+<span class="n">preload_box</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#VBox([button,tab])</span>
+<span class="n">VBox</span><span class="p">([</span><span class="n">tab</span><span class="p">])</span>
+
+<span class="c1">#[Open Weight](output.xlsx)</span>
+
+<span class="c1">#for slider in list_slider:</span>
+    <span class="c1">#print(slider.description, &quot;: &quot;, slider.value)        #supressing this print out </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+
+
+<!-- Loads nbinteract package -->
+<script src="https://unpkg.com/nbinteract-core" async></script>
+<script>
+  (function setupNbinteract() {
+    // If NbInteract hasn't loaded, wait one second and try again
+    if (window.NbInteract === undefined) {
+      setTimeout(setupNbinteract, 1000)
+      return
+    }
+
+    var interact = new window.NbInteract({
+      spec: 'liaskast/199ed22584e316d7d845c09370bc329b/master',
+      baseUrl: 'https://mybinder.org',
+      provider: 'gist',
+    })
+    interact.prepare()
+
+    window.interact = interact
+  })()
+</script>
+</div>
+</div>
+<script>
+    window.ga = window.ga || function () {
+        (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-71773079-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+
+</html>
